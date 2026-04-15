@@ -78,11 +78,13 @@
 <div class="pt-[68px] pb-8 sm:pb-12 px-0 sm:px-4 md:px-6">
 <main class="max-w-6xl mx-auto relative bg-white sm:border sm:border-slate-200/80 rounded-none sm:rounded-3xl shadow-xl shadow-slate-900/10">
 
-  <!-- Subtle finance/tech/AI SVG layer INSIDE the card, clipped to rounded shape -->
-  <div class="absolute inset-0 -z-0 pointer-events-none overflow-hidden rounded-none sm:rounded-3xl">
+  <!-- Finance / derivatives / quant / Gen AI / tech SVG layer INSIDE the card,
+       clipped to rounded shape. Kept translucent so motifs read as a backdrop
+       behind every content card without competing with the foreground. -->
+  <div class="absolute inset-0 pointer-events-none overflow-hidden rounded-none sm:rounded-3xl">
     <img src="/static/img/stock-bg.svg" alt="" aria-hidden="true"
          class="absolute inset-0 w-full h-full object-cover opacity-95" />
-    <div class="absolute inset-0 bg-gradient-to-br from-white/55 via-white/70 to-white/55"></div>
+    <div class="absolute inset-0 bg-gradient-to-br from-white/30 via-white/45 to-white/30"></div>
   </div>
 
 <section id="top" class="relative flex items-center py-8 sm:py-10 md:py-16">
@@ -128,9 +130,15 @@
 
     {# ---- TEXT SECOND ---- #}
     <div class="reveal order-2">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-slate-300/60 text-[11px] md:text-xs font-medium text-accent-cyan mb-4 md:mb-6">
-        <span class="w-2 h-2 rounded-full bg-accent-cyan animate-pulse"></span>
-        Available for new opportunities
+      <div class="flex flex-wrap items-center gap-2 mb-4 md:mb-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-slate-300/60 text-[11px] md:text-xs font-medium text-accent-cyan">
+          <span class="w-2 h-2 rounded-full bg-accent-cyan animate-pulse"></span>
+          Available for new opportunities
+        </div>
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-[11px] md:text-xs font-semibold text-emerald-700">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+          U.S. work authorized &middot; no visa sponsorship needed
+        </div>
       </div>
       <h1 class="font-display font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05] tracking-tight text-slate-900 mb-3 md:mb-4">
         {{ d.name | title }}<span class="text-accent-cyan">.</span>
@@ -194,7 +202,7 @@
     </div>
 
     <div class="space-y-4 md:space-y-6 mt-5 md:mt-8">
-      <div class="reveal text-slate-700 leading-relaxed max-w-4xl">
+      <div class="reveal text-slate-700 leading-relaxed">
         <p class="text-[15px] md:text-base">{{ d.profile | replace('`', '') }}</p>
       </div>
       <div class="reveal">
@@ -226,11 +234,8 @@
       <p class="text-slate-600">Three decades of milestones across FinTech and enterprise modernization.</p>
     </div>
 
-    <div class="mt-5 md:mt-10 reveal rounded-2xl bg-white/85 backdrop-blur-sm shadow-sm shadow-slate-200/60 border border-slate-200 p-3 md:p-4">
-      <!-- horizontal scroll on narrow screens so the 11 year labels never overlap -->
-      <div class="overflow-x-auto">
-        <div id="chart-timeline" class="min-w-[720px]"></div>
-      </div>
+    <div class="mt-5 md:mt-10 reveal rounded-2xl bg-white/75 backdrop-blur-[6px] shadow-sm shadow-slate-200/60 border border-slate-200 p-2 md:p-4">
+      <div id="chart-timeline" class="w-full"></div>
     </div>
   </div>
 </section>
@@ -248,13 +253,13 @@
     </div>
 
     <div class="grid lg:grid-cols-[1.1fr_1fr] gap-10 mt-6 md:mt-10 items-center">
-      <div class="reveal rounded-2xl bg-white/85 backdrop-blur-sm shadow-sm shadow-slate-200/60 border border-slate-200 p-4">
+      <div class="reveal rounded-2xl bg-white/75 backdrop-blur-[6px] shadow-sm shadow-slate-200/60 border border-slate-200 p-4">
         <div id="chart-skills" class="w-full"></div>
       </div>
 
       <div class="reveal grid grid-cols-3 sm:grid-cols-4 gap-3">
         {% for name, skill in d['technical skills'].items() %}
-        <div class="group relative aspect-square rounded-xl bg-white/85 backdrop-blur-sm shadow-sm shadow-slate-200/60 border border-slate-200 flex flex-col items-center justify-center p-3 hover:border-accent-cyan/50 hover:-translate-y-1 transition-all cursor-help"
+        <div class="group relative aspect-square rounded-xl bg-white/75 backdrop-blur-[6px] shadow-sm shadow-slate-200/60 border border-slate-200 flex flex-col items-center justify-center p-3 hover:border-accent-cyan/50 hover:-translate-y-1 transition-all cursor-help"
              title="{{ skill.hover }}">
           <img src="/images/{{ skill.icon }}" alt="{{ name }}" class="w-10 h-10 object-contain mb-1" />
           <div class="text-[10px] uppercase tracking-wide text-slate-600 font-medium truncate w-full text-center">{{ name }}</div>
@@ -280,13 +285,13 @@
       <p class="text-slate-600">Delivering mission-critical systems across five companies.</p>
     </div>
 
-    <div class="reveal mt-6 md:mt-10 rounded-2xl bg-white/85 backdrop-blur-sm shadow-sm shadow-slate-200/60 border border-slate-200 p-4">
+    <div class="reveal mt-6 md:mt-10 rounded-2xl bg-white/75 backdrop-blur-[6px] shadow-sm shadow-slate-200/60 border border-slate-200 p-4">
       <div id="chart-employment" class="w-full"></div>
     </div>
 
     <div class="mt-6 md:mt-10 space-y-6">
       {% for company, meta in d.projects.items() %}
-      <details class="reveal group rounded-2xl bg-white/85 backdrop-blur-sm shadow-sm shadow-slate-200/60 border border-slate-200 hover:border-accent-cyan/40 transition-colors overflow-hidden" {% if loop.first %}open{% endif %}>
+      <details class="reveal group rounded-2xl bg-white/75 backdrop-blur-[6px] shadow-sm shadow-slate-200/60 border border-slate-200 hover:border-accent-cyan/40 transition-colors overflow-hidden" {% if loop.first %}open{% endif %}>
         <summary class="cursor-pointer list-none p-6 flex items-center gap-4">
           <img src="/images/{{ meta.icon }}" alt="{{ company }}" class="w-12 h-12 rounded-lg object-contain bg-white/5 p-1 flex-shrink-0" />
           <div class="flex-1 min-w-0">
@@ -346,7 +351,7 @@
 
     <div class="space-y-6 mt-6 md:mt-10">
       {% for name, p in d.portfolio.items() %}
-      <article class="reveal group rounded-2xl bg-white/85 backdrop-blur-sm shadow-sm shadow-slate-200/60 border border-slate-200 overflow-hidden hover:border-accent-cyan/50 hover:-translate-y-1 transition-all">
+      <article class="reveal group rounded-2xl bg-white/75 backdrop-blur-[6px] shadow-sm shadow-slate-200/60 border border-slate-200 overflow-hidden hover:border-accent-cyan/50 hover:-translate-y-1 transition-all">
         <div class="grid lg:grid-cols-[1.35fr_1fr] gap-0">
           <div class="relative aspect-[16/9] lg:aspect-auto lg:min-h-[320px] bg-slate-100 overflow-hidden">
             <img src="/images/{{ p.image }}" alt="{{ name }}" class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500" />
@@ -387,12 +392,12 @@
     </div>
 
     <div class="grid lg:grid-cols-[1fr_1.4fr] gap-8 mt-6 md:mt-10 items-center">
-      <div class="reveal rounded-2xl bg-white/85 backdrop-blur-sm shadow-sm shadow-slate-200/60 border border-slate-200 p-4">
+      <div class="reveal rounded-2xl bg-white/75 backdrop-blur-[6px] shadow-sm shadow-slate-200/60 border border-slate-200 p-4">
         <div id="chart-education" class="w-full"></div>
       </div>
       <div class="space-y-4">
         {% for name, ed in d.education.items() %}
-        <a href="{{ ed.link }}" target="_blank" class="reveal group flex items-center gap-4 p-5 rounded-2xl bg-white/85 backdrop-blur-sm shadow-sm shadow-slate-200/60 border border-slate-200 hover:border-accent-cyan/50 transition-all">
+        <a href="{{ ed.link }}" target="_blank" class="reveal group flex items-center gap-4 p-5 rounded-2xl bg-white/75 backdrop-blur-[6px] shadow-sm shadow-slate-200/60 border border-slate-200 hover:border-accent-cyan/50 transition-all">
           <img src="/images/{{ ed.icon }}" alt="" class="w-14 h-14 rounded-lg object-contain bg-white/5 p-2 flex-shrink-0" />
           <div class="flex-1 min-w-0">
             <h3 class="font-semibold text-slate-900 group-hover:text-accent-cyan transition-colors">{{ name }}</h3>
@@ -420,7 +425,7 @@
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-10">
       {% for name, c in d.certifications.items() %}
       <a href="{{ c.link }}" target="_blank"
-         class="reveal group p-5 rounded-2xl bg-white/85 backdrop-blur-sm shadow-sm shadow-slate-200/60 border border-slate-200 hover:border-accent-cyan/50 hover:-translate-y-1 transition-all">
+         class="reveal group p-5 rounded-2xl bg-white/75 backdrop-blur-[6px] shadow-sm shadow-slate-200/60 border border-slate-200 hover:border-accent-cyan/50 hover:-translate-y-1 transition-all">
         <div class="flex items-start gap-4">
           <img src="/images/{{ c.icon }}" alt="{{ name }}"
                class="w-14 h-14 object-contain rounded-lg bg-slate-50 p-2 flex-shrink-0 border border-slate-200" />
@@ -455,7 +460,7 @@
       <p class="text-slate-600">Tinkering with drones &amp; embedded systems.</p>
     </div>
 
-    <div class="reveal mt-6 md:mt-10 p-8 rounded-2xl bg-white/85 backdrop-blur-sm shadow-sm shadow-slate-200/60 border border-slate-200 grid md:grid-cols-[1fr_2fr] gap-8 items-center">
+    <div class="reveal mt-6 md:mt-10 p-8 rounded-2xl bg-white/75 backdrop-blur-[6px] shadow-sm shadow-slate-200/60 border border-slate-200 grid md:grid-cols-[1fr_2fr] gap-8 items-center">
       <div class="grid grid-cols-2 gap-3">
         <img src="/images/drone.png" alt="Drone" class="rounded-xl bg-white/5 p-2" />
         <img src="/images/raspberry.png" alt="Raspberry Pi" class="rounded-xl bg-white/5 p-2" />
@@ -482,7 +487,7 @@
 
       <div class="flex flex-wrap gap-3 justify-center mb-12">
         {% for key, c in d.contact.items() %}
-        <a href="{{ c.link }}" target="_blank" class="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white/85 backdrop-blur-sm shadow-sm shadow-slate-200/60 border border-slate-200 hover:border-accent-cyan hover:text-accent-cyan transition-colors text-sm">
+        <a href="{{ c.link }}" target="_blank" class="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white/75 backdrop-blur-[6px] shadow-sm shadow-slate-200/60 border border-slate-200 hover:border-accent-cyan hover:text-accent-cyan transition-colors text-sm">
           <img src="/images/{{ c.icon }}" class="w-4 h-4 object-contain" alt="" />
           {{ c.label }}
         </a>
@@ -491,7 +496,7 @@
 
       <div class="flex gap-4 justify-center">
         {% for key, s in d.social.items() %}
-        <a href="{{ s.link }}" target="_blank" title="{{ s.label }}" class="w-12 h-12 rounded-full bg-white/85 backdrop-blur-sm shadow-sm shadow-slate-200/60 border border-slate-200 hover:border-accent-cyan hover:-translate-y-1 transition-all flex items-center justify-center">
+        <a href="{{ s.link }}" target="_blank" title="{{ s.label }}" class="w-12 h-12 rounded-full bg-white/75 backdrop-blur-[6px] shadow-sm shadow-slate-200/60 border border-slate-200 hover:border-accent-cyan hover:-translate-y-1 transition-all flex items-center justify-center">
           <img src="/images/{{ s.icon }}" alt="{{ key }}" class="w-5 h-5 object-contain" />
         </a>
         {% endfor %}

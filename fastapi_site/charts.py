@@ -38,6 +38,27 @@ def _hex_to_rgba(hex_color: str, alpha: float) -> str:
     r, g, b = int(h[0:2], 16), int(h[2:4], 16), int(h[4:6], 16)
     return f"rgba({r},{g},{b},{alpha})"
 
+
+def _wrap_text(text: str, width: int = 55) -> str:
+    """Insert <br> breaks so long hover labels don't get truncated in
+    Plotly's hover tooltip. Breaks at word boundaries only."""
+    if not text or len(text) <= width:
+        return text or ""
+    words = text.split()
+    lines: list[str] = []
+    current = ""
+    for w in words:
+        if not current:
+            current = w
+        elif len(current) + 1 + len(w) <= width:
+            current += " " + w
+        else:
+            lines.append(current)
+            current = w
+    if current:
+        lines.append(current)
+    return "<br>".join(lines)
+
 BASE_LAYOUT = dict(
     paper_bgcolor="rgba(0,0,0,0)",
     plot_bgcolor="rgba(0,0,0,0)",
@@ -47,6 +68,7 @@ BASE_LAYOUT = dict(
         bgcolor="#ffffff",
         bordercolor=ACCENT_CYAN,
         font=dict(family="Inter, sans-serif", color="#0f172a", size=12),
+        namelength=-1,  # never truncate hover text
     ),
 )
 
@@ -77,7 +99,7 @@ def skills_radar(skills: dict[str, dict[str, Any]]) -> str:
         if not present:
             continue
         levels = [skills[s]["level"] for s in present]
-        hovers = [skills[s].get("hover", "") for s in present]
+        hovers = [_wrap_text(skills[s].get("hover", ""), width=50) for s in present]
         labels = [s.upper() for s in present]
         levels.append(levels[0])
         labels.append(labels[0])
@@ -247,13 +269,13 @@ def career_timeline(milestones: dict[int, dict[str, Any]]) -> str:
         y=[1] * len(years),
         mode="markers",
         marker=dict(
-            size=26,
+            size=14,
             color=marker_colors,
-            line=dict(color="#ffffff", width=3),
+            line=dict(color="#ffffff", width=2),
             symbol="circle",
         ),
         customdata=labels,
-        hovertext=hovers,
+        hovertext=[_wrap_text(h, 60) for h in hovers],
         hovertemplate="<b>%{x} — %{customdata}</b><br>%{hovertext}<extra></extra>",
     ))
     annotations = [
@@ -263,28 +285,37 @@ def career_timeline(milestones: dict[int, dict[str, Any]]) -> str:
             text=f"<b>{label}</b>",
             showarrow=False,
             yanchor="bottom",
-            yshift=18,
+            yshift=10,
             textangle=-90,
             align="left",
-            font=dict(color="#0f172a", size=12, family="Inter, sans-serif"),
+            font=dict(color="#0f172a", size=9, family="Inter, sans-serif"),
         )
         for year, label in zip(years, labels)
     ]
     fig.update_layout(
-        **BASE_LAYOUT,
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
+        font=dict(family="Inter, sans-serif", color="#1e293b", size=11),
+        margin=dict(l=8, r=8, t=12, b=8),
+        hoverlabel=dict(
+            bgcolor="#ffffff",
+            bordercolor=ACCENT_CYAN,
+            font=dict(family="Inter, sans-serif", color="#0f172a", size=12),
+            namelength=-1,
+        ),
         xaxis=dict(
             title="",
             gridcolor="rgba(100,116,139,0.18)",
             color="#334155",
-            range=[min(years) - 2, max(years) + 2],
+            range=[min(years) - 1.2, max(years) + 1.2],
             tickmode="array",
             tickvals=years,
             ticktext=[str(y) for y in years],
             tickangle=-90,
-            tickfont=dict(size=11, color="#1e293b", family="Inter, sans-serif"),
+            tickfont=dict(size=9, color="#1e293b", family="Inter, sans-serif"),
         ),
-        yaxis=dict(visible=False, range=[0.75, 2.4]),
-        height=360,
+        yaxis=dict(visible=False, range=[0.82, 2.25]),
+        height=280,
         showlegend=False,
         annotations=annotations,
     )
