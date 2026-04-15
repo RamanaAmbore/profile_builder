@@ -40,30 +40,28 @@ def _hex_to_rgba(hex_color: str, alpha: float) -> str:
 
 
 def _wrap_text(text: str, width: int = 40) -> str:
-    """Wrap hover text into EXACTLY two lines when it exceeds `width`
-    characters. Splits at the word boundary nearest the middle so both
-    lines end up roughly balanced. Strings <= width are returned as-is."""
+    """Greedy word-wrap hover text so each line is at most `width`
+    characters, joined with <br> for Plotly hover templates. Strings
+    <= width are returned unchanged. Single words longer than `width`
+    are left on their own line rather than broken mid-word."""
     if not text:
         return ""
     text = " ".join(text.split())  # normalize whitespace
     if len(text) <= width:
         return text
-
-    mid = len(text) // 2
-    # Search outward from the middle for the closest space
-    best = -1
-    for offset in range(mid + 1):
-        left = mid - offset
-        right = mid + offset
-        if 0 < left < len(text) and text[left] == " ":
-            best = left
-            break
-        if right < len(text) and text[right] == " ":
-            best = right
-            break
-    if best == -1:
-        return text  # pathological: no spaces
-    return text[:best] + "<br>" + text[best + 1 :]
+    lines: list[str] = []
+    current = ""
+    for word in text.split():
+        if not current:
+            current = word
+        elif len(current) + 1 + len(word) <= width:
+            current += " " + word
+        else:
+            lines.append(current)
+            current = word
+    if current:
+        lines.append(current)
+    return "<br>".join(lines)
 
 BASE_LAYOUT = dict(
     paper_bgcolor="rgba(0,0,0,0)",
@@ -75,6 +73,7 @@ BASE_LAYOUT = dict(
         bordercolor=ACCENT_CYAN,
         font=dict(family="Inter, sans-serif", color="#0f172a", size=12),
         namelength=-1,  # never truncate hover text
+        align="left",
     ),
 )
 
@@ -275,9 +274,10 @@ def career_timeline(milestones: dict[int, dict[str, Any]]) -> str:
         y=[1] * len(years),
         mode="markers",
         marker=dict(
-            size=10,
+            # Desktop defaults. Client-side JS shrinks these on mobile (<640px).
+            size=22,
             color=marker_colors,
-            line=dict(color="#ffffff", width=1.5),
+            line=dict(color="#ffffff", width=2.5),
             symbol="circle",
         ),
         customdata=labels,
@@ -291,23 +291,24 @@ def career_timeline(milestones: dict[int, dict[str, Any]]) -> str:
             text=f"<b>{label}</b>",
             showarrow=False,
             yanchor="bottom",
-            yshift=7,
+            yshift=14,
             textangle=-90,
             align="left",
-            font=dict(color="#0f172a", size=8, family="Inter, sans-serif"),
+            font=dict(color="#0f172a", size=11, family="Inter, sans-serif"),
         )
         for year, label in zip(years, labels)
     ]
     fig.update_layout(
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(0,0,0,0)",
-        font=dict(family="Inter, sans-serif", color="#1e293b", size=10),
-        margin=dict(l=4, r=4, t=8, b=4),
+        font=dict(family="Inter, sans-serif", color="#1e293b", size=12),
+        margin=dict(l=8, r=8, t=12, b=4),
         hoverlabel=dict(
             bgcolor="#ffffff",
             bordercolor=ACCENT_CYAN,
-            font=dict(family="Inter, sans-serif", color="#0f172a", size=11),
+            font=dict(family="Inter, sans-serif", color="#0f172a", size=12),
             namelength=-1,
+            align="left",
         ),
         xaxis=dict(
             title="",
@@ -318,10 +319,10 @@ def career_timeline(milestones: dict[int, dict[str, Any]]) -> str:
             tickvals=years,
             ticktext=[str(y) for y in years],
             tickangle=-90,
-            tickfont=dict(size=8, color="#1e293b", family="Inter, sans-serif"),
+            tickfont=dict(size=11, color="#1e293b", family="Inter, sans-serif"),
         ),
-        yaxis=dict(visible=False, range=[0.85, 2.20]),
-        height=240,
+        yaxis=dict(visible=False, range=[0.80, 2.40]),
+        height=320,
         showlegend=False,
         annotations=annotations,
     )

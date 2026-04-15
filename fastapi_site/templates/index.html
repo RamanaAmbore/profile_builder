@@ -181,7 +181,7 @@
 <div class="h-px mx-5 sm:mx-6 md:mx-12 bg-gradient-to-r from-transparent via-slate-200 to-transparent relative"></div>
 
 {# ============ ABOUT ============ #}
-<section id="about" class="py-8 md:py-12 relative">
+<section id="about" class="py-5 md:py-10 relative">
   <div class="px-5 sm:px-6 md:px-12 relative">
     <div class="reveal">
       <div class="flex items-center gap-3 mb-3">
@@ -214,7 +214,7 @@
 </section>
 
 {# ============ EXPERIENCE / CAREER TIMELINE ============ #}
-<section id="experience" class="py-8 md:py-12 relative">
+<section id="experience" class="py-5 md:py-10 relative">
   <div class="px-5 sm:px-6 md:px-12 relative">
     <div class="reveal">
       <div class="flex items-center gap-3 mb-3">
@@ -232,7 +232,7 @@
 </section>
 
 {# ============ SKILLS ============ #}
-<section id="skills" class="py-8 md:py-12 relative">
+<section id="skills" class="py-5 md:py-10 relative">
   <div class="px-5 sm:px-6 md:px-12 relative">
     <div class="reveal">
       <div class="flex items-center gap-3 mb-3">
@@ -243,19 +243,25 @@
       <p class="text-slate-600">Proficiency across languages, data, cloud and backend systems.</p>
     </div>
 
-    <div class="grid lg:grid-cols-[1.1fr_1fr] gap-10 mt-6 md:mt-10 items-center">
+    <div class="grid lg:grid-cols-[1.1fr_1fr] gap-10 mt-4 md:mt-8 items-center">
       <div class="reveal rounded-2xl bg-white/75 backdrop-blur-[6px] shadow-sm shadow-slate-200/60 border border-slate-200 p-4">
         <div id="chart-skills" class="w-full"></div>
       </div>
 
-      <div class="reveal grid grid-cols-3 sm:grid-cols-4 gap-3">
+      <div class="reveal grid grid-cols-4 sm:grid-cols-5 md:grid-cols-4 gap-2 md:gap-3">
         {% for name, skill in d['technical skills'].items() %}
-        <div class="group relative aspect-square rounded-xl bg-white/75 backdrop-blur-[6px] shadow-sm shadow-slate-200/60 border border-slate-200 flex flex-col items-center justify-center p-3 hover:border-accent-cyan/50 hover:-translate-y-1 transition-all cursor-help"
-             title="{{ skill.hover }}">
-          <img src="/images/{{ skill.icon }}" alt="{{ name }}" class="w-10 h-10 object-contain mb-1" />
-          <div class="text-[10px] uppercase tracking-wide text-slate-600 font-medium truncate w-full text-center">{{ name }}</div>
-          <div class="absolute bottom-1 left-1 right-1 h-1 rounded-full bg-slate-100 overflow-hidden">
+        <div class="group/skill relative aspect-square rounded-lg md:rounded-xl bg-white/75 backdrop-blur-[6px] shadow-sm shadow-slate-200/60 border border-slate-200 flex flex-col items-center justify-center p-1.5 md:p-3 hover:border-accent-cyan/50 hover:-translate-y-0.5 md:hover:-translate-y-1 transition-all cursor-help">
+          <img src="/images/{{ skill.icon }}" alt="{{ name }}" class="w-7 h-7 md:w-10 md:h-10 object-contain mb-0.5 md:mb-1" />
+          <div class="text-[8px] md:text-[10px] uppercase tracking-wide text-slate-600 font-medium truncate w-full text-center">{{ name }}</div>
+          <div class="absolute bottom-0.5 md:bottom-1 left-0.5 md:left-1 right-0.5 md:right-1 h-0.5 md:h-1 rounded-full bg-slate-100 overflow-hidden">
             <div class="h-full bg-gradient-to-r from-accent-cyan to-accent-indigo" style="width: {{ skill.level * 20 }}%"></div>
+          </div>
+
+          <!-- Hover / tap tooltip with the skill experience -->
+          <div class="pointer-events-none opacity-0 group-hover/skill:opacity-100 group-focus-within/skill:opacity-100 transition-opacity duration-150 absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-56 p-2.5 rounded-lg bg-slate-900 text-white text-[11px] leading-snug shadow-xl shadow-slate-900/30 z-50">
+            <div class="font-semibold text-accent-cyan mb-0.5">{{ name }} &middot; {{ skill.duration }}+ yrs</div>
+            <div>{{ skill.hover }}</div>
+            <div class="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-[6px] border-r-[6px] border-t-[6px] border-l-transparent border-r-transparent border-t-slate-900"></div>
           </div>
         </div>
         {% endfor %}
@@ -265,7 +271,7 @@
 </section>
 
 {# ============ EMPLOYMENT ============ #}
-<section id="employment" class="py-8 md:py-12 relative">
+<section id="employment" class="py-5 md:py-10 relative">
   <div class="px-5 sm:px-6 md:px-12 relative">
     <div class="reveal">
       <div class="flex items-center gap-3 mb-3">
@@ -276,11 +282,11 @@
       <p class="text-slate-600">Delivering mission-critical systems across five companies.</p>
     </div>
 
-    <div class="reveal mt-6 md:mt-10 rounded-2xl bg-white/75 backdrop-blur-[6px] shadow-sm shadow-slate-200/60 border border-slate-200 p-4">
+    <div class="reveal mt-4 md:mt-8 rounded-2xl bg-white/75 backdrop-blur-[6px] shadow-sm shadow-slate-200/60 border border-slate-200 p-4">
       <div id="chart-employment" class="w-full"></div>
     </div>
 
-    <div class="mt-6 md:mt-10 space-y-6">
+    <div class="mt-4 md:mt-8 space-y-6">
       {% for company, meta in d.projects.items() %}
       <details class="reveal group rounded-2xl bg-white/75 backdrop-blur-[6px] shadow-sm shadow-slate-200/60 border border-slate-200 hover:border-accent-cyan/40 transition-colors overflow-hidden" {% if loop.first %}open{% endif %}>
         <summary class="cursor-pointer list-none p-6 flex items-center gap-4">
@@ -295,24 +301,36 @@
           <svg class="w-5 h-5 text-slate-500 group-open:rotate-180 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
         </summary>
 
-        <div class="px-6 pb-6 border-t border-slate-200/60 pt-6 space-y-6">
+        <div class="px-4 sm:px-6 pb-4 sm:pb-6 border-t border-slate-200/60 pt-4 sm:pt-6 space-y-4 sm:space-y-6">
           {% for client, proj_list in meta.clients.items() %}
           <div>
-            <div class="text-[11px] md:text-xs uppercase tracking-widest text-accent-cyan mb-2 md:mb-3 font-medium">Client · {{ client }}</div>
-            <div class="divide-y divide-slate-200/70 sm:divide-y-0 sm:space-y-4 -mx-1 sm:mx-0">
+            <div class="text-[11px] md:text-xs uppercase tracking-widest text-accent-cyan mb-2 md:mb-3 font-medium">Client &middot; {{ client }}</div>
+
+            {# Mobile: compact list of project titles only #}
+            <ul class="sm:hidden space-y-1 text-[13px] text-slate-700">
               {% for proj_name, proj in proj_list.items() %}
-              <div class="py-3 px-1 sm:p-5 sm:rounded-xl sm:bg-white/70 sm:border sm:border-slate-200 border-l-[3px] border-l-accent-cyan/40 sm:border-l-slate-200 pl-3 sm:pl-5">
-                <div class="flex items-start justify-between gap-3 flex-wrap mb-1 sm:mb-2">
-                  <h4 class="font-semibold text-slate-900 text-[13px] sm:text-base">{{ proj_name }}</h4>
-                  {% if proj.start %}<span class="text-[10px] sm:text-xs text-slate-500 font-mono">{{ proj.start }} — {{ proj.end }}</span>{% endif %}
+              <li class="flex gap-2 pl-2 border-l-2 border-accent-cyan/40">
+                <span class="flex-1">{{ proj_name }}</span>
+                {% if proj.start %}<span class="text-[10px] text-slate-500 font-mono flex-shrink-0">{{ proj.start }}</span>{% endif %}
+              </li>
+              {% endfor %}
+            </ul>
+
+            {# Desktop: full project cards with role, dates, summary, tech chips #}
+            <div class="hidden sm:block space-y-4">
+              {% for proj_name, proj in proj_list.items() %}
+              <div class="p-5 rounded-xl bg-white/70 border border-slate-200">
+                <div class="flex items-start justify-between gap-4 flex-wrap mb-2">
+                  <h4 class="font-semibold text-slate-900">{{ proj_name }}</h4>
+                  {% if proj.start %}<span class="text-xs text-slate-500 font-mono">{{ proj.start }} &mdash; {{ proj.end }}</span>{% endif %}
                 </div>
-                {% if proj.role %}<div class="text-[10px] sm:text-xs text-accent-cyan mb-2 sm:mb-3 font-medium">{{ proj.role }}</div>{% endif %}
-                <p class="text-[12px] sm:text-sm text-slate-600 leading-relaxed mb-2 sm:mb-4">{{ proj.summary }}</p>
+                {% if proj.role %}<div class="text-xs text-accent-cyan mb-3 font-medium">{{ proj.role }}</div>{% endif %}
+                <p class="text-sm text-slate-600 leading-relaxed mb-4">{{ proj.summary }}</p>
                 {% if proj.technology %}
-                <div class="flex flex-wrap gap-1 sm:gap-1.5">
+                <div class="flex flex-wrap gap-1.5">
                   {% for tech in proj.technology.split(',') %}
                     {% set t = tech.strip() %}
-                    {% if t %}<span class="text-[9px] sm:text-[10px] font-mono px-1.5 py-0.5 sm:px-2 rounded bg-slate-100/70 text-slate-600 border border-slate-200">{{ t }}</span>{% endif %}
+                    {% if t %}<span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100/70 text-slate-600 border border-slate-200">{{ t }}</span>{% endif %}
                   {% endfor %}
                 </div>
                 {% endif %}
@@ -329,7 +347,7 @@
 </section>
 
 {# ============ PORTFOLIO ============ #}
-<section id="portfolio" class="py-8 md:py-12 relative">
+<section id="portfolio" class="py-5 md:py-10 relative">
   <div class="px-5 sm:px-6 md:px-12 relative">
     <div class="reveal">
       <div class="flex items-center gap-3 mb-3">
@@ -340,7 +358,7 @@
       <p class="text-slate-600">Selected work built outside my day job.</p>
     </div>
 
-    <div class="space-y-6 mt-6 md:mt-10">
+    <div class="space-y-6 mt-4 md:mt-8">
       {% for name, p in d.portfolio.items() %}
       <article class="reveal group rounded-2xl bg-white/75 backdrop-blur-[6px] shadow-sm shadow-slate-200/60 border border-slate-200 overflow-hidden hover:border-accent-cyan/50 hover:-translate-y-1 transition-all">
         <div class="grid lg:grid-cols-[1.35fr_1fr] gap-0">
@@ -371,7 +389,7 @@
 </section>
 
 {# ============ EDUCATION + CERTIFICATIONS ============ #}
-<section id="education" class="py-8 md:py-12 relative">
+<section id="education" class="py-5 md:py-10 relative">
   <div class="px-5 sm:px-6 md:px-12 relative">
     <div class="reveal">
       <div class="flex items-center gap-3 mb-3">
@@ -382,7 +400,7 @@
       <p class="text-slate-600">Academic foundation.</p>
     </div>
 
-    <div class="grid lg:grid-cols-[1fr_1.4fr] gap-8 mt-6 md:mt-10 items-center">
+    <div class="grid lg:grid-cols-[1fr_1.4fr] gap-8 mt-4 md:mt-8 items-center">
       <div class="reveal rounded-2xl bg-white/75 backdrop-blur-[6px] shadow-sm shadow-slate-200/60 border border-slate-200 p-4">
         <div id="chart-education" class="w-full"></div>
       </div>
@@ -402,7 +420,7 @@
   </div>
 </section>
 
-<section id="certifications" class="py-8 md:py-12 relative">
+<section id="certifications" class="py-5 md:py-10 relative">
   <div class="px-5 sm:px-6 md:px-12 relative">
     <div class="reveal">
       <div class="flex items-center gap-3 mb-3">
@@ -416,22 +434,29 @@
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-10">
       {% for name, c in d.certifications.items() %}
       <a href="{{ c.link }}" target="_blank"
-         class="reveal group p-5 rounded-2xl bg-white/75 backdrop-blur-[6px] shadow-sm shadow-slate-200/60 border border-slate-200 hover:border-accent-cyan/50 hover:-translate-y-1 transition-all">
+         class="reveal group/cert-card relative p-4 md:p-5 rounded-2xl bg-white/75 backdrop-blur-[6px] shadow-sm shadow-slate-200/60 border border-slate-200 hover:border-accent-cyan/50 hover:-translate-y-1 transition-all">
         <div class="flex items-start gap-4">
           <img src="/images/{{ c.icon }}" alt="{{ name }}"
-               class="w-14 h-14 object-contain rounded-lg bg-slate-50 p-2 flex-shrink-0 border border-slate-200" />
+               class="w-12 h-12 md:w-14 md:h-14 object-contain rounded-lg bg-slate-50 p-2 flex-shrink-0 border border-slate-200" />
           <div class="flex-1 min-w-0">
             <div class="flex items-center gap-2 flex-wrap mb-1.5">
-              <h3 class="font-display font-semibold text-slate-900 group-hover:text-accent-cyan transition-colors">{{ name }}</h3>
+              <h3 class="font-display font-semibold text-slate-900 group-hover/cert-card:text-accent-cyan transition-colors">{{ name }}</h3>
               <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 border border-slate-200">{{ c.year }}</span>
             </div>
-            <p class="text-xs text-slate-600 leading-relaxed">{{ c['long label'] }}</p>
+            <p class="text-[11px] md:text-xs text-slate-600 leading-relaxed">{{ c['long label'] }}</p>
             {% if c.group %}
             <div class="mt-2">
               <span class="text-[10px] font-mono uppercase tracking-wider text-accent-cyan">{{ c.group }}</span>
             </div>
             {% endif %}
           </div>
+        </div>
+
+        <!-- Hover tooltip: certification summary from YAML `hover` -->
+        <div class="pointer-events-none opacity-0 group-hover/cert-card:opacity-100 transition-opacity duration-150 absolute bottom-full left-4 right-4 mb-2 p-3 rounded-lg bg-slate-900 text-white text-[11px] leading-snug shadow-xl shadow-slate-900/30 z-40">
+          <div class="font-semibold text-accent-cyan mb-1">{{ name }} &middot; {{ c.year }}</div>
+          <div>{{ c.hover }}</div>
+          <div class="absolute top-full left-6 w-0 h-0 border-l-[6px] border-r-[6px] border-t-[6px] border-l-transparent border-r-transparent border-t-slate-900"></div>
         </div>
       </a>
       {% endfor %}
@@ -440,7 +465,7 @@
 </section>
 
 {# ============ INTERESTS ============ #}
-<section id="interests" class="py-8 md:py-12 relative">
+<section id="interests" class="py-5 md:py-10 relative">
   <div class="px-5 sm:px-6 md:px-12 relative">
     <div class="reveal">
       <div class="flex items-center gap-3 mb-3">
@@ -451,7 +476,7 @@
       <p class="text-slate-600">Tinkering with drones &amp; embedded systems.</p>
     </div>
 
-    <div class="reveal mt-6 md:mt-10 p-8 rounded-2xl bg-white/75 backdrop-blur-[6px] shadow-sm shadow-slate-200/60 border border-slate-200 grid md:grid-cols-[1fr_2fr] gap-8 items-center">
+    <div class="reveal mt-4 md:mt-8 p-8 rounded-2xl bg-white/75 backdrop-blur-[6px] shadow-sm shadow-slate-200/60 border border-slate-200 grid md:grid-cols-[1fr_2fr] gap-8 items-center">
       <div class="grid grid-cols-2 gap-3">
         <img src="/images/drone.png" alt="Drone" class="rounded-xl bg-white/5 p-2" />
         <img src="/images/raspberry.png" alt="Raspberry Pi" class="rounded-xl bg-white/5 p-2" />
@@ -464,7 +489,7 @@
 </section>
 
 {# ============ CONTACT ============ #}
-<section id="contact" class="py-8 md:py-12 relative">
+<section id="contact" class="py-5 md:py-10 relative">
   <div class="max-w-3xl mx-auto px-6 md:px-12 text-center">
     <div class="reveal">
       <div class="flex items-center gap-3 mb-3 justify-center">
@@ -525,11 +550,45 @@
     Plotly.newPlot(el, CHART_DATA[key].data, CHART_DATA[key].layout, PLOTLY_CONFIG);
   }
 
+  // Timeline is rendered with desktop sizes; shrink markers + fonts on mobile.
+  function tuneTimelineForViewport() {
+    const el = document.getElementById('chart-timeline');
+    if (!el || !el.data) return;
+    const isMobile = window.innerWidth < 640;
+    const markerSize = isMobile ? 12 : 22;
+    const markerLineWidth = isMobile ? 1.5 : 2.5;
+    const annFontSize = isMobile ? 9 : 11;
+    const tickFontSize = isMobile ? 9 : 11;
+    const yshift = isMobile ? 9 : 14;
+    const height = isMobile ? 240 : 320;
+
+    Plotly.restyle(el, {
+      'marker.size': markerSize,
+      'marker.line.width': markerLineWidth,
+    });
+    const currentAnnotations = (el.layout.annotations || []).map(a => ({
+      ...a,
+      yshift,
+      font: { ...a.font, size: annFontSize },
+    }));
+    Plotly.relayout(el, {
+      'xaxis.tickfont.size': tickFontSize,
+      'annotations': currentAnnotations,
+      height,
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
     renderChart('chart-skills', 'skills');
     renderChart('chart-employment', 'employment');
     renderChart('chart-education', 'education');
     renderChart('chart-timeline', 'timeline');
+    tuneTimelineForViewport();
+  });
+  let _timelineResizeTimer = null;
+  window.addEventListener('resize', () => {
+    clearTimeout(_timelineResizeTimer);
+    _timelineResizeTimer = setTimeout(tuneTimelineForViewport, 150);
   });
 </script>
 {% endblock %}
