@@ -78,11 +78,15 @@
 <div class="pt-[68px] pb-8 sm:pb-12 px-0 sm:px-4 md:px-6">
 <main class="max-w-6xl mx-auto relative bg-white sm:border sm:border-slate-200/80 rounded-none sm:rounded-3xl shadow-xl shadow-slate-900/10">
 
-  <!-- Finance / derivatives / quant / Gen AI SVG layer INSIDE the card,
-       heavily dimmed so motifs read as a subtle backdrop behind content. -->
-  <div class="absolute inset-0 pointer-events-none overflow-hidden rounded-none sm:rounded-3xl">
-    <img src="/static/img/stock-bg.svg" alt="" aria-hidden="true"
-         class="absolute inset-0 w-full h-full object-cover opacity-95" />
+  <!-- Finance / derivatives / quant / Gen AI SVG backdrop INSIDE the card.
+       Using CSS background-image with background-size: 100% auto +
+       background-repeat: repeat-y so the 1600×900 SVG tiles down the full
+       height of the card (which is much taller than the SVG). Every
+       repetition shows the candlesticks, Greek letters, option payoff,
+       neural network, bell curve, Black-Scholes formula, and ticker strip.
+       A white overlay dims it all so it reads as a subtle backdrop. -->
+  <div class="absolute inset-0 pointer-events-none overflow-hidden rounded-none sm:rounded-3xl"
+       style="background-image: url('/static/img/stock-bg.svg'); background-size: 100% auto; background-repeat: repeat-y; background-position: top center;">
     <div class="absolute inset-0 bg-white/60"></div>
   </div>
 
@@ -311,10 +315,11 @@
           <div>
             <div class="text-[11px] md:text-xs uppercase tracking-widest text-accent-cyan mb-2 md:mb-3 font-medium">Client &middot; {{ client }}</div>
 
-            <div class="space-y-3 sm:space-y-4">
+            <div class="space-y-4 sm:space-y-4">
               {% for proj_name, proj in proj_list.items() %}
-              <div class="p-4 sm:p-5 rounded-xl bg-white/75 backdrop-blur-[6px] border border-slate-200 shadow-sm shadow-slate-200/50">
-                <div class="flex items-start justify-between gap-3 flex-wrap mb-2">
+              <div class="pl-4 border-l-[3px] border-accent-cyan/50
+                          sm:pl-5 sm:border-l-0 sm:p-5 sm:rounded-xl sm:bg-white/75 sm:backdrop-blur-[6px] sm:border sm:border-slate-200 sm:shadow-sm sm:shadow-slate-200/50">
+                <div class="flex items-start justify-between gap-3 flex-wrap mb-1.5 sm:mb-2">
                   <h4 class="font-semibold text-slate-900 text-[13px] sm:text-base">{{ proj_name }}</h4>
                   {% if proj.start %}<span class="text-[10px] sm:text-xs text-slate-500 font-mono">{{ proj.start }} &mdash; {{ proj.end }}</span>{% endif %}
                 </div>

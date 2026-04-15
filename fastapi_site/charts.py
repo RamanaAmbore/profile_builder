@@ -68,11 +68,13 @@ BASE_LAYOUT = dict(
     plot_bgcolor="rgba(0,0,0,0)",
     font=dict(family="Inter, sans-serif", color="#1e293b", size=12),
     margin=dict(l=20, r=20, t=30, b=20),
+    # Hover tooltip style mirrors the custom dark popover used on skill
+    # cards / cert cards / FRM-CFA badge so all hovers feel consistent.
     hoverlabel=dict(
-        bgcolor="#ffffff",
+        bgcolor="#0f172a",          # slate-900
         bordercolor=ACCENT_CYAN,
-        font=dict(family="Inter, sans-serif", color="#0f172a", size=12),
-        namelength=-1,  # never truncate hover text
+        font=dict(family="Inter, sans-serif", color="#ffffff", size=11),
+        namelength=-1,              # never truncate hover text
         align="left",
     ),
 )
@@ -315,9 +317,9 @@ def career_timeline(milestones: dict[int, dict[str, Any]]) -> str:
         font=dict(family="Inter, sans-serif", color="#1e293b", size=12),
         margin=dict(l=8, r=8, t=12, b=4),
         hoverlabel=dict(
-            bgcolor="#ffffff",
+            bgcolor="#0f172a",
             bordercolor=ACCENT_CYAN,
-            font=dict(family="Inter, sans-serif", color="#0f172a", size=12),
+            font=dict(family="Inter, sans-serif", color="#ffffff", size=11),
             namelength=-1,
             align="left",
         ),
