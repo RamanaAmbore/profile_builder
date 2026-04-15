@@ -19,10 +19,10 @@
         @keydown.escape.window="open = false"
         :class="scrolled || open ? 'bg-white/95 backdrop-blur-xl border-b border-slate-300 shadow-md shadow-slate-900/10' : 'bg-gradient-to-r from-cyan-50/95 via-white/95 to-emerald-50/95 backdrop-blur-md border-b border-slate-200 shadow-sm shadow-slate-900/5'"
         class="fixed top-0 inset-x-0 z-50 transition-all duration-300">
-  <nav class="max-w-6xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
-    <a href="#top" class="font-display font-bold text-lg sm:text-xl tracking-tight text-slate-900 flex items-center gap-2 flex-shrink-0">
-      <span class="w-8 h-8 rounded-lg bg-gradient-to-br from-accent-cyan to-accent-indigo flex items-center justify-center text-white text-sm">RA</span>
-      <span>Ramana<span class="text-accent-cyan">.</span></span>
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between gap-2 w-full min-w-0">
+    <a href="#top" class="font-display font-bold text-lg sm:text-xl tracking-tight text-slate-900 flex items-center gap-2 min-w-0 flex-shrink overflow-hidden">
+      <span class="w-8 h-8 rounded-lg bg-gradient-to-br from-accent-cyan to-accent-indigo flex items-center justify-center text-white text-sm flex-shrink-0">RA</span>
+      <span class="truncate">Ramana<span class="text-accent-cyan">.</span></span>
     </a>
 
     <ul class="hidden md:flex items-center gap-8 text-sm">
@@ -75,8 +75,8 @@
   </div>
 </header>
 
-<div class="pt-[68px] pb-8 sm:pb-12 px-0 sm:px-4 md:px-6">
-<main class="max-w-6xl mx-auto relative bg-white sm:border sm:border-slate-200/80 rounded-none sm:rounded-3xl shadow-xl shadow-slate-900/10">
+<div class="pt-[68px] pb-8 sm:pb-12 px-0 sm:px-4 md:px-6 overflow-x-hidden max-w-full">
+<main class="max-w-6xl mx-auto relative bg-white sm:border sm:border-slate-200/80 rounded-none sm:rounded-3xl shadow-xl shadow-slate-900/10 overflow-x-hidden sm:overflow-x-visible max-w-full">
 
   <!-- Derivative equations + Greek letters SVG backdrop INSIDE the card.
        Tiled vertically so the motifs repeat down the full card height.
@@ -327,7 +327,7 @@
                 <div class="flex flex-wrap gap-1 sm:gap-1.5">
                   {% for tech in proj.technology.split(',') %}
                     {% set t = tech.strip() %}
-                    {% if t %}<span class="text-[9px] sm:text-[10px] font-mono px-1.5 sm:px-2 py-0.5 sm:py-1 rounded bg-cyan-50 text-cyan-700 border border-cyan-200">{{ t }}</span>{% endif %}
+                    {% if t %}<span class="text-[9px] sm:text-[10px] font-mono px-1.5 sm:px-2 py-0.5 rounded bg-slate-100/70 text-slate-600 border border-slate-200">{{ t }}</span>{% endif %}
                   {% endfor %}
                 </div>
                 {% endif %}
@@ -370,7 +370,7 @@
             <div class="flex flex-wrap gap-1.5 mb-5">
               {% for t in p.technology.split(',') %}
                 {% set tt = t.strip() %}
-                {% if tt %}<span class="text-[10px] font-mono px-2 py-1 rounded bg-cyan-50 text-cyan-700 border border-cyan-200">{{ tt }}</span>{% endif %}
+                {% if tt %}<span class="text-[10px] font-mono px-2 py-1 rounded bg-slate-100/70 text-slate-600 border border-slate-200">{{ tt }}</span>{% endif %}
               {% endfor %}
             </div>
             <div class="flex gap-4 text-sm">
