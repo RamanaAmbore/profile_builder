@@ -43,15 +43,15 @@ Edit [setup/yaml/profile_data.yaml](setup/yaml/profile_data.yaml) and refresh �
 
 ## Deployment (production)
 
-The site runs on a small Linux server behind **nginx** (reverse proxy + HTTPS termination) with **systemd** managing the uvicorn process. A GitHub webhook hits a small listener service that pulls the repo and restarts the app on every push to `main`.
+The site runs on a Linux server behind **nginx** (reverse proxy + HTTPS termination) with **systemd** managing the uvicorn process. Continuous deployment is handled by the [adnanh/webhook](https://github.com/adnanh/webhook) listener: on every push to `main`, a hook fires [deploy/deploy.sh](deploy/deploy.sh), which pulls the repo, installs dependencies, and restarts the service.
 
 Full deployment instructions + copy-paste-ready config files are in [deploy/README.md](deploy/README.md).
 
 Quick reference:
-- Main app: [deploy/profile-site.service](deploy/profile-site.service) (systemd unit)
-- Webhook listener: [deploy/profile-webhook.service](deploy/profile-webhook.service) + [deploy/webhook.py](deploy/webhook.py)
-- Deploy script: [deploy/deploy.sh](deploy/deploy.sh)
-- nginx site config: [deploy/nginx.conf](deploy/nginx.conf)
+- Main app systemd unit: [deploy/profile-site.service](deploy/profile-site.service) → `/etc/systemd/system/streamlit_profile_builder.service`
+- Deploy script: [deploy/deploy.sh](deploy/deploy.sh) → `/opt/webhook/deploy.sh`
+- nginx site config: [deploy/nginx.conf](deploy/nginx.conf) → `/etc/nginx/sites-available/ramanaambore.me`
+- Production port: `127.0.0.1:8002` (uvicorn, 2 workers, `User=www-data`)
 
 ## Tech stack
 
