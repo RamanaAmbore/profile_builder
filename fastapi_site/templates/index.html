@@ -19,10 +19,10 @@
         @keydown.escape.window="open = false"
         :class="scrolled || open ? 'bg-white/95 backdrop-blur-xl border-b border-slate-300 shadow-md shadow-slate-900/10' : 'bg-gradient-to-r from-cyan-50/95 via-white/95 to-emerald-50/95 backdrop-blur-md border-b border-slate-200 shadow-sm shadow-slate-900/5'"
         class="fixed top-0 inset-x-0 z-50 transition-all duration-300">
-  <nav class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-    <a href="#top" class="font-display font-bold text-xl tracking-tight text-slate-900 flex items-center gap-2">
-      <span class="w-8 h-8 rounded-lg bg-gradient-to-br from-accent-cyan to-accent-indigo flex items-center justify-center text-white text-sm">RA</span>
-      <span>Ramana<span class="text-accent-cyan">.</span></span>
+  <nav class="max-w-6xl mx-auto px-5 sm:px-6 py-4 flex items-center justify-between gap-2 w-full min-w-0">
+    <a href="#top" class="font-display font-bold text-xl tracking-tight text-slate-900 flex items-center gap-2 min-w-0 flex-shrink">
+      <span class="w-8 h-8 rounded-lg bg-gradient-to-br from-accent-cyan to-accent-indigo flex items-center justify-center text-white text-sm flex-shrink-0">RA</span>
+      <span class="truncate">Ramana<span class="text-accent-cyan">.</span></span>
     </a>
 
     <ul class="hidden md:flex items-center gap-8 text-sm">
@@ -38,7 +38,7 @@
     </a>
 
     <button @click="open = !open" :aria-expanded="open.toString()" aria-controls="mobile-menu"
-            class="md:hidden relative w-10 h-10 rounded-lg border border-slate-200/80 bg-white/70 backdrop-blur-sm text-slate-700 flex items-center justify-center hover:border-accent-cyan/60 transition-colors" aria-label="Menu">
+            class="md:hidden relative w-10 h-10 flex-shrink-0 rounded-lg border border-slate-200/80 bg-white/70 backdrop-blur-sm text-slate-700 flex items-center justify-center hover:border-accent-cyan/60 transition-colors" aria-label="Menu">
       <svg x-show="!open" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
       <svg x-show="open" x-cloak class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
     </button>
@@ -87,8 +87,9 @@
     <div class="absolute inset-0 bg-white/55"></div>
   </div>
 
-<section id="top" class="relative flex items-center py-8 sm:py-10 md:py-16">
-  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(8,145,178,0.08),transparent_60%)] pointer-events-none"></div>
+<section id="top" class="relative flex items-center py-6 sm:py-8 md:py-10 bg-gradient-to-br from-cyan-50/60 via-white/30 to-emerald-50/40">
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(8,145,178,0.10),transparent_60%)] pointer-events-none"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(5,150,105,0.08),transparent_55%)] pointer-events-none"></div>
   <div class="relative w-full px-5 sm:px-6 md:px-12 grid md:grid-cols-[0.85fr_1.5fr] gap-6 md:gap-10 items-center">
 
     {# ---- PHOTO FIRST ---- #}
@@ -187,7 +188,7 @@
 <div class="h-px mx-5 sm:mx-6 md:mx-12 bg-gradient-to-r from-transparent via-slate-200 to-transparent relative"></div>
 
 {# ============ ABOUT ============ #}
-<section id="about" class="py-5 md:py-10 relative">
+<section id="about" class="pt-3 pb-5 md:pt-4 md:pb-8 relative">
   <div class="px-5 sm:px-6 md:px-12 relative">
     <div class="reveal">
       <div class="flex items-center gap-3 mb-3">
@@ -231,7 +232,7 @@
       <p class="text-slate-600">Three decades of milestones across FinTech and enterprise modernization.</p>
     </div>
 
-    <div class="mt-5 md:mt-10 reveal rounded-2xl bg-white/75 backdrop-blur-[6px] shadow-sm shadow-slate-200/60 border border-slate-200 p-2 md:p-4">
+    <div class="mt-5 md:mt-10 reveal chart-wrap rounded-2xl bg-white/75 backdrop-blur-[6px] shadow-sm shadow-slate-200/60 border border-slate-200 p-2 md:p-4">
       <div id="chart-timeline" class="w-full"></div>
     </div>
   </div>
@@ -250,15 +251,15 @@
     </div>
 
     <div class="grid lg:grid-cols-[1.1fr_1fr] gap-10 mt-4 md:mt-8 items-center">
-      <div class="reveal rounded-2xl bg-white/75 backdrop-blur-[6px] shadow-sm shadow-slate-200/60 border border-slate-200 p-4">
+      <div class="reveal chart-wrap rounded-2xl bg-white/75 backdrop-blur-[6px] shadow-sm shadow-slate-200/60 border border-slate-200 p-4">
         <div id="chart-skills" class="w-full"></div>
       </div>
 
-      <div class="reveal grid grid-cols-5 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-9 gap-1.5 md:gap-2">
+      <div class="reveal grid grid-cols-5 sm:grid-cols-6 md:grid-cols-6 lg:grid-cols-6 gap-1.5 md:gap-3">
         {% for name, skill in d['technical skills'].items() %}
-        <div class="group/skill relative aspect-square rounded-md bg-white/75 backdrop-blur-[6px] shadow-sm shadow-slate-200/60 border border-slate-200 flex flex-col items-center justify-center p-1 md:p-2 hover:border-accent-cyan/50 md:hover:-translate-y-0.5 transition-all cursor-help">
-          <img src="/images/{{ skill.icon }}" alt="{{ name }}" class="w-6 h-6 md:w-8 md:h-8 object-contain" />
-          <div class="text-[7px] md:text-[9px] uppercase tracking-wide text-slate-600 font-medium truncate w-full text-center mt-0.5">{{ name }}</div>
+        <div class="group/skill relative aspect-square rounded-md md:rounded-xl bg-white/75 backdrop-blur-[6px] shadow-sm shadow-slate-200/60 border border-slate-200 flex flex-col items-center justify-center p-1 md:p-3 hover:border-accent-cyan/50 md:hover:-translate-y-1 transition-all cursor-help">
+          <img src="/images/{{ skill.icon }}" alt="{{ name }}" class="w-6 h-6 md:w-11 md:h-11 object-contain" />
+          <div class="text-[7px] md:text-[11px] uppercase tracking-wide text-slate-600 font-medium truncate w-full text-center mt-0.5 md:mt-1">{{ name }}</div>
           <div class="absolute bottom-0.5 left-0.5 right-0.5 h-0.5 rounded-full bg-slate-100 overflow-hidden">
             <div class="h-full bg-gradient-to-r from-accent-cyan to-accent-indigo" style="width: {{ skill.level * 20 }}%"></div>
           </div>
@@ -288,7 +289,7 @@
       <p class="text-slate-600">Delivering mission-critical systems across five companies.</p>
     </div>
 
-    <div class="reveal mt-4 md:mt-8 rounded-2xl bg-white/75 backdrop-blur-[6px] shadow-sm shadow-slate-200/60 border border-slate-200 p-4">
+    <div class="reveal mt-4 md:mt-8 chart-wrap rounded-2xl bg-white/75 backdrop-blur-[6px] shadow-sm shadow-slate-200/60 border border-slate-200 p-4">
       <div id="chart-employment" class="w-full"></div>
     </div>
 
@@ -397,7 +398,7 @@
     </div>
 
     <div class="grid lg:grid-cols-[1fr_1.4fr] gap-8 mt-4 md:mt-8 items-center">
-      <div class="reveal rounded-2xl bg-white/75 backdrop-blur-[6px] shadow-sm shadow-slate-200/60 border border-slate-200 p-4">
+      <div class="reveal chart-wrap rounded-2xl bg-white/75 backdrop-blur-[6px] shadow-sm shadow-slate-200/60 border border-slate-200 p-4">
         <div id="chart-education" class="w-full"></div>
       </div>
       <div class="space-y-4">
@@ -544,6 +545,69 @@
     const el = document.getElementById(id);
     if (!el || !CHART_DATA[key]) return;
     Plotly.newPlot(el, CHART_DATA[key].data, CHART_DATA[key].layout, PLOTLY_CONFIG);
+    // Wire a custom HTML tooltip (rounded corners + cyan header) in place
+    // of Plotly's built-in SVG hover label.
+    el.on('plotly_hover', (ev) => showChartTooltip(ev));
+    el.on('plotly_unhover', hideChartTooltip);
+  }
+
+  // ============ Custom HTML hover tooltip for all Plotly charts ============
+  const chartTooltip = document.createElement('div');
+  chartTooltip.id = 'chart-tooltip';
+  chartTooltip.className = 'fixed pointer-events-none z-[100] hidden max-w-xs p-2.5 rounded-lg bg-slate-900 text-white text-[11px] leading-snug shadow-xl shadow-slate-900/40';
+  chartTooltip.innerHTML = '<div class="tt-head font-semibold text-accent-cyan mb-0.5"></div><div class="tt-body"></div>';
+  document.body.appendChild(chartTooltip);
+
+  function _stripBr(s) { return (s || '').toString(); }
+
+  function showChartTooltip(ev) {
+    if (!ev || !ev.points || !ev.points.length) return;
+    const p = ev.points[0];
+    const t = p.data || {};
+    let head = '', body = '';
+
+    if (t.type === 'scatterpolar') {
+      head = (p.theta || '') + ' · ' + (t.name || '');
+      body = (p.text || '').toString() + '<br><span class="text-slate-400">Level ' + p.r + '/5</span>';
+    } else if (t.type === 'bar') {
+      head = (p.y || p.x || '').toString();
+      body = _stripBr(p.hovertext);
+    } else if (t.type === 'pie') {
+      head = (p.label || '').toString();
+      body = _stripBr(p.hovertext);
+    } else if (t.type === 'treemap') {
+      head = (p.label || '').toString();
+      body = _stripBr(p.hovertext);
+    } else if (t.type === 'scatter' || t.type === 'scattergl') {
+      const year = p.x;
+      const label = (p.customdata || '').toString();
+      head = year + (label ? ' · ' + label : '');
+      body = _stripBr(p.hovertext);
+    } else {
+      head = (p.label || p.x || p.y || '').toString();
+      body = _stripBr(p.hovertext || p.text);
+    }
+
+    chartTooltip.querySelector('.tt-head').textContent = head;
+    chartTooltip.querySelector('.tt-body').innerHTML = body;
+    chartTooltip.classList.remove('hidden');
+
+    // Position near the cursor, keeping the tooltip inside the viewport.
+    const evt = ev.event;
+    const cx = (evt && 'clientX' in evt) ? evt.clientX : window.innerWidth / 2;
+    const cy = (evt && 'clientY' in evt) ? evt.clientY : window.innerHeight / 2;
+    const rect = chartTooltip.getBoundingClientRect();
+    let x = cx + 12;
+    let y = cy + 12;
+    if (x + rect.width + 8 > window.innerWidth)  x = window.innerWidth - rect.width - 8;
+    if (y + rect.height + 8 > window.innerHeight) y = cy - rect.height - 12;
+    if (y < 8) y = 8;
+    chartTooltip.style.left = x + 'px';
+    chartTooltip.style.top  = y + 'px';
+  }
+
+  function hideChartTooltip() {
+    chartTooltip.classList.add('hidden');
   }
 
   // Timeline is rendered with desktop sizes; shrink markers + fonts on mobile.

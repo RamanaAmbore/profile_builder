@@ -29,10 +29,25 @@ main {
   max-width: 100%;
 }
 
-/* Plotly charts must never overflow their container */
+/* Plotly charts must never overflow their container — forcing width
+   100% both on the wrapper and the inner SVG so the first-paint render
+   (before Plotly's responsive handler fires) can't push content wider
+   than the viewport and hide the hamburger on mobile. */
+[id^="chart-"],
+[id^="chart-"] > .js-plotly-plot,
 .js-plotly-plot,
-.js-plotly-plot .main-svg {
+.js-plotly-plot .main-svg,
+.js-plotly-plot .svg-container {
   max-width: 100% !important;
+  width: 100% !important;
+}
+
+/* Chart wrapper cards should hide any overflow so a transiently wide
+   Plotly render never escapes the card. */
+.chart-wrap {
+  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
 }
 
 [x-cloak] { display: none !important; }
@@ -79,24 +94,10 @@ details summary { list-style: none; }
 .js-plotly-plot .plotly .legendtext,
 .js-plotly-plot .plotly .gtitle { fill: #1e293b !important; }
 
-/* Force all Plotly hover tooltips to match the custom dark skill-card
-   popover (slate-900 bg, white text, cyan accent border) regardless
-   of what the per-chart hoverlabel config says. Plotly renders the
-   hover label as an SVG <path>, so we can't use border-radius — but
-   we drop a soft shadow filter on the whole hovertext group so the
-   visual feels closer to the rounded skill-card popover. */
-.js-plotly-plot .hovertext {
-  filter: drop-shadow(0 8px 20px rgba(15, 23, 42, 0.25));
-}
-.js-plotly-plot .hovertext .bg {
-  fill: #0f172a !important;
-  stroke: #0891b2 !important;
-  stroke-width: 1.5px !important;
-}
-.js-plotly-plot .hovertext text,
-.js-plotly-plot .hovertext text tspan {
-  fill: #ffffff !important;
-  font-family: 'Inter', system-ui, sans-serif !important;
-}
+/* Hide Plotly's built-in SVG hover label — we render a custom HTML
+   tooltip via plotly_hover events (#chart-tooltip in main.js) which
+   gives us proper rounded corners, the accent-cyan first line, and
+   a soft shadow matching the skill-card popover. */
+.js-plotly-plot .hovertext { display: none !important; }
 
 img[src*="profile_photo"] { filter: saturate(1.05); }
