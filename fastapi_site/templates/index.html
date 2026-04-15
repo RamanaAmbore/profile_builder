@@ -76,16 +76,7 @@
 </header>
 
 <div class="pt-[68px] pb-8 sm:pb-12 px-0 sm:px-4 md:px-6">
-<main class="max-w-6xl mx-auto relative bg-white sm:border sm:border-slate-200/80 rounded-none sm:rounded-3xl shadow-xl shadow-slate-900/10">
-
-  <!-- Finance / derivatives / quant / Gen AI / tech SVG layer INSIDE the card,
-       clipped to rounded shape. Kept translucent so motifs read as a backdrop
-       behind every content card without competing with the foreground. -->
-  <div class="absolute inset-0 pointer-events-none overflow-hidden rounded-none sm:rounded-3xl">
-    <img src="/static/img/stock-bg.svg" alt="" aria-hidden="true"
-         class="absolute inset-0 w-full h-full object-cover opacity-95" />
-    <div class="absolute inset-0 bg-gradient-to-br from-white/30 via-white/45 to-white/30"></div>
-  </div>
+<main class="max-w-6xl mx-auto relative bg-white/85 backdrop-blur-md sm:border sm:border-slate-200/80 rounded-none sm:rounded-3xl shadow-xl shadow-slate-900/10">
 
 <section id="top" class="relative flex items-center py-8 sm:py-10 md:py-16">
   <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(8,145,178,0.08),transparent_60%)] pointer-events-none"></div>
@@ -307,21 +298,21 @@
         <div class="px-6 pb-6 border-t border-slate-200/60 pt-6 space-y-6">
           {% for client, proj_list in meta.clients.items() %}
           <div>
-            <div class="text-xs uppercase tracking-widest text-accent-cyan mb-3 font-medium">Client · {{ client }}</div>
-            <div class="space-y-4">
+            <div class="text-[11px] md:text-xs uppercase tracking-widest text-accent-cyan mb-2 md:mb-3 font-medium">Client · {{ client }}</div>
+            <div class="divide-y divide-slate-200/70 sm:divide-y-0 sm:space-y-4 -mx-1 sm:mx-0">
               {% for proj_name, proj in proj_list.items() %}
-              <div class="rounded-xl bg-white/70 border border-slate-200 p-5">
-                <div class="flex items-start justify-between gap-4 flex-wrap mb-2">
-                  <h4 class="font-semibold text-slate-900">{{ proj_name }}</h4>
-                  {% if proj.start %}<span class="text-xs text-slate-500 font-mono">{{ proj.start }} — {{ proj.end }}</span>{% endif %}
+              <div class="py-3 px-1 sm:p-5 sm:rounded-xl sm:bg-white/70 sm:border sm:border-slate-200 border-l-[3px] border-l-accent-cyan/40 sm:border-l-slate-200 pl-3 sm:pl-5">
+                <div class="flex items-start justify-between gap-3 flex-wrap mb-1 sm:mb-2">
+                  <h4 class="font-semibold text-slate-900 text-[13px] sm:text-base">{{ proj_name }}</h4>
+                  {% if proj.start %}<span class="text-[10px] sm:text-xs text-slate-500 font-mono">{{ proj.start }} — {{ proj.end }}</span>{% endif %}
                 </div>
-                {% if proj.role %}<div class="text-xs text-accent-cyan mb-3">{{ proj.role }}</div>{% endif %}
-                <p class="text-sm text-slate-600 leading-relaxed mb-4">{{ proj.summary }}</p>
+                {% if proj.role %}<div class="text-[10px] sm:text-xs text-accent-cyan mb-2 sm:mb-3 font-medium">{{ proj.role }}</div>{% endif %}
+                <p class="text-[12px] sm:text-sm text-slate-600 leading-relaxed mb-2 sm:mb-4">{{ proj.summary }}</p>
                 {% if proj.technology %}
-                <div class="flex flex-wrap gap-1.5">
+                <div class="flex flex-wrap gap-1 sm:gap-1.5">
                   {% for tech in proj.technology.split(',') %}
                     {% set t = tech.strip() %}
-                    {% if t %}<span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 text-slate-600 border border-slate-300">{{ t }}</span>{% endif %}
+                    {% if t %}<span class="text-[9px] sm:text-[10px] font-mono px-1.5 py-0.5 sm:px-2 rounded bg-slate-100/70 text-slate-600 border border-slate-200">{{ t }}</span>{% endif %}
                   {% endfor %}
                 </div>
                 {% endif %}
