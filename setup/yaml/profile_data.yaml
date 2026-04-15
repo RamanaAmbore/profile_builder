@@ -55,15 +55,19 @@ milestones:
   2020:
     milestone: FRM
     height: 0
-    hover: FRM Certified. Successfully passed both Part 1 & 2 exams after 1,000+ hours of rigorous study. Demonstrates a strong foundation in financial risk management.
+    hover: FRM Certified. Successfully passed both Part 1 & 2 exams, demonstrating a strong foundation in financial risk management.
   2021:
     milestone: CFA
     height: 0
-    hover: Cleared CFA Levels 1 & 2 (1,000+ hours). Progressing towards CFA charter. Has strong foundation in trading, investment, and quantitative analysis.
+    hover: Cleared CFA Levels 1 & 2. Progressing towards the CFA charter with a strong foundation in trading, investment, and quantitative analysis.
   2023:
     milestone: Innovation Award
     height: 0
     hover: Recipient of the prestigious NTT Delivery Excellence Award for Innovation. Recognized among the top 40 innovators globally within the organization.
+  2025:
+    milestone: Fidelity USA
+    height: 0
+    hover: Joined Fidelity Talent Source in October 2025, engaged with Fidelity Investments USA to modernize the billing platform — building a distributed fee-calculation engine on AWS and Snowflake.
 education:
   Master's:
     icon: jk.png
@@ -94,7 +98,7 @@ certifications:
     duration: 1000
     group: domain
     long label: GARP Certified Financial Risk Manager (FRM), 2022, ID# 502640
-    hover:  FRM Certified. Successfully passed both Part 1 & 2 exams after 1,000+ hours of rigorous study. Demonstrates a strong foundation in financial risk management, 2022
+    hover: FRM Certified. Successfully passed both Part 1 & 2 exams, demonstrating a strong foundation in financial risk management, 2022
   CFA:
     icon: cfa.png
     link: https://credentials.cfainstitute.org/profile/ramanaraoambore67098/wallet
@@ -102,7 +106,7 @@ certifications:
     duration: 1000
     group: domain
     long label: Cleared Certified Financial Analyst (CFA) Level 1 & Level 2 exams, 2018, ID# 8243442
-    hover: Cleared CFA Levels 1 & 2 (1,000+ hours). Progressing towards CFA charter. Has strong foundation in trading, investment, and quantitative analysis, 2018
+    hover: Cleared CFA Levels 1 & 2. Progressing towards the CFA charter with a strong foundation in trading, investment, and quantitative analysis, 2018
   DB2 DBA:
     icon: ibm_db2.png
     link: https://www.dropbox.com/scl/fi/l6v6x3d6061qgorkfc5b4/db2.png?rlkey=jm8ofyvtrv49lqs2u2mk6wdc2&st=yb6pe4nj&dl=0
@@ -110,7 +114,7 @@ certifications:
     duration: 500
     group: technical
     long label: IBM Certified DB2 DBA, 2003
-    hover: IBM Certified DB2 DBA. 500+ hours of study culminated in passing two rigorous exams, demonstrating in-depth expertise in DB2 administration, 2003
+    hover: IBM Certified DB2 DBA. Passed two rigorous exams, demonstrating in-depth expertise in DB2 administration, 2003
   Six Sigma:
     icon: six_sigma.png
     link: https://www.dropbox.com/scl/fi/kxn4how1xlb91pa2d6qdl/six_sigma.png?rlkey=pu037ttz9lh3d8xsmh76gz1fd&st=o89ydxd3&dl=0
@@ -118,7 +122,7 @@ certifications:
     duration: 200
     group: process
     long label: Six Sigma Green Belt certification, QAI, 2005
-    hover: Six Sigma Green Belt Certified. 200+ hours of study demonstrating a commitment to process improvement, 2005
+    hover: Six Sigma Green Belt Certified. Demonstrates a commitment to process improvement and quality-driven delivery, 2005
   PMP:
     icon: pmp.png
     link: https://www.dropbox.com/scl/fi/hf5cx92sfnfi3ioozd2rt/pmp.png?rlkey=yy45v00iwnlj3qjal2g0eak37&st=2fkbgm91&dl=0
@@ -126,7 +130,7 @@ certifications:
     duration: 200
     group: management
     long label: Project Management Professional (PMP), PMI, 2005
-    hover: PMP Certified. Successfully navigated the rigorous PMP exam after 200+ hours of dedicated study, 2005
+    hover: PMP Certified. Successfully navigated the rigorous PMP exam, demonstrating professional project-management expertise, 2005
   Java:
     icon: java_small.png
     link: https://www.dropbox.com/scl/fi/1rimmvw2d3wnzjeripyw6/Java-certification.png?rlkey=1fhvu6bd9hkk03766hgaqhjng&st=q391i2tc&dl=0
@@ -134,13 +138,23 @@ certifications:
     duration: 200
     group: technical
     long label: Sun Certified Java Programmer, 1999
-    hover: Sun Certified Java Programmer. 200+ hours of study. Demonstrated Java programming proficiency, 1999
+    hover: Sun Certified Java Programmer. Demonstrated professional Java programming proficiency, 1999
 technical skills:
   python:
     icon: python.png
     level: 5
     hover: Leveraged Python extensively for data analytics, reengineering, automation, and visualization
     duration: 8
+  snowflake:
+    icon: snowflake.svg
+    level: 4
+    hover: 3 years designing and delivering data solutions on Snowflake — data modeling, SQL transformations, performance tuning, cost optimization, and integration with AWS data pipelines for large-scale analytics and billing workloads.
+    duration: 3
+  claude code:
+    icon: claude.svg
+    level: 4
+    hover: 6 months using Claude Code (Anthropic's agentic coding CLI) for AI-assisted software development — pair-programming, refactoring, test generation, and full-stack prototype building including this portfolio website.
+    duration: 1
   streamlit:
     icon: streamlit.png
     level: 4
@@ -215,7 +229,11 @@ contact:
   resume:
     label: Resume (PDF)
     icon: pdf.png
-    link: resume.pdf
+    link: /resume.pdf
+  resume_txt:
+    label: Resume (plain text)
+    icon: pdf.png
+    link: /resume.txt
   mail:
     label: Ramana.Ambore@gmail.com
     icon: mail.png
@@ -225,9 +243,9 @@ contact:
     icon: phone.png
     link: tel:+15155254636
   loc:
-    label: West Des Moines, Iowa
+    label: Merrimack, NH
     icon: loc.png
-    link: https://www.google.com/maps/@41.5639989,-93.8009926,13z
+    link: https://www.google.com/maps/place/Merrimack,+NH/@42.8651,-71.4935,13z
 
 social:
   ramana_portal:
@@ -251,7 +269,7 @@ portfolio:
     icon: trader.png
     link: https://github.com/RamanaAmbore/rrambo_the_algo_trader/blob/master/README.md
     github: https://github.com/RamanaAmbore
-    image: portfolio2.png
+    image: rambo_quant_dashboard.png
     summary: |
       This project aims to develop a sophisticated algorithmic trading platform designed to identify and capitalize on short-term market inefficiencies 
       in option prices. Leveraging the power of Python, Dash, and Plotly, the platform will utilize option Greeks, underlying stock prices, and advanced 
@@ -273,46 +291,85 @@ portfolio:
       * Algorithmic trading concepts
       * Data analysis and visualization (Dash, Plotly)
       * Financial modeling (option Greeks)
-  profile builder:
-    icon: rambo.png
-    link: https://medium.com/@rrambo/streamlit-profile-builder-a-simple-way-to-create-interactive-online-profiles-3cb0b0f6c8bb
-    github: https://github.com/RamanaAmbore/stremlite_profile
-    image: portfolio1.png
-    summary: |
-      Built a dynamic, professional profile website using Streamlit. This interactive app allows users to easily showcase their skills, experience, and portfolio in a visually appealing format. Streamlit's features and custom JavaScript enable smooth scrolling navigation for an exceptional user experience. It leverages Streamlit's features and custom JavaScript for smooth scrolling navigation.
-    technology: Python,  Pandas, Streamlit
-    additional information: |
-      **Project: Streamlit Profile Builder**
-
-      **Description:** Developed an interactive profile builder using Streamlit. This user-friendly app streamlines the creation of professional online profiles, allowing users to highlight their skills, experience, and portfolio.
-
-
-      **Key Achievements:**
-
-      * **Enhanced User Experience:** Implemented smooth scrolling navigation using JavaScript for a seamless browsing experience.
-      * **Comprehensive Profile Sections:** Designed dedicated sections for profile information, social links, experience summaries, skills, projects, education, certifications, hobbies, and more.
-      * **Streamlined Profile Creation:** Enabled users to easily create and update their profiles with minimal technical expertise.
-
-      **Technical Skills Demonstrated:**
-
-      * Streamlit development
-      * Front-end development (HTML, CSS, JavaScript)
-      * Project design and planning
 projects:
-  NTT DATA (delivering solutions for Fidelity for seventeen years):
-    short label: NTT
-    long label: NTT DATA Global Delivery Services Ltd., Application Development Director, Apr 2003 - Till Date
-    hover: NTT DATA Global Delivery Services, Application Development Director, 21 years, Apr 2003 - Till Date
+  Fidelity Talent Source (delivering solutions for Fidelity Investments):
+    short label: FTS / Fidelity
+    long label: Fidelity Talent Source, engaged with Fidelity Investments USA, Principal System Analyst, Oct 2025 - Till Date
+    hover: Fidelity Talent Source (contracted to Fidelity Investments USA), Principal System Analyst, Oct 2025 - Till Date
+    icon: fidelity.svg
+    duration: 1
+    link: https://www.fidelity.com/
+    clients:
+      Fidelity Investments:
+        Billing Platform Modernization - Fee Calculation Engine:
+          role: Principal System Analyst
+          start: Oct 2025
+          end: Till Date
+          duration: 6 months
+          technology: Python, AWS, Snowflake, Airflow, dbt, Terraform, SQL, Kafka, Lambda, Step Functions, Git, Jenkins
+          summary: |
+            Modernizing Fidelity's billing platform — the firm-wide engine that computes and reconciles
+            advisory, custody, brokerage, and retirement fees across millions of client accounts and
+            billions of transactions annually. Re-architecting legacy batch billing into a cloud-native
+            distributed platform on AWS and Snowflake, with a focus on accuracy, auditability, regulatory
+            compliance (SEC/FINRA), and near-real-time fee visibility for internal stakeholders and clients.
+          additional information: |
+            **Project: Billing Platform Modernization — Fee Calculation Engine**
+
+            **Client:** Fidelity Investments, USA (engaged via Fidelity Talent Source)
+
+            **Business Context:** Fidelity's billing platform is a mission-critical, firm-wide system
+            that computes fees across every revenue-generating product line — advisory programs, managed
+            accounts, custody, brokerage, mutual funds, and retirement plans. The legacy system processes
+            enormous daily volumes under tight SLAs and strict regulatory requirements (SEC Rule 206(4)-2,
+            FINRA books-and-records, SOX auditability), with zero tolerance for miscalculation.
+
+            **Key Focus Areas:**
+
+            * **Distributed Fee Calculation Engine:** Designing a scalable compute layer on AWS (Lambda,
+              Step Functions, ECS) to process tiered, asset-based, transaction-based, and flat-fee
+              calculations in parallel — replacing legacy overnight batch jobs with event-driven,
+              horizontally-scalable workflows that complete in a fraction of the time.
+            * **Snowflake as Source of Truth:** Modeling account positions, transaction history, fee
+              schedules, rate cards, and billing cycles in Snowflake — enabling elastic compute for
+              heavy month-end runs, ad-hoc analytics, and sub-second lookups for reconciliation.
+              Leveraging Snowflake's time-travel, zero-copy cloning, and data sharing for safe testing
+              and downstream distribution.
+            * **Fee Schedule Flexibility:** Supporting complex fee structures — tiered break-points,
+              asset-based fees, transaction commissions, flat fees, waivers, discounts, householding,
+              pro-rata adjustments, and client-specific overrides — all version-controlled and
+              audit-logged.
+            * **Reconciliation & Data Integrity:** Building parallel-run validation frameworks to
+              compare new-platform output against legacy billing line-by-line, guaranteeing zero
+              regression during the migration. Automated reconciliation dashboards, variance alerts,
+              and full lineage tracking from source transaction to billed amount.
+            * **Regulatory & Audit Readiness:** Implementing immutable audit trails, change history,
+              and deterministic replay so every fee can be traced end-to-end — critical for SEC exams,
+              internal audit, and client-dispute resolution.
+            * **Cloud-Native Architecture:** Event-driven services (Kafka, EventBridge), infrastructure
+              as code (Terraform), observable and cost-efficient compute, orchestration via Airflow and
+              dbt for data transformations.
+            * **Developer Velocity:** CI/CD pipelines, automated test suites (including property-based
+              and golden-file tests for fee logic), and observability (metrics, logs, traces) so teams
+              can change billing rules safely and ship multiple times per day.
+
+            **Technology Stack:** Python, AWS (Lambda, S3, Step Functions, ECS, EventBridge, Kafka/MSK),
+            Snowflake, Airflow, dbt, Terraform, SQL, Git, Jenkins.
+
+  NTT DATA / Fidelity (seventeen years delivering for Fidelity Investments):
+    short label: NTT / Fidelity
+    long label: NTT DATA Global Delivery Services Ltd., Application Development Director, engaged with Fidelity Investments, Apr 2008 - Sep 2025
+    hover: NTT DATA delivering for Fidelity Investments, Application Development Director, 17 years, Apr 2008 - Sep 2025
     icon: ntt.png
-    duration: 21
+    duration: 17
     link: https://www.nttdata.com/global/en/
     clients:
       Fidelity:
         1. Cloud based Transmission application:
-          role: Principle Software Engineer
-          start: Apr 2003
-          end: Till Date
-          duration: 21 years
+          role: Application Development Director
+          start: Apr 2008
+          end: Sep 2025
+          duration: 17 years
           technology: Java, Springboot, Spark, Oracle, AWS, Python, Pandas, GIT, Terraform, Jenkins,
           summary: |
             Led the modernization of a high-volume, business-critical legacy application on AWS, leveraging Java, Spark, and a developed core framework. This significantly improved development and deployment speed, achieving a 50% reduction in turnaround times. Key responsibilities included designing high-volume transmission files, implementing data parsing and validation, and ensuring data consistency with mainframe systems.
@@ -334,10 +391,10 @@ projects:
             
             This project successfully modernized a critical business application, improving efficiency, agility, and reliability while leveraging the power of cloud technologies.
         2. Rambo - Rapid Analysis of Mainframe Batch Objects:
-          role: Principle Software Engineer
-          start: Apr 2003
-          end: Till Date
-          technology: Paython, Pandas, Postgres, Networkx, Pyvis, Streamlit, GIT, Jenkins
+          role: Application Development Director
+          start: Apr 2008
+          end: Sep 2025
+          technology: Python, Pandas, Postgres, Networkx, Pyvis, Streamlit, GIT, Jenkins
           summary: |
             Developed 'Rambo,' an analytics platform that empowered software development teams to reengineer and optimize software artifacts by providing critical insights into dependencies. Responsibilities included identifying metadata sources on software artifacts, organizing and storing the data in a database, creating networkx graph structures with nodes and edges, parsing the data for various use cases with complex SQLs, and presenting data flow diagrams in a visual manner using Python, PyVis, SQL, REXX, and Streamlit.
           additional information: |
@@ -348,10 +405,10 @@ projects:
             * **Graph Structure:** Created networkx graph structures with nodes and edges, parsing the data for various use cases with complex SQLs.
             * **Data Visualization:** Presented data flow diagrams visually using Python, PyVis, SQL, REXX, and Streamlit.
         3. Cobra - COBOL Research & Analysis:
-          role: Principle Software Engineer
-          start: Apr 2003
-          end: Till Date
-          technology: Python, Pandas, Regex, Neworkx, Postgres, Pyvis, Streamlit, GIT, Jenkins
+          role: Application Development Director
+          start: Apr 2008
+          end: Sep 2025
+          technology: Python, Pandas, Regex, Networkx, Postgres, Pyvis, Streamlit, GIT, Jenkins
           summary: |
             Leading the team to develop "Cobra," a comprehensive ecosystem specifically designed to address the challenges of modernizing and enhancing legacy COBOL applications. Recognizing the critical role these systems play in many organizations, Cobra aims to equip businesses with the tools and technologies necessary to effectively understand, analyze, and ultimately modernize their existing COBOL codebases. This multifaceted ecosystem will encompass a suite of integrated tools and functionalities, empowering organizations to gain deeper insights into their COBOL applications and explore various modernization pathways.
           additional information: |
@@ -398,9 +455,9 @@ projects:
             
             This project represents a significant undertaking in modernizing legacy COBOL systems. By addressing the challenges and leveraging the power of modern technologies, Cobra - COBOL Research & Analysis can empower organizations to unlock the value of their existing COBOL investments while preparing them for the future.
         4. Legacy Automation:
-          role: Principle Software Engineer
-          start: Apr 2003
-          end: Till Date
+          role: Application Development Director
+          start: Apr 2008
+          end: Sep 2025
           technology: MVS, COBOL, CICS, JCL, DB2, VSAM, Assembler
           summary: |
             Modernized legacy transmission job automation processes within our organization. The primary objective was to replace static job schedules with dynamic job submissions triggered by events or data changes within the CICS environment.
@@ -435,6 +492,14 @@ projects:
             * **Improved operational efficiency:** Reduced manual intervention, minimized errors, and improved resource utilization.
             * **Enhanced system stability:** Reduced the risk of missed jobs or scheduling conflicts.
             * **Modernized legacy systems:** Brought legacy job scheduling processes in line with modern IT practices.
+  NTT DATA:
+    short label: NTT
+    long label: NTT DATA Global Delivery Services Ltd., Project Leader / Senior Consultant, Apr 2003 - Mar 2008
+    hover: NTT DATA Global Delivery Services, Project Leader, 5 years, Apr 2003 - Mar 2008
+    icon: ntt.png
+    duration: 5
+    link: https://www.nttdata.com/global/en/
+    clients:
       General Motors:
         General Motors Dealer Information Database (GMDID) Re-engineering Project:
           summary: |

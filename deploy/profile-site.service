@@ -1,0 +1,40 @@
+# /etc/systemd/system/streamlit_profile_builder.service
+#
+# systemd unit for the portfolio site (FastAPI + uvicorn).
+# The unit name stays "streamlit_profile_builder" for compatibility with the
+# existing /opt/webhook/deploy.sh that calls `systemctl restart streamlit_profile_builder`.
+# The app itself is a modern FastAPI site — the name is historical.
+#
+# Port 8002 is chosen because 8000 is already used by the ramboq.com project.
+#
+# Install / update:
+#   sudo cp deploy/profile-site.service /etc/systemd/system/streamlit_profile_builder.service
+#   sudo systemctl daemon-reload
+#   sudo systemctl restart streamlit_profile_builder
+#
+# Logs:
+#   journalctl -u streamlit_profile_builder -f
+
+[Unit]
+Description=Ramana Ambore Portfolio — FastAPI site (uvicorn)
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/opt/streamlit_profile_builder/fastapi_site
+Environment="PATH=/opt/streamlit_profile_builder/fastapi_site/.venv/bin"
+Environment="PUBLIC_SITE_URL=https://ramanaambore.me"
+ExecStart=/opt/streamlit_profile_builder/fastapi_site/.venv/bin/uvicorn main:app \
+          --host 127.0.0.1 --port 8002 \
+          --workers 2 \
+          --proxy-headers \
+          --forwarded-allow-ips=127.0.0.1
+Restart=on-failure
+RestartSec=3
+KillMode=mixed
+TimeoutStopSec=20
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,552 @@
+{% extends "base.html" %}
+
+{% set sections = [
+  ('about', 'About'),
+  ('experience', 'Experience'),
+  ('skills', 'Skills'),
+  ('employment', 'Employment'),
+  ('portfolio', 'Portfolio'),
+  ('education', 'Education'),
+  ('certifications', 'Certs'),
+  ('interests', 'Interests'),
+  ('contact', 'Contact'),
+] %}
+
+{% block body %}
+
+<header x-data="{ open: false, scrolled: false }"
+        @scroll.window="scrolled = window.scrollY > 20"
+        @keydown.escape.window="open = false"
+        :class="scrolled || open ? 'bg-white/85 backdrop-blur-xl border-b border-slate-200/80 shadow-sm shadow-slate-900/5' : 'bg-white/50 backdrop-blur-md border-b border-slate-200/40'"
+        class="fixed top-0 inset-x-0 z-50 transition-all duration-300">
+  <nav class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="#top" class="font-display font-bold text-xl tracking-tight text-slate-900 flex items-center gap-2">
+      <span class="w-8 h-8 rounded-lg bg-gradient-to-br from-accent-cyan to-accent-indigo flex items-center justify-center text-white text-sm">RA</span>
+      <span>Ramana<span class="text-accent-cyan">.</span></span>
+    </a>
+
+    <ul class="hidden md:flex items-center gap-8 text-sm">
+      {% for slug, label in sections %}
+      <li><a href="#{{ slug }}" data-nav="{{ slug }}" class="nav-link text-slate-600 hover:text-slate-900 transition-colors">{{ label }}</a></li>
+      {% endfor %}
+    </ul>
+
+    <a href="/resume.pdf" target="_blank"
+       class="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium bg-gradient-to-r from-accent-cyan to-accent-indigo text-white hover:scale-105 transition-transform shadow-md shadow-accent-indigo/20">
+      Resume
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3"/></svg>
+    </a>
+
+    <button @click="open = !open" :aria-expanded="open.toString()" aria-controls="mobile-menu"
+            class="md:hidden relative w-10 h-10 rounded-lg border border-slate-200/80 bg-white/70 backdrop-blur-sm text-slate-700 flex items-center justify-center hover:border-accent-cyan/60 transition-colors" aria-label="Menu">
+      <svg x-show="!open" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      <svg x-show="open" x-cloak class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </nav>
+
+  <div id="mobile-menu"
+       x-show="open" x-cloak
+       x-transition:enter="transition ease-out duration-200"
+       x-transition:enter-start="opacity-0 -translate-y-2"
+       x-transition:enter-end="opacity-100 translate-y-0"
+       x-transition:leave="transition ease-in duration-150"
+       x-transition:leave-start="opacity-100 translate-y-0"
+       x-transition:leave-end="opacity-0 -translate-y-2"
+       @click.outside="open = false"
+       class="md:hidden bg-white/95 backdrop-blur-xl border-t border-slate-200 shadow-lg shadow-slate-900/5">
+    <ul class="px-6 py-5 space-y-1">
+      {% for slug, label in sections %}
+      <li>
+        <a href="#{{ slug }}" @click="open=false"
+           class="flex items-center justify-between px-3 py-3 rounded-lg text-slate-700 hover:bg-slate-50 hover:text-accent-cyan transition-colors">
+          <span class="font-medium">{{ label }}</span>
+          <svg class="w-4 h-4 opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+    <div class="px-6 pb-5">
+      <a href="/resume.pdf" target="_blank" @click="open=false"
+         class="flex items-center justify-center gap-2 w-full px-4 py-3 rounded-full text-sm font-semibold bg-gradient-to-r from-accent-cyan to-accent-indigo text-white shadow-md shadow-accent-indigo/20">
+        Download Resume
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<div class="pt-[72px] pb-16 px-3 sm:px-4 md:px-6">
+<main class="max-w-6xl mx-auto bg-white/75 backdrop-blur-md border border-slate-200/80 rounded-b-3xl rounded-t-2xl shadow-xl shadow-slate-900/5 overflow-hidden">
+
+<section id="top" class="relative flex items-center py-14 md:py-16 bg-gradient-to-br from-cyan-50/70 via-slate-50/40 to-emerald-50/30">
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(8,145,178,0.08),transparent_60%)] pointer-events-none"></div>
+  <div class="relative w-full px-6 md:px-12 grid md:grid-cols-[1.4fr_1fr] gap-10 items-center">
+    <div class="reveal">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/90 border border-slate-300/60 text-xs font-medium text-accent-cyan mb-6">
+        <span class="w-2 h-2 rounded-full bg-accent-cyan animate-pulse"></span>
+        Available for new opportunities
+      </div>
+      <h1 class="font-display font-bold text-5xl md:text-7xl leading-[1.05] tracking-tight text-slate-900 mb-4">
+        {{ d.name | title }}<span class="text-accent-cyan">.</span>
+      </h1>
+      <div class="text-2xl md:text-3xl font-display text-slate-700 mb-6 h-10">
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent-cyan via-accent-violet to-accent-indigo"
+              x-data='{ roles: ["Principal System Analyst", "Principal Software Engineer", "Application Development Director", "FinTech Engineer / FRM / CFA L2", "Derivatives & Gen AI Specialist"], i: 0, shown: "" }'
+              x-init="
+                const type = async () => {
+                  while(true) {
+                    const r = roles[i];
+                    for (let k=0; k<=r.length; k++) { shown = r.slice(0,k); await new Promise(res=>setTimeout(res,55)); }
+                    await new Promise(res=>setTimeout(res,1800));
+                    for (let k=r.length; k>=0; k--) { shown = r.slice(0,k); await new Promise(res=>setTimeout(res,30)); }
+                    i = (i+1) % roles.length;
+                  }
+                }; type();"
+              x-text="shown + '▍'"></span>
+      </div>
+      <p class="text-slate-600 text-base md:text-lg max-w-2xl leading-relaxed mb-8">
+        FRM-certified FinTech professional with 30+ years of experience modernizing legacy systems,
+        optimizing high-volume trading platforms, and developing algorithmic trading solutions.
+        Recipient of the NTT Innovation Award — top 40 innovators globally.
+      </p>
+
+      <div class="flex flex-wrap gap-3 mb-10">
+        <a href="#contact" class="px-6 py-3 rounded-full bg-gradient-to-r from-accent-cyan to-accent-indigo text-white font-semibold hover:scale-105 transition-transform shadow-lg shadow-accent-indigo/20">
+          Get in touch
+        </a>
+        <a href="#portfolio" class="px-6 py-3 rounded-full border border-slate-300 text-slate-800 font-semibold hover:border-accent-cyan hover:text-accent-cyan transition-colors">
+          View projects
+        </a>
+      </div>
+
+      <div class="grid grid-cols-4 gap-4 max-w-xl">
+        {% set stat_items = [('30+', 'Years'), (stats.skills, 'Skills'), (stats.certs, 'Certs'), (stats.projects, 'Projects')] %}
+        {% for v, l in stat_items %}
+        <div class="group">
+          <div class="text-2xl md:text-3xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-br from-slate-900 to-slate-500 group-hover:from-accent-cyan group-hover:to-accent-indigo transition-all">{{ v }}</div>
+          <div class="text-xs uppercase tracking-widest text-slate-500">{{ l }}</div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="reveal relative">
+      <div class="relative aspect-square max-w-sm mx-auto">
+        <div class="absolute inset-[12%] rounded-full bg-gradient-to-br from-accent-cyan via-accent-indigo to-accent-violet blur-2xl opacity-20"></div>
+        <div class="relative rounded-full overflow-hidden border-2 border-slate-300/80 bg-slate-100">
+          <img src="/images/profile_photo.png" alt="{{ d.name }}" class="w-full h-full object-cover" />
+        </div>
+        <div class="absolute -bottom-3 -right-3 bg-white border border-slate-300 rounded-2xl px-4 py-3 shadow-xl backdrop-blur-xl">
+          <div class="text-xs text-slate-500">Based in</div>
+          <div class="text-sm font-medium text-slate-900">Merrimack, NH</div>
+        </div>
+        <div class="absolute -top-2 -left-2 bg-white border border-slate-300 rounded-2xl px-4 py-3 shadow-xl z-20">
+          <div class="text-xs text-slate-500">Certified</div>
+          <div class="text-sm font-medium flex items-center gap-1.5">
+            {% for key in ['FRM', 'CFA'] %}
+              {% set c = d.certifications[key] %}
+              <div class="relative group/cert">
+                <a href="{{ c.link }}" target="_blank" rel="noopener"
+                   class="text-accent-cyan hover:text-accent-indigo transition-colors underline decoration-accent-cyan/30 underline-offset-2">{{ key }}{% if key == 'CFA' %} L2{% endif %}</a>
+                <div class="pointer-events-none opacity-0 -translate-x-1 group-hover/cert:opacity-100 group-hover/cert:translate-x-0 group-hover/cert:pointer-events-auto transition-all duration-200 hidden sm:block absolute right-full mr-3 top-1/2 -translate-y-1/2 w-72 rounded-xl bg-white border border-slate-200 shadow-2xl shadow-slate-900/10 p-4 z-[60]">
+                  <div class="absolute top-1/2 -right-1.5 -translate-y-1/2 w-3 h-3 rotate-45 bg-white border-r border-t border-slate-200"></div>
+                  <div class="flex items-start gap-3">
+                    <img src="/images/{{ c.icon }}" alt="{{ key }}"
+                         class="w-11 h-11 object-contain rounded-lg bg-slate-50 border border-slate-200 p-1.5 flex-shrink-0" />
+                    <div class="flex-1 min-w-0">
+                      <div class="flex items-center gap-2 flex-wrap">
+                        <h4 class="font-display font-semibold text-slate-900 text-sm">{{ key }}</h4>
+                        <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 border border-slate-200">{{ c.year }}</span>
+                      </div>
+                      <div class="text-[11px] text-slate-500 mt-0.5">{{ c['long label'] }}</div>
+                    </div>
+                  </div>
+                  <p class="text-[11px] text-slate-600 leading-relaxed mt-3">{{ c.hover }}</p>
+                  <div class="flex items-center justify-between mt-3 pt-3 border-t border-slate-100">
+                    <span class="text-[10px] font-mono uppercase tracking-wider text-accent-cyan">{{ c.group | default('credential') }}</span>
+                    <span class="text-[11px] text-accent-cyan font-medium inline-flex items-center gap-1">
+                      View certificate
+                      <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              {% if not loop.last %}<span class="text-slate-400">·</span>{% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<div class="h-px mx-12 bg-gradient-to-r from-transparent via-slate-200 to-transparent"></div>
+
+{# ============ ABOUT ============ #}
+<section id="about" class="py-12 relative">
+  <div class="px-6 md:px-12">
+    <div class="reveal">
+      <div class="flex items-center gap-3 mb-3">
+        <span class="font-mono text-xs text-accent-cyan">01</span>
+        <div class="h-px flex-1 bg-gradient-to-r from-accent-cyan/50 to-transparent max-w-[60px]"></div>
+      </div>
+      <h2 class="font-display font-bold text-4xl md:text-5xl text-slate-900 mb-2">About me</h2>
+      <p class="text-slate-600">A brief introduction.</p>
+    </div>
+
+    <div class="space-y-6 mt-10">
+      <div class="reveal text-slate-700 leading-relaxed max-w-4xl">
+        <p class="text-[16px]">{{ d.profile | replace('`', '') }}</p>
+      </div>
+      <div class="reveal">
+        <div class="p-6 md:p-7 rounded-2xl bg-gradient-to-br from-white via-white to-cyan-50/50 shadow-sm shadow-slate-200/50 border border-slate-200">
+          <h3 class="font-display text-transparent bg-clip-text bg-gradient-to-r from-accent-cyan to-accent-violet text-sm uppercase tracking-widest mb-5 font-semibold">Career Highlights</h3>
+          <ul class="grid md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-4">
+            {% for item in d['experience summary'][:6] %}
+            <li class="flex gap-2.5 text-sm text-slate-700">
+              <span class="text-accent-cyan mt-1 flex-shrink-0 font-bold">▸</span>
+              <span>{{ item }}</span>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ============ EXPERIENCE / CAREER TIMELINE ============ #}
+<section id="experience" class="py-12 relative">
+  <div class="px-6 md:px-12">
+    <div class="reveal">
+      <div class="flex items-center gap-3 mb-3">
+        <span class="font-mono text-xs text-accent-cyan">02</span>
+        <div class="h-px flex-1 bg-gradient-to-r from-accent-cyan/50 to-transparent max-w-[60px]"></div>
+      </div>
+      <h2 class="font-display font-bold text-4xl md:text-5xl text-slate-900 mb-2">Career journey</h2>
+      <p class="text-slate-600">Three decades of milestones across FinTech and enterprise modernization.</p>
+    </div>
+
+    <div class="mt-12 reveal">
+      <div id="chart-timeline" class="w-full"></div>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6 mt-8">
+      {% for item in d['experience summary'] %}
+      <div class="reveal p-6 rounded-2xl bg-white/80 shadow-sm shadow-slate-200/40 border border-slate-200 hover:border-accent-cyan/40 transition-colors">
+        <div class="flex gap-4">
+          <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-accent-cyan/20 to-accent-indigo/20 border border-accent-cyan/30 flex items-center justify-center text-accent-cyan flex-shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          </div>
+          <p class="text-sm text-slate-700 leading-relaxed">{{ item }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{# ============ SKILLS ============ #}
+<section id="skills" class="py-12 relative">
+  <div class="px-6 md:px-12">
+    <div class="reveal">
+      <div class="flex items-center gap-3 mb-3">
+        <span class="font-mono text-xs text-accent-cyan">03</span>
+        <div class="h-px flex-1 bg-gradient-to-r from-accent-cyan/50 to-transparent max-w-[60px]"></div>
+      </div>
+      <h2 class="font-display font-bold text-4xl md:text-5xl text-slate-900 mb-2">Technical stack</h2>
+      <p class="text-slate-600">Proficiency across languages, data, cloud and backend systems.</p>
+    </div>
+
+    <div class="grid lg:grid-cols-[1.1fr_1fr] gap-10 mt-12 items-center">
+      <div class="reveal rounded-2xl bg-white/80 shadow-sm shadow-slate-200/40 border border-slate-200 p-4">
+        <div id="chart-skills" class="w-full"></div>
+      </div>
+
+      <div class="reveal grid grid-cols-3 sm:grid-cols-4 gap-3">
+        {% for name, skill in d['technical skills'].items() %}
+        <div class="group relative aspect-square rounded-xl bg-white/80 shadow-sm shadow-slate-200/40 border border-slate-200 flex flex-col items-center justify-center p-3 hover:border-accent-cyan/50 hover:-translate-y-1 transition-all cursor-help"
+             title="{{ skill.hover }}">
+          <img src="/images/{{ skill.icon }}" alt="{{ name }}" class="w-10 h-10 object-contain mb-1" />
+          <div class="text-[10px] uppercase tracking-wide text-slate-600 font-medium truncate w-full text-center">{{ name }}</div>
+          <div class="absolute bottom-1 left-1 right-1 h-1 rounded-full bg-slate-100 overflow-hidden">
+            <div class="h-full bg-gradient-to-r from-accent-cyan to-accent-indigo" style="width: {{ skill.level * 20 }}%"></div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ============ EMPLOYMENT ============ #}
+<section id="employment" class="py-12 relative">
+  <div class="px-6 md:px-12">
+    <div class="reveal">
+      <div class="flex items-center gap-3 mb-3">
+        <span class="font-mono text-xs text-accent-cyan">04</span>
+        <div class="h-px flex-1 bg-gradient-to-r from-accent-cyan/50 to-transparent max-w-[60px]"></div>
+      </div>
+      <h2 class="font-display font-bold text-4xl md:text-5xl text-slate-900 mb-2">Employment history</h2>
+      <p class="text-slate-600">Delivering mission-critical systems across five companies.</p>
+    </div>
+
+    <div class="reveal mt-12 rounded-2xl bg-white/80 shadow-sm shadow-slate-200/40 border border-slate-200 p-4">
+      <div id="chart-employment" class="w-full"></div>
+    </div>
+
+    <div class="mt-12 space-y-6">
+      {% for company, meta in d.projects.items() %}
+      <details class="reveal group rounded-2xl bg-white/80 shadow-sm shadow-slate-200/40 border border-slate-200 hover:border-accent-cyan/40 transition-colors overflow-hidden" {% if loop.first %}open{% endif %}>
+        <summary class="cursor-pointer list-none p-6 flex items-center gap-4">
+          <img src="/images/{{ meta.icon }}" alt="{{ company }}" class="w-12 h-12 rounded-lg object-contain bg-white/5 p-1 flex-shrink-0" />
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-3 flex-wrap">
+              <h3 class="font-display font-semibold text-lg text-slate-900 truncate">{{ company }}</h3>
+              <span class="text-xs px-2 py-0.5 rounded-full bg-accent-cyan/10 text-accent-cyan border border-accent-cyan/20">{{ meta.duration }} yrs</span>
+            </div>
+            <p class="text-xs text-slate-500 mt-1">{{ meta['long label'] }}</p>
+          </div>
+          <svg class="w-5 h-5 text-slate-500 group-open:rotate-180 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </summary>
+
+        <div class="px-6 pb-6 border-t border-slate-200/60 pt-6 space-y-6">
+          {% for client, proj_list in meta.clients.items() %}
+          <div>
+            <div class="text-xs uppercase tracking-widest text-accent-cyan mb-3 font-medium">Client · {{ client }}</div>
+            <div class="space-y-4">
+              {% for proj_name, proj in proj_list.items() %}
+              <div class="rounded-xl bg-slate-50 border border-slate-200 p-5">
+                <div class="flex items-start justify-between gap-4 flex-wrap mb-2">
+                  <h4 class="font-semibold text-slate-900">{{ proj_name }}</h4>
+                  {% if proj.start %}<span class="text-xs text-slate-500 font-mono">{{ proj.start }} — {{ proj.end }}</span>{% endif %}
+                </div>
+                {% if proj.role %}<div class="text-xs text-accent-cyan mb-3">{{ proj.role }}</div>{% endif %}
+                <p class="text-sm text-slate-600 leading-relaxed mb-4">{{ proj.summary }}</p>
+                {% if proj.technology %}
+                <div class="flex flex-wrap gap-1.5">
+                  {% for tech in proj.technology.split(',') %}
+                    {% set t = tech.strip() %}
+                    {% if t %}<span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 text-slate-600 border border-slate-300">{{ t }}</span>{% endif %}
+                  {% endfor %}
+                </div>
+                {% endif %}
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </details>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{# ============ PORTFOLIO ============ #}
+<section id="portfolio" class="py-12 relative">
+  <div class="px-6 md:px-12">
+    <div class="reveal">
+      <div class="flex items-center gap-3 mb-3">
+        <span class="font-mono text-xs text-accent-cyan">05</span>
+        <div class="h-px flex-1 bg-gradient-to-r from-accent-cyan/50 to-transparent max-w-[60px]"></div>
+      </div>
+      <h2 class="font-display font-bold text-4xl md:text-5xl text-slate-900 mb-2">Personal projects</h2>
+      <p class="text-slate-600">Selected work built outside my day job.</p>
+    </div>
+
+    <div class="space-y-6 mt-12">
+      {% for name, p in d.portfolio.items() %}
+      <article class="reveal group rounded-2xl bg-white/80 shadow-sm shadow-slate-200/40 border border-slate-200 overflow-hidden hover:border-accent-cyan/50 hover:-translate-y-1 transition-all">
+        <div class="grid lg:grid-cols-[1.35fr_1fr] gap-0">
+          <div class="relative aspect-[16/9] lg:aspect-auto lg:min-h-[320px] bg-slate-100 overflow-hidden">
+            <img src="/images/{{ p.image }}" alt="{{ name }}" class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500" />
+            <div class="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-white/80 lg:from-transparent via-white/10 lg:via-transparent lg:to-white/80 pointer-events-none"></div>
+          </div>
+          <div class="p-6 md:p-8 flex flex-col justify-center">
+            <div class="text-[10px] font-mono uppercase tracking-widest text-accent-cyan mb-2">Featured Project</div>
+            <h3 class="font-display font-bold text-2xl md:text-3xl text-slate-900 mb-3 group-hover:text-accent-cyan transition-colors leading-tight">{{ name | title }}</h3>
+            <p class="text-sm text-slate-600 leading-relaxed mb-5">{{ p.summary }}</p>
+            <div class="flex flex-wrap gap-1.5 mb-5">
+              {% for t in p.technology.split(',') %}
+                {% set tt = t.strip() %}
+                {% if tt %}<span class="text-[10px] font-mono px-2 py-1 rounded bg-cyan-50 text-cyan-700 border border-cyan-200">{{ tt }}</span>{% endif %}
+              {% endfor %}
+            </div>
+            <div class="flex gap-4 text-sm">
+              {% if p.link %}<a href="{{ p.link }}" target="_blank" class="text-accent-cyan font-semibold hover:underline inline-flex items-center gap-1">Read more →</a>{% endif %}
+              {% if p.github %}<a href="{{ p.github }}" target="_blank" class="text-slate-600 hover:text-slate-900 font-medium inline-flex items-center gap-1">GitHub ↗</a>{% endif %}
+            </div>
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{# ============ EDUCATION + CERTIFICATIONS ============ #}
+<section id="education" class="py-12 relative">
+  <div class="px-6 md:px-12">
+    <div class="reveal">
+      <div class="flex items-center gap-3 mb-3">
+        <span class="font-mono text-xs text-accent-cyan">06</span>
+        <div class="h-px flex-1 bg-gradient-to-r from-accent-cyan/50 to-transparent max-w-[60px]"></div>
+      </div>
+      <h2 class="font-display font-bold text-4xl md:text-5xl text-slate-900 mb-2">Education</h2>
+      <p class="text-slate-600">Academic foundation.</p>
+    </div>
+
+    <div class="grid lg:grid-cols-[1fr_1.4fr] gap-8 mt-12 items-center">
+      <div class="reveal rounded-2xl bg-white/80 shadow-sm shadow-slate-200/40 border border-slate-200 p-4">
+        <div id="chart-education" class="w-full"></div>
+      </div>
+      <div class="space-y-4">
+        {% for name, ed in d.education.items() %}
+        <a href="{{ ed.link }}" target="_blank" class="reveal group flex items-center gap-4 p-5 rounded-2xl bg-white/80 shadow-sm shadow-slate-200/40 border border-slate-200 hover:border-accent-cyan/50 transition-all">
+          <img src="/images/{{ ed.icon }}" alt="" class="w-14 h-14 rounded-lg object-contain bg-white/5 p-2 flex-shrink-0" />
+          <div class="flex-1 min-w-0">
+            <h3 class="font-semibold text-slate-900 group-hover:text-accent-cyan transition-colors">{{ name }}</h3>
+            <p class="text-xs text-slate-500 mt-1">{{ ed['long label'] }}</p>
+          </div>
+          <span class="text-xs font-mono text-accent-cyan flex-shrink-0">{{ ed.year }}</span>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="certifications" class="py-12 relative">
+  <div class="px-6 md:px-12">
+    <div class="reveal">
+      <div class="flex items-center gap-3 mb-3">
+        <span class="font-mono text-xs text-accent-cyan">07</span>
+        <div class="h-px flex-1 bg-gradient-to-r from-accent-cyan/50 to-transparent max-w-[60px]"></div>
+      </div>
+      <h2 class="font-display font-bold text-4xl md:text-5xl text-slate-900 mb-2">Certifications</h2>
+      <p class="text-slate-600">Professional accreditations across domains.</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-10">
+      {% for name, c in d.certifications.items() %}
+      <a href="{{ c.link }}" target="_blank"
+         class="reveal group p-5 rounded-2xl bg-white/80 shadow-sm shadow-slate-200/40 border border-slate-200 hover:border-accent-cyan/50 hover:-translate-y-1 transition-all">
+        <div class="flex items-start gap-4">
+          <img src="/images/{{ c.icon }}" alt="{{ name }}"
+               class="w-14 h-14 object-contain rounded-lg bg-slate-50 p-2 flex-shrink-0 border border-slate-200" />
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-2 flex-wrap mb-1.5">
+              <h3 class="font-display font-semibold text-slate-900 group-hover:text-accent-cyan transition-colors">{{ name }}</h3>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 border border-slate-200">{{ c.year }}</span>
+            </div>
+            <p class="text-xs text-slate-600 leading-relaxed">{{ c['long label'] }}</p>
+            {% if c.group %}
+            <div class="mt-2">
+              <span class="text-[10px] font-mono uppercase tracking-wider text-accent-cyan">{{ c.group }}</span>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{# ============ INTERESTS ============ #}
+<section id="interests" class="py-12 relative">
+  <div class="px-6 md:px-12">
+    <div class="reveal">
+      <div class="flex items-center gap-3 mb-3">
+        <span class="font-mono text-xs text-accent-cyan">08</span>
+        <div class="h-px flex-1 bg-gradient-to-r from-accent-cyan/50 to-transparent max-w-[60px]"></div>
+      </div>
+      <h2 class="font-display font-bold text-4xl md:text-5xl text-slate-900 mb-2">Beyond work</h2>
+      <p class="text-slate-600">Tinkering with drones &amp; embedded systems.</p>
+    </div>
+
+    <div class="reveal mt-12 p-8 rounded-2xl bg-white/80 shadow-sm shadow-slate-200/40 border border-slate-200 grid md:grid-cols-[1fr_2fr] gap-8 items-center">
+      <div class="grid grid-cols-2 gap-3">
+        <img src="/images/drone.png" alt="Drone" class="rounded-xl bg-white/5 p-2" />
+        <img src="/images/raspberry.png" alt="Raspberry Pi" class="rounded-xl bg-white/5 p-2" />
+      </div>
+      <div class="prose-invert text-sm text-slate-700 leading-relaxed">
+        <p>{{ d.interests.summary }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ============ CONTACT ============ #}
+<section id="contact" class="py-12 relative">
+  <div class="max-w-3xl mx-auto px-6 md:px-12 text-center">
+    <div class="reveal">
+      <div class="flex items-center gap-3 mb-3 justify-center">
+        <span class="font-mono text-xs text-accent-cyan">09</span>
+        <div class="h-px w-16 bg-gradient-to-r from-transparent via-accent-cyan/50 to-transparent"></div>
+      </div>
+      <h2 class="font-display font-bold text-4xl md:text-6xl text-slate-900 mb-4">Let's connect<span class="text-accent-cyan">.</span></h2>
+      <p class="text-slate-600 text-lg max-w-2xl mx-auto mb-10">
+        Open to senior engineering and FinTech leadership roles. Always happy to talk shop.
+      </p>
+
+      <div class="flex flex-wrap gap-3 justify-center mb-12">
+        {% for key, c in d.contact.items() %}
+        <a href="{{ c.link }}" target="_blank" class="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white/80 shadow-sm shadow-slate-200/40 border border-slate-200 hover:border-accent-cyan hover:text-accent-cyan transition-colors text-sm">
+          <img src="/images/{{ c.icon }}" class="w-4 h-4 object-contain" alt="" />
+          {{ c.label }}
+        </a>
+        {% endfor %}
+      </div>
+
+      <div class="flex gap-4 justify-center">
+        {% for key, s in d.social.items() %}
+        <a href="{{ s.link }}" target="_blank" title="{{ s.label }}" class="w-12 h-12 rounded-full bg-white/80 shadow-sm shadow-slate-200/40 border border-slate-200 hover:border-accent-cyan hover:-translate-y-1 transition-all flex items-center justify-center">
+          <img src="/images/{{ s.icon }}" alt="{{ key }}" class="w-5 h-5 object-contain" />
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="py-6 border-t border-slate-200/70 bg-slate-50/60">
+  <div class="px-6 md:px-12 flex flex-col md:flex-row gap-3 items-center justify-between text-xs text-slate-500">
+    <div>© 2026 {{ d.name | title }}. Built with FastAPI, Plotly &amp; Tailwind.</div>
+    <div class="font-mono">Designed for the modern web.</div>
+  </div>
+</footer>
+
+</main>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+  const CHART_DATA = {
+    skills: {{ charts.skills | safe }},
+    employment: {{ charts.employment | safe }},
+    education: {{ charts.education | safe }},
+    certifications: {{ charts.certifications | safe }},
+    timeline: {{ charts.timeline | safe }},
+  };
+
+  const PLOTLY_CONFIG = { displayModeBar: false, responsive: true };
+
+  function renderChart(id, key) {
+    const el = document.getElementById(id);
+    if (!el || !CHART_DATA[key]) return;
+    Plotly.newPlot(el, CHART_DATA[key].data, CHART_DATA[key].layout, PLOTLY_CONFIG);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    renderChart('chart-skills', 'skills');
+    renderChart('chart-employment', 'employment');
+    renderChart('chart-education', 'education');
+    renderChart('chart-timeline', 'timeline');
+  });
+</script>
+{% endblock %}

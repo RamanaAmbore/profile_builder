@@ -1,0 +1,49 @@
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+
+body { overflow-x: hidden; }
+
+[x-cloak] { display: none !important; }
+
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s cubic-bezier(.2,.7,.2,1), transform 0.7s cubic-bezier(.2,.7,.2,1); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+.nav-link { position: relative; }
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: -6px;
+  height: 2px;
+  background: linear-gradient(90deg, #22d3ee, #6366f1);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.nav-link.active { color: #0f172a; }
+.nav-link.active::after { transform: scaleX(1); }
+
+.line-clamp-4 {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+details summary::-webkit-details-marker { display: none; }
+details summary { list-style: none; }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #cbd5e1, #94a3b8);
+  border-radius: 10px;
+  border: 2px solid #f1f5f9;
+}
+::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #0891b2, #1d4ed8); }
+
+.js-plotly-plot .plotly .xtick text,
+.js-plotly-plot .plotly .ytick text,
+.js-plotly-plot .plotly .legendtext,
+.js-plotly-plot .plotly .gtitle { fill: #1e293b !important; }
+
+img[src*="profile_photo"] { filter: saturate(1.05); }

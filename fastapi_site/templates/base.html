@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f8fafc" />
+
+  <title>{{ seo.title }}</title>
+  <meta name="description" content="{{ seo.description }}" />
+  <meta name="keywords" content="{{ seo.keywords }}" />
+  <meta name="author" content="{{ d.name | title }}" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <link rel="canonical" href="{{ seo.url }}" />
+  <link rel="icon" href="/images/rambo_favicon.ico" />
+  <link rel="apple-touch-icon" href="/images/profile_photo.png" />
+
+  <meta property="og:type" content="profile" />
+  <meta property="og:site_name" content="{{ d.name | title }} — Portfolio" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:url" content="{{ seo.url }}" />
+  <meta property="og:title" content="{{ seo.title }}" />
+  <meta property="og:description" content="{{ seo.description }}" />
+  <meta property="og:image" content="{{ seo.image }}" />
+  <meta property="og:image:secure_url" content="{{ seo.image }}" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="512" />
+  <meta property="og:image:height" content="512" />
+  <meta property="og:image:alt" content="{{ d.name | title }} — {{ d.designation | title }}" />
+  <meta property="profile:first_name" content="Ramana" />
+  <meta property="profile:last_name" content="Ambore" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{{ seo.title }}" />
+  <meta name="twitter:description" content="{{ seo.description }}" />
+  <meta name="twitter:image" content="{{ seo.image }}" />
+  <meta name="twitter:image:alt" content="{{ d.name | title }} — {{ d.designation | title }}" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "{{ d.name | title }}",
+    "givenName": "Ramana",
+    "familyName": "Ambore",
+    "honorificSuffix": "FRM",
+    "jobTitle": "{{ d.designation | title }}",
+    "description": "{{ seo.description }}",
+    "image": "{{ seo.image }}",
+    "url": "{{ seo.url }}",
+    "email": "mailto:ramana.ambore@gmail.com",
+    "telephone": "+1-515-525-4636",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Merrimack",
+      "addressRegion": "NH",
+      "addressCountry": "US"
+    },
+    "worksFor": {
+      "@type": "Organization",
+      "name": "NTT DATA"
+    },
+    "alumniOf": [
+      { "@type": "CollegeOrUniversity", "name": "J.K. Institute of Applied Physics & Technology" },
+      { "@type": "CollegeOrUniversity", "name": "XLRI - School of Business" },
+      { "@type": "CollegeOrUniversity", "name": "Nagarjuna University" }
+    ],
+    "knowsAbout": ["FinTech", "Algorithmic Trading", "Risk Management", "Legacy Modernization", "Java", "Python", "AWS", "COBOL", "DB2"],
+    "sameAs": [
+      "https://www.linkedin.com/in/ambore",
+      "https://github.com/RamanaAmbore",
+      "https://medium.com/@rrambo",
+      "https://ramanaambore.me"
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            display: ['Space Grotesk', 'Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            bg: {
+              900: '#f8fafc',
+              800: '#ffffff',
+              700: '#f1f5f9',
+            },
+            accent: {
+              cyan: '#0891b2',
+              indigo: '#1d4ed8',
+              violet: '#059669',
+            },
+          },
+          animation: {
+            'fade-up': 'fadeUp 0.8s ease-out forwards',
+            'blob': 'blob 18s infinite',
+          },
+          keyframes: {
+            fadeUp: {
+              '0%': { opacity: '0', transform: 'translateY(24px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            blob: {
+              '0%,100%': { transform: 'translate(0,0) scale(1)' },
+              '33%': { transform: 'translate(40px,-60px) scale(1.1)' },
+              '66%': { transform: 'translate(-30px,30px) scale(0.95)' },
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+  <script defer src="https://unpkg.com/alpinejs@3.14.1/dist/cdn.min.js"></script>
+
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body class="bg-bg-900 text-slate-800 font-sans antialiased selection:bg-accent-cyan/25 selection:text-slate-900">
+
+  <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+    <img src="/static/img/stock-bg.svg" alt="" aria-hidden="true"
+         class="absolute inset-0 w-full h-full object-cover opacity-85" />
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(8,145,178,0.12),transparent_55%)]"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(5,150,105,0.10),transparent_55%)]"></div>
+    <div class="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(248,250,252,0.35),rgba(248,250,252,0.75))]"></div>
+  </div>
+
+  {% block body %}{% endblock %}
+
+  <script src="/static/js/main.js"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>
