@@ -31,10 +31,10 @@ if [[ ! -d "$VENV_DIR" ]]; then
 fi
 
 log "Installing dependencies"
-"$VENV_DIR/bin/pip" install --quiet --upgrade pip
-"$VENV_DIR/bin/pip" install --quiet -r "$REQS"
+"$VENV_DIR/bin/pip" install --quiet --no-cache-dir --upgrade pip
+"$VENV_DIR/bin/pip" install --quiet --no-cache-dir -r "$REQS"
 
 log "Restarting $SERVICE"
-systemctl restart "$SERVICE"
+sudo /bin/systemctl restart "$SERVICE"
 
 log "Deploy complete: $(git rev-parse --short HEAD)"

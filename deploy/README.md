@@ -5,23 +5,36 @@ Production setup for **https://ramanaambore.me** — FastAPI portfolio served vi
 ## Architecture
 
 ```
-GitHub push to main
-        │
-        │ POST (X-GitHub-Event: push)
-        ▼
-  adnanh/webhook :9000 ──▶ /opt/webhook/deploy.sh
-        │                        │
-        │                        │ git pull, pip install
-        │                        │ systemctl restart streamlit_profile_builder
-        ▼                        ▼
-  nginx :443  ──────────▶  systemd: streamlit_profile_builder.service
-                                   │
-                                   ▼
-                             uvicorn :8002
-                                   │
-                                   ▼
-                             FastAPI + YAML + Plotly
+                     GitHub push to main
+                             │
+                             │ POST /hooks/deploy   (X-GitHub-Event: push)
+                             ▼
+                ┌──────────────────────────────┐
+                │  https://ramanaambore.me     │
+                │  nginx :443                  │
+                ├──────────────────────────────┤
+                │  /hooks/  → 127.0.0.1:9000  ──┐
+                │                               │
+                │  /static/ │ /images/          │  adnanh/webhook :9000
+                │    (served directly)          │  (webhook.service, www-data)
+                │                               ▼
+                │  /          → 127.0.0.1:8002  /opt/webhook/deploy.sh
+                └──────────────────────────────┘      │
+                             ▲                        │ git pull → pip install
+                             │                        │ sudo systemctl restart …
+                             │                        ▼
+                streamlit_profile_builder.service ◄───┘
+                  uvicorn :8002, 2 workers, www-data
+                             │
+                             ▼
+                FastAPI + YAML + Plotly + PDF/TXT resume
 ```
+
+**Key things:**
+
+- The portfolio's webhook listener is its own `adnanh/webhook` instance on port 9000, separate from `ramboq_hook.service` on port 9001 (which belongs to other projects on the same server). Both are independent — never route portfolio-specific traffic through `webhook.ramboq.com`.
+- Both the site and the webhook share the domain **ramanaambore.me** — nginx routes `/hooks/*` to the webhook listener and everything else to the FastAPI app.
+- The webhook service runs as `www-data` (matching the repo owner) so `git pull` and `pip install` don't rewrite file ownership. It escalates to root only for `systemctl restart streamlit_profile_builder.service` via a narrow sudoers rule.
 
 ## Files in this folder
 
@@ -71,12 +84,61 @@ nginx -t && systemctl reload nginx
 # Install / update the webhook deploy hook
 cp deploy/deploy.sh /opt/webhook/deploy.sh
 chmod +x /opt/webhook/deploy.sh
+chown www-data:www-data /opt/webhook/deploy.sh
 ```
 
+### Webhook listener service + sudoers
+
+The adnanh/webhook binary runs as `www-data` on port 9000, reading hooks from `/opt/webhook/hooks.json`:
+
+```ini
+# /etc/systemd/system/webhook.service
+[Unit]
+Description=Webhook GitHub Auto Deploy (portfolio site)
+After=network.target
+
+[Service]
+User=www-data
+Group=www-data
+ExecStart=/usr/bin/webhook -hooks /opt/webhook/hooks.json -port 9000 -verbose
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Narrow sudoers rule so www-data can restart only the portfolio service (put in `/etc/sudoers.d/profile-site-deploy`, mode 440):
+
+```
+www-data ALL=(ALL) NOPASSWD: /bin/systemctl restart streamlit_profile_builder.service
+```
+
+Then:
+
+```bash
+systemctl daemon-reload
+systemctl enable --now webhook
+```
+
+### Configure the GitHub webhook
+
+In the GitHub repo → **Settings → Webhooks → Add webhook**:
+
+- **Payload URL:** `https://ramanaambore.me/hooks/deploy`
+- **Content type:** `application/json`
+- **Secret:** *(leave blank or add one — hooks.json currently doesn't verify HMAC; add it for production-grade security)*
+- **Events:** Just the `push` event
+- **Active:** ✓
+
 After the first install: every `git push origin main` from any machine will:
-1. Hit the existing `/hooks/deploy` endpoint on the adnanh/webhook listener
-2. Trigger `/opt/webhook/deploy.sh`
-3. `git reset --hard origin/main`, `pip install`, `systemctl restart streamlit_profile_builder`
+1. GitHub POSTs to `https://ramanaambore.me/hooks/deploy`
+2. nginx proxies to `127.0.0.1:9000`
+3. `adnanh/webhook` matches the `deploy` hook (trigger rule: `X-GitHub-Event: push`)
+4. Executes `/opt/webhook/deploy.sh`:
+   - `git fetch origin main && git reset --hard origin/main`
+   - `pip install -r fastapi_site/requirements.txt`
+   - `sudo systemctl restart streamlit_profile_builder.service`
+5. Site comes back on the new commit within ~60 seconds
 
 ## Daily operations
 
