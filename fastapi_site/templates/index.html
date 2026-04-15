@@ -75,21 +75,76 @@
   </div>
 </header>
 
-<div class="pt-[72px] pb-16 px-3 sm:px-4 md:px-6">
-<main class="max-w-6xl mx-auto bg-white/75 backdrop-blur-md border border-slate-200/80 rounded-b-3xl rounded-t-2xl shadow-xl shadow-slate-900/5 overflow-hidden">
+<div class="pt-[68px] pb-8 sm:pb-12 px-0 sm:px-4 md:px-6">
+<main class="max-w-6xl mx-auto relative bg-white sm:border sm:border-slate-200/80 rounded-none sm:rounded-3xl shadow-xl shadow-slate-900/10 overflow-hidden">
 
-<section id="top" class="relative flex items-center py-14 md:py-16 bg-gradient-to-br from-cyan-50/70 via-slate-50/40 to-emerald-50/30">
+  <!-- Subtle finance/tech/AI SVG layer INSIDE the card -->
+  <div class="absolute inset-0 pointer-events-none overflow-hidden">
+    <img src="/static/img/stock-bg.svg" alt="" aria-hidden="true"
+         class="absolute inset-0 w-full h-full object-cover opacity-95" />
+    <div class="absolute inset-0 bg-gradient-to-br from-white/55 via-white/70 to-white/55"></div>
+  </div>
+
+<section id="top" class="relative flex items-center py-8 sm:py-10 md:py-16 bg-gradient-to-br from-cyan-50/50 via-slate-50/30 to-emerald-50/25">
   <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(8,145,178,0.08),transparent_60%)] pointer-events-none"></div>
-  <div class="relative w-full px-6 md:px-12 grid md:grid-cols-[1.4fr_1fr] gap-10 items-center">
-    <div class="reveal">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/90 border border-slate-300/60 text-xs font-medium text-accent-cyan mb-6">
+  <div class="relative w-full px-5 sm:px-6 md:px-12 grid md:grid-cols-[0.85fr_1.5fr] gap-6 md:gap-10 items-center">
+
+    {# ---- PHOTO FIRST ---- #}
+    <div class="reveal relative order-1">
+      <div class="relative aspect-square max-w-[260px] sm:max-w-[300px] md:max-w-sm mx-auto">
+        <div class="absolute inset-[12%] rounded-full bg-gradient-to-br from-accent-cyan via-accent-indigo to-accent-violet blur-2xl opacity-20"></div>
+        <div class="relative rounded-full overflow-hidden border-2 border-slate-300/80 bg-slate-100">
+          <img src="/images/profile_photo.png" alt="{{ d.name }}" class="w-full h-full object-cover" />
+        </div>
+        <div class="absolute -bottom-3 -right-1 md:-right-3 bg-white border border-slate-300 rounded-2xl px-3 py-2 md:px-4 md:py-3 shadow-xl">
+          <div class="text-[10px] md:text-xs text-slate-500">Based in</div>
+          <div class="text-xs md:text-sm font-medium text-slate-900">Merrimack, NH</div>
+        </div>
+        <div class="absolute -top-1 -left-1 md:-top-2 md:-left-2 bg-white border border-slate-300 rounded-2xl px-3 py-2 md:px-4 md:py-3 shadow-xl z-20">
+          <div class="text-[10px] md:text-xs text-slate-500">Certified</div>
+          <div class="text-xs md:text-sm font-medium flex items-center gap-1.5">
+            {% for key in ['FRM', 'CFA'] %}
+              {% set c = d.certifications[key] %}
+              <div class="relative group/cert">
+                <button type="button"
+                        onclick="window.open('{{ c.link }}','_blank','noopener,noreferrer')"
+                        class="bg-transparent border-0 p-0 m-0 cursor-pointer font-inherit text-accent-cyan hover:text-accent-indigo transition-colors underline decoration-accent-cyan/30 underline-offset-2">{{ key }}{% if key == 'CFA' %} L2{% endif %}</button>
+                <div class="pointer-events-none opacity-0 -translate-x-1 group-hover/cert:opacity-100 group-hover/cert:translate-x-0 group-hover/cert:pointer-events-auto transition-all duration-200 hidden sm:block absolute left-full ml-3 top-1/2 -translate-y-1/2 w-72 rounded-xl bg-white border border-slate-200 shadow-2xl shadow-slate-900/10 p-4 z-[60]">
+                  <div class="absolute top-1/2 -left-1.5 -translate-y-1/2 w-3 h-3 rotate-45 bg-white border-l border-b border-slate-200"></div>
+                  <div class="flex items-start gap-3">
+                    <img src="/images/{{ c.icon }}" alt="{{ key }}"
+                         class="w-11 h-11 object-contain rounded-lg bg-slate-50 border border-slate-200 p-1.5 flex-shrink-0" />
+                    <div class="flex-1 min-w-0">
+                      <div class="flex items-center gap-2 flex-wrap">
+                        <h4 class="font-display font-semibold text-slate-900 text-sm">{{ key }}</h4>
+                        <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 border border-slate-200">{{ c.year }}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="text-[11px] text-slate-600 leading-relaxed mt-3">{{ c.hover }}</p>
+                  <div class="flex items-center justify-between mt-3 pt-3 border-t border-slate-100">
+                    <span class="text-[10px] font-mono uppercase tracking-wider text-accent-cyan">{{ c.group | default('credential') }}</span>
+                    <span class="text-[11px] text-accent-cyan font-medium">Click to view →</span>
+                  </div>
+                </div>
+              </div>
+              {% if not loop.last %}<span class="text-slate-400">·</span>{% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {# ---- TEXT SECOND ---- #}
+    <div class="reveal order-2">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-slate-300/60 text-[11px] md:text-xs font-medium text-accent-cyan mb-4 md:mb-6">
         <span class="w-2 h-2 rounded-full bg-accent-cyan animate-pulse"></span>
         Available for new opportunities
       </div>
-      <h1 class="font-display font-bold text-5xl md:text-7xl leading-[1.05] tracking-tight text-slate-900 mb-4">
+      <h1 class="font-display font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05] tracking-tight text-slate-900 mb-3 md:mb-4">
         {{ d.name | title }}<span class="text-accent-cyan">.</span>
       </h1>
-      <div class="text-2xl md:text-3xl font-display text-slate-700 mb-6 h-10">
+      <div class="text-xl sm:text-2xl md:text-3xl font-display text-slate-700 mb-4 md:mb-6 h-9 md:h-10">
         <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent-cyan via-accent-violet to-accent-indigo"
               x-data='{ roles: ["Principal System Analyst", "Principal Software Engineer", "Application Development Director", "FinTech Engineer / FRM / CFA L2", "Derivatives & Gen AI Specialist"], i: 0, shown: "" }'
               x-init="
@@ -104,108 +159,60 @@
                 }; type();"
               x-text="shown + '▍'"></span>
       </div>
-      <p class="text-slate-600 text-base md:text-lg max-w-2xl leading-relaxed mb-8">
+      <p class="text-slate-600 text-sm sm:text-base md:text-lg max-w-2xl leading-relaxed mb-5 md:mb-8">
         FRM-certified FinTech professional with 30+ years of experience modernizing legacy systems,
         optimizing high-volume trading platforms, and developing algorithmic trading solutions.
         Recipient of the NTT Innovation Award — top 40 innovators globally.
       </p>
 
-      <div class="flex flex-wrap gap-3 mb-10">
-        <a href="#contact" class="px-6 py-3 rounded-full bg-gradient-to-r from-accent-cyan to-accent-indigo text-white font-semibold hover:scale-105 transition-transform shadow-lg shadow-accent-indigo/20">
+      <div class="flex flex-wrap gap-2.5 md:gap-3 mb-6 md:mb-10">
+        <a href="#contact" class="px-5 py-2.5 md:px-6 md:py-3 rounded-full bg-gradient-to-r from-accent-cyan to-accent-indigo text-white font-semibold text-sm md:text-base hover:scale-105 transition-transform shadow-lg shadow-accent-indigo/20">
           Get in touch
         </a>
-        <a href="#portfolio" class="px-6 py-3 rounded-full border border-slate-300 text-slate-800 font-semibold hover:border-accent-cyan hover:text-accent-cyan transition-colors">
+        <a href="#portfolio" class="px-5 py-2.5 md:px-6 md:py-3 rounded-full border border-slate-300 text-slate-800 font-semibold text-sm md:text-base hover:border-accent-cyan hover:text-accent-cyan transition-colors">
           View projects
         </a>
       </div>
 
-      <div class="grid grid-cols-4 gap-4 max-w-xl">
+      <div class="grid grid-cols-4 gap-3 md:gap-4 max-w-xl">
         {% set stat_items = [('30+', 'Years'), (stats.skills, 'Skills'), (stats.certs, 'Certs'), (stats.projects, 'Projects')] %}
         {% for v, l in stat_items %}
         <div class="group">
-          <div class="text-2xl md:text-3xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-br from-slate-900 to-slate-500 group-hover:from-accent-cyan group-hover:to-accent-indigo transition-all">{{ v }}</div>
-          <div class="text-xs uppercase tracking-widest text-slate-500">{{ l }}</div>
+          <div class="text-xl md:text-3xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-br from-slate-900 to-slate-500 group-hover:from-accent-cyan group-hover:to-accent-indigo transition-all">{{ v }}</div>
+          <div class="text-[10px] md:text-xs uppercase tracking-widest text-slate-500">{{ l }}</div>
         </div>
         {% endfor %}
-      </div>
-    </div>
-
-    <div class="reveal relative">
-      <div class="relative aspect-square max-w-sm mx-auto">
-        <div class="absolute inset-[12%] rounded-full bg-gradient-to-br from-accent-cyan via-accent-indigo to-accent-violet blur-2xl opacity-20"></div>
-        <div class="relative rounded-full overflow-hidden border-2 border-slate-300/80 bg-slate-100">
-          <img src="/images/profile_photo.png" alt="{{ d.name }}" class="w-full h-full object-cover" />
-        </div>
-        <div class="absolute -bottom-3 -right-3 bg-white border border-slate-300 rounded-2xl px-4 py-3 shadow-xl backdrop-blur-xl">
-          <div class="text-xs text-slate-500">Based in</div>
-          <div class="text-sm font-medium text-slate-900">Merrimack, NH</div>
-        </div>
-        <div class="absolute -top-2 -left-2 bg-white border border-slate-300 rounded-2xl px-4 py-3 shadow-xl z-20">
-          <div class="text-xs text-slate-500">Certified</div>
-          <div class="text-sm font-medium flex items-center gap-1.5">
-            {% for key in ['FRM', 'CFA'] %}
-              {% set c = d.certifications[key] %}
-              <div class="relative group/cert">
-                <a href="{{ c.link }}" target="_blank" rel="noopener"
-                   class="text-accent-cyan hover:text-accent-indigo transition-colors underline decoration-accent-cyan/30 underline-offset-2">{{ key }}{% if key == 'CFA' %} L2{% endif %}</a>
-                <div class="pointer-events-none opacity-0 -translate-x-1 group-hover/cert:opacity-100 group-hover/cert:translate-x-0 group-hover/cert:pointer-events-auto transition-all duration-200 hidden sm:block absolute right-full mr-3 top-1/2 -translate-y-1/2 w-72 rounded-xl bg-white border border-slate-200 shadow-2xl shadow-slate-900/10 p-4 z-[60]">
-                  <div class="absolute top-1/2 -right-1.5 -translate-y-1/2 w-3 h-3 rotate-45 bg-white border-r border-t border-slate-200"></div>
-                  <div class="flex items-start gap-3">
-                    <img src="/images/{{ c.icon }}" alt="{{ key }}"
-                         class="w-11 h-11 object-contain rounded-lg bg-slate-50 border border-slate-200 p-1.5 flex-shrink-0" />
-                    <div class="flex-1 min-w-0">
-                      <div class="flex items-center gap-2 flex-wrap">
-                        <h4 class="font-display font-semibold text-slate-900 text-sm">{{ key }}</h4>
-                        <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 border border-slate-200">{{ c.year }}</span>
-                      </div>
-                      <div class="text-[11px] text-slate-500 mt-0.5">{{ c['long label'] }}</div>
-                    </div>
-                  </div>
-                  <p class="text-[11px] text-slate-600 leading-relaxed mt-3">{{ c.hover }}</p>
-                  <div class="flex items-center justify-between mt-3 pt-3 border-t border-slate-100">
-                    <span class="text-[10px] font-mono uppercase tracking-wider text-accent-cyan">{{ c.group | default('credential') }}</span>
-                    <span class="text-[11px] text-accent-cyan font-medium inline-flex items-center gap-1">
-                      View certificate
-                      <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                    </span>
-                  </div>
-                </div>
-              </div>
-              {% if not loop.last %}<span class="text-slate-400">·</span>{% endif %}
-            {% endfor %}
-          </div>
-        </div>
       </div>
     </div>
   </div>
 
 </section>
 
-<div class="h-px mx-12 bg-gradient-to-r from-transparent via-slate-200 to-transparent"></div>
+<div class="h-px mx-5 sm:mx-6 md:mx-12 bg-gradient-to-r from-transparent via-slate-200 to-transparent relative"></div>
 
 {# ============ ABOUT ============ #}
-<section id="about" class="py-12 relative">
-  <div class="px-6 md:px-12">
+<section id="about" class="py-8 md:py-12 relative">
+  <div class="px-5 sm:px-6 md:px-12 relative">
     <div class="reveal">
       <div class="flex items-center gap-3 mb-3">
         <span class="font-mono text-xs text-accent-cyan">01</span>
         <div class="h-px flex-1 bg-gradient-to-r from-accent-cyan/50 to-transparent max-w-[60px]"></div>
       </div>
-      <h2 class="font-display font-bold text-4xl md:text-5xl text-slate-900 mb-2">About me</h2>
+      <h2 class="font-display font-bold text-3xl md:text-5xl text-slate-900 mb-1 md:mb-2">About me</h2>
       <p class="text-slate-600">A brief introduction.</p>
     </div>
 
-    <div class="space-y-6 mt-10">
+    <div class="space-y-4 md:space-y-6 mt-5 md:mt-8">
       <div class="reveal text-slate-700 leading-relaxed max-w-4xl">
-        <p class="text-[16px]">{{ d.profile | replace('`', '') }}</p>
+        <p class="text-[15px] md:text-base">{{ d.profile | replace('`', '') }}</p>
       </div>
       <div class="reveal">
-        <div class="p-6 md:p-7 rounded-2xl bg-gradient-to-br from-white via-white to-cyan-50/50 shadow-sm shadow-slate-200/50 border border-slate-200">
-          <h3 class="font-display text-transparent bg-clip-text bg-gradient-to-r from-accent-cyan to-accent-violet text-sm uppercase tracking-widest mb-5 font-semibold">Career Highlights</h3>
-          <ul class="grid md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-4">
+        <div class="p-4 md:p-7 rounded-2xl bg-gradient-to-br from-white via-white to-cyan-50/50 shadow-sm shadow-slate-200/60 border border-slate-200">
+          <h3 class="font-display text-transparent bg-clip-text bg-gradient-to-r from-accent-cyan to-accent-violet text-xs md:text-sm uppercase tracking-widest mb-3 md:mb-5 font-semibold">Career Highlights</h3>
+          <ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-2.5 md:gap-x-6 md:gap-y-4">
             {% for item in d['experience summary'][:6] %}
-            <li class="flex gap-2.5 text-sm text-slate-700">
-              <span class="text-accent-cyan mt-1 flex-shrink-0 font-bold">▸</span>
+            <li class="flex gap-2 text-[13px] md:text-sm text-slate-700">
+              <span class="text-accent-cyan mt-0.5 md:mt-1 flex-shrink-0 font-bold">▸</span>
               <span>{{ item }}</span>
             </li>
             {% endfor %}
@@ -217,24 +224,24 @@
 </section>
 
 {# ============ EXPERIENCE / CAREER TIMELINE ============ #}
-<section id="experience" class="py-12 relative">
-  <div class="px-6 md:px-12">
+<section id="experience" class="py-8 md:py-12 relative">
+  <div class="px-5 sm:px-6 md:px-12 relative">
     <div class="reveal">
       <div class="flex items-center gap-3 mb-3">
         <span class="font-mono text-xs text-accent-cyan">02</span>
         <div class="h-px flex-1 bg-gradient-to-r from-accent-cyan/50 to-transparent max-w-[60px]"></div>
       </div>
-      <h2 class="font-display font-bold text-4xl md:text-5xl text-slate-900 mb-2">Career journey</h2>
+      <h2 class="font-display font-bold text-3xl md:text-5xl text-slate-900 mb-1 md:mb-2">Career journey</h2>
       <p class="text-slate-600">Three decades of milestones across FinTech and enterprise modernization.</p>
     </div>
 
-    <div class="mt-12 reveal">
+    <div class="mt-6 md:mt-10 reveal">
       <div id="chart-timeline" class="w-full"></div>
     </div>
 
     <div class="grid md:grid-cols-2 gap-6 mt-8">
       {% for item in d['experience summary'] %}
-      <div class="reveal p-6 rounded-2xl bg-white/80 shadow-sm shadow-slate-200/40 border border-slate-200 hover:border-accent-cyan/40 transition-colors">
+      <div class="reveal p-4 md:p-6 rounded-2xl bg-white shadow-sm shadow-slate-200/60 border border-slate-200 hover:border-accent-cyan/40 transition-colors">
         <div class="flex gap-4">
           <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-accent-cyan/20 to-accent-indigo/20 border border-accent-cyan/30 flex items-center justify-center text-accent-cyan flex-shrink-0">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
@@ -248,25 +255,25 @@
 </section>
 
 {# ============ SKILLS ============ #}
-<section id="skills" class="py-12 relative">
-  <div class="px-6 md:px-12">
+<section id="skills" class="py-8 md:py-12 relative">
+  <div class="px-5 sm:px-6 md:px-12 relative">
     <div class="reveal">
       <div class="flex items-center gap-3 mb-3">
         <span class="font-mono text-xs text-accent-cyan">03</span>
         <div class="h-px flex-1 bg-gradient-to-r from-accent-cyan/50 to-transparent max-w-[60px]"></div>
       </div>
-      <h2 class="font-display font-bold text-4xl md:text-5xl text-slate-900 mb-2">Technical stack</h2>
+      <h2 class="font-display font-bold text-3xl md:text-5xl text-slate-900 mb-1 md:mb-2">Technical stack</h2>
       <p class="text-slate-600">Proficiency across languages, data, cloud and backend systems.</p>
     </div>
 
-    <div class="grid lg:grid-cols-[1.1fr_1fr] gap-10 mt-12 items-center">
-      <div class="reveal rounded-2xl bg-white/80 shadow-sm shadow-slate-200/40 border border-slate-200 p-4">
+    <div class="grid lg:grid-cols-[1.1fr_1fr] gap-10 mt-6 md:mt-10 items-center">
+      <div class="reveal rounded-2xl bg-white shadow-sm shadow-slate-200/60 border border-slate-200 p-4">
         <div id="chart-skills" class="w-full"></div>
       </div>
 
       <div class="reveal grid grid-cols-3 sm:grid-cols-4 gap-3">
         {% for name, skill in d['technical skills'].items() %}
-        <div class="group relative aspect-square rounded-xl bg-white/80 shadow-sm shadow-slate-200/40 border border-slate-200 flex flex-col items-center justify-center p-3 hover:border-accent-cyan/50 hover:-translate-y-1 transition-all cursor-help"
+        <div class="group relative aspect-square rounded-xl bg-white shadow-sm shadow-slate-200/60 border border-slate-200 flex flex-col items-center justify-center p-3 hover:border-accent-cyan/50 hover:-translate-y-1 transition-all cursor-help"
              title="{{ skill.hover }}">
           <img src="/images/{{ skill.icon }}" alt="{{ name }}" class="w-10 h-10 object-contain mb-1" />
           <div class="text-[10px] uppercase tracking-wide text-slate-600 font-medium truncate w-full text-center">{{ name }}</div>
@@ -281,24 +288,24 @@
 </section>
 
 {# ============ EMPLOYMENT ============ #}
-<section id="employment" class="py-12 relative">
-  <div class="px-6 md:px-12">
+<section id="employment" class="py-8 md:py-12 relative">
+  <div class="px-5 sm:px-6 md:px-12 relative">
     <div class="reveal">
       <div class="flex items-center gap-3 mb-3">
         <span class="font-mono text-xs text-accent-cyan">04</span>
         <div class="h-px flex-1 bg-gradient-to-r from-accent-cyan/50 to-transparent max-w-[60px]"></div>
       </div>
-      <h2 class="font-display font-bold text-4xl md:text-5xl text-slate-900 mb-2">Employment history</h2>
+      <h2 class="font-display font-bold text-3xl md:text-5xl text-slate-900 mb-1 md:mb-2">Employment history</h2>
       <p class="text-slate-600">Delivering mission-critical systems across five companies.</p>
     </div>
 
-    <div class="reveal mt-12 rounded-2xl bg-white/80 shadow-sm shadow-slate-200/40 border border-slate-200 p-4">
+    <div class="reveal mt-6 md:mt-10 rounded-2xl bg-white shadow-sm shadow-slate-200/60 border border-slate-200 p-4">
       <div id="chart-employment" class="w-full"></div>
     </div>
 
-    <div class="mt-12 space-y-6">
+    <div class="mt-6 md:mt-10 space-y-6">
       {% for company, meta in d.projects.items() %}
-      <details class="reveal group rounded-2xl bg-white/80 shadow-sm shadow-slate-200/40 border border-slate-200 hover:border-accent-cyan/40 transition-colors overflow-hidden" {% if loop.first %}open{% endif %}>
+      <details class="reveal group rounded-2xl bg-white shadow-sm shadow-slate-200/60 border border-slate-200 hover:border-accent-cyan/40 transition-colors overflow-hidden" {% if loop.first %}open{% endif %}>
         <summary class="cursor-pointer list-none p-6 flex items-center gap-4">
           <img src="/images/{{ meta.icon }}" alt="{{ company }}" class="w-12 h-12 rounded-lg object-contain bg-white/5 p-1 flex-shrink-0" />
           <div class="flex-1 min-w-0">
@@ -345,20 +352,20 @@
 </section>
 
 {# ============ PORTFOLIO ============ #}
-<section id="portfolio" class="py-12 relative">
-  <div class="px-6 md:px-12">
+<section id="portfolio" class="py-8 md:py-12 relative">
+  <div class="px-5 sm:px-6 md:px-12 relative">
     <div class="reveal">
       <div class="flex items-center gap-3 mb-3">
         <span class="font-mono text-xs text-accent-cyan">05</span>
         <div class="h-px flex-1 bg-gradient-to-r from-accent-cyan/50 to-transparent max-w-[60px]"></div>
       </div>
-      <h2 class="font-display font-bold text-4xl md:text-5xl text-slate-900 mb-2">Personal projects</h2>
+      <h2 class="font-display font-bold text-3xl md:text-5xl text-slate-900 mb-1 md:mb-2">Personal projects</h2>
       <p class="text-slate-600">Selected work built outside my day job.</p>
     </div>
 
-    <div class="space-y-6 mt-12">
+    <div class="space-y-6 mt-6 md:mt-10">
       {% for name, p in d.portfolio.items() %}
-      <article class="reveal group rounded-2xl bg-white/80 shadow-sm shadow-slate-200/40 border border-slate-200 overflow-hidden hover:border-accent-cyan/50 hover:-translate-y-1 transition-all">
+      <article class="reveal group rounded-2xl bg-white shadow-sm shadow-slate-200/60 border border-slate-200 overflow-hidden hover:border-accent-cyan/50 hover:-translate-y-1 transition-all">
         <div class="grid lg:grid-cols-[1.35fr_1fr] gap-0">
           <div class="relative aspect-[16/9] lg:aspect-auto lg:min-h-[320px] bg-slate-100 overflow-hidden">
             <img src="/images/{{ p.image }}" alt="{{ name }}" class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500" />
@@ -387,24 +394,24 @@
 </section>
 
 {# ============ EDUCATION + CERTIFICATIONS ============ #}
-<section id="education" class="py-12 relative">
-  <div class="px-6 md:px-12">
+<section id="education" class="py-8 md:py-12 relative">
+  <div class="px-5 sm:px-6 md:px-12 relative">
     <div class="reveal">
       <div class="flex items-center gap-3 mb-3">
         <span class="font-mono text-xs text-accent-cyan">06</span>
         <div class="h-px flex-1 bg-gradient-to-r from-accent-cyan/50 to-transparent max-w-[60px]"></div>
       </div>
-      <h2 class="font-display font-bold text-4xl md:text-5xl text-slate-900 mb-2">Education</h2>
+      <h2 class="font-display font-bold text-3xl md:text-5xl text-slate-900 mb-1 md:mb-2">Education</h2>
       <p class="text-slate-600">Academic foundation.</p>
     </div>
 
-    <div class="grid lg:grid-cols-[1fr_1.4fr] gap-8 mt-12 items-center">
-      <div class="reveal rounded-2xl bg-white/80 shadow-sm shadow-slate-200/40 border border-slate-200 p-4">
+    <div class="grid lg:grid-cols-[1fr_1.4fr] gap-8 mt-6 md:mt-10 items-center">
+      <div class="reveal rounded-2xl bg-white shadow-sm shadow-slate-200/60 border border-slate-200 p-4">
         <div id="chart-education" class="w-full"></div>
       </div>
       <div class="space-y-4">
         {% for name, ed in d.education.items() %}
-        <a href="{{ ed.link }}" target="_blank" class="reveal group flex items-center gap-4 p-5 rounded-2xl bg-white/80 shadow-sm shadow-slate-200/40 border border-slate-200 hover:border-accent-cyan/50 transition-all">
+        <a href="{{ ed.link }}" target="_blank" class="reveal group flex items-center gap-4 p-5 rounded-2xl bg-white shadow-sm shadow-slate-200/60 border border-slate-200 hover:border-accent-cyan/50 transition-all">
           <img src="/images/{{ ed.icon }}" alt="" class="w-14 h-14 rounded-lg object-contain bg-white/5 p-2 flex-shrink-0" />
           <div class="flex-1 min-w-0">
             <h3 class="font-semibold text-slate-900 group-hover:text-accent-cyan transition-colors">{{ name }}</h3>
@@ -418,21 +425,21 @@
   </div>
 </section>
 
-<section id="certifications" class="py-12 relative">
-  <div class="px-6 md:px-12">
+<section id="certifications" class="py-8 md:py-12 relative">
+  <div class="px-5 sm:px-6 md:px-12 relative">
     <div class="reveal">
       <div class="flex items-center gap-3 mb-3">
         <span class="font-mono text-xs text-accent-cyan">07</span>
         <div class="h-px flex-1 bg-gradient-to-r from-accent-cyan/50 to-transparent max-w-[60px]"></div>
       </div>
-      <h2 class="font-display font-bold text-4xl md:text-5xl text-slate-900 mb-2">Certifications</h2>
+      <h2 class="font-display font-bold text-3xl md:text-5xl text-slate-900 mb-1 md:mb-2">Certifications</h2>
       <p class="text-slate-600">Professional accreditations across domains.</p>
     </div>
 
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-10">
       {% for name, c in d.certifications.items() %}
       <a href="{{ c.link }}" target="_blank"
-         class="reveal group p-5 rounded-2xl bg-white/80 shadow-sm shadow-slate-200/40 border border-slate-200 hover:border-accent-cyan/50 hover:-translate-y-1 transition-all">
+         class="reveal group p-5 rounded-2xl bg-white shadow-sm shadow-slate-200/60 border border-slate-200 hover:border-accent-cyan/50 hover:-translate-y-1 transition-all">
         <div class="flex items-start gap-4">
           <img src="/images/{{ c.icon }}" alt="{{ name }}"
                class="w-14 h-14 object-contain rounded-lg bg-slate-50 p-2 flex-shrink-0 border border-slate-200" />
@@ -456,18 +463,18 @@
 </section>
 
 {# ============ INTERESTS ============ #}
-<section id="interests" class="py-12 relative">
-  <div class="px-6 md:px-12">
+<section id="interests" class="py-8 md:py-12 relative">
+  <div class="px-5 sm:px-6 md:px-12 relative">
     <div class="reveal">
       <div class="flex items-center gap-3 mb-3">
         <span class="font-mono text-xs text-accent-cyan">08</span>
         <div class="h-px flex-1 bg-gradient-to-r from-accent-cyan/50 to-transparent max-w-[60px]"></div>
       </div>
-      <h2 class="font-display font-bold text-4xl md:text-5xl text-slate-900 mb-2">Beyond work</h2>
+      <h2 class="font-display font-bold text-3xl md:text-5xl text-slate-900 mb-1 md:mb-2">Beyond work</h2>
       <p class="text-slate-600">Tinkering with drones &amp; embedded systems.</p>
     </div>
 
-    <div class="reveal mt-12 p-8 rounded-2xl bg-white/80 shadow-sm shadow-slate-200/40 border border-slate-200 grid md:grid-cols-[1fr_2fr] gap-8 items-center">
+    <div class="reveal mt-6 md:mt-10 p-8 rounded-2xl bg-white shadow-sm shadow-slate-200/60 border border-slate-200 grid md:grid-cols-[1fr_2fr] gap-8 items-center">
       <div class="grid grid-cols-2 gap-3">
         <img src="/images/drone.png" alt="Drone" class="rounded-xl bg-white/5 p-2" />
         <img src="/images/raspberry.png" alt="Raspberry Pi" class="rounded-xl bg-white/5 p-2" />
@@ -480,7 +487,7 @@
 </section>
 
 {# ============ CONTACT ============ #}
-<section id="contact" class="py-12 relative">
+<section id="contact" class="py-8 md:py-12 relative">
   <div class="max-w-3xl mx-auto px-6 md:px-12 text-center">
     <div class="reveal">
       <div class="flex items-center gap-3 mb-3 justify-center">
@@ -494,7 +501,7 @@
 
       <div class="flex flex-wrap gap-3 justify-center mb-12">
         {% for key, c in d.contact.items() %}
-        <a href="{{ c.link }}" target="_blank" class="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white/80 shadow-sm shadow-slate-200/40 border border-slate-200 hover:border-accent-cyan hover:text-accent-cyan transition-colors text-sm">
+        <a href="{{ c.link }}" target="_blank" class="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white shadow-sm shadow-slate-200/60 border border-slate-200 hover:border-accent-cyan hover:text-accent-cyan transition-colors text-sm">
           <img src="/images/{{ c.icon }}" class="w-4 h-4 object-contain" alt="" />
           {{ c.label }}
         </a>
@@ -503,7 +510,7 @@
 
       <div class="flex gap-4 justify-center">
         {% for key, s in d.social.items() %}
-        <a href="{{ s.link }}" target="_blank" title="{{ s.label }}" class="w-12 h-12 rounded-full bg-white/80 shadow-sm shadow-slate-200/40 border border-slate-200 hover:border-accent-cyan hover:-translate-y-1 transition-all flex items-center justify-center">
+        <a href="{{ s.link }}" target="_blank" title="{{ s.label }}" class="w-12 h-12 rounded-full bg-white shadow-sm shadow-slate-200/60 border border-slate-200 hover:border-accent-cyan hover:-translate-y-1 transition-all flex items-center justify-center">
           <img src="/images/{{ s.icon }}" alt="{{ key }}" class="w-5 h-5 object-contain" />
         </a>
         {% endfor %}
@@ -512,10 +519,9 @@
   </div>
 </section>
 
-<footer class="py-6 border-t border-slate-200/70 bg-slate-50/60">
-  <div class="px-6 md:px-12 flex flex-col md:flex-row gap-3 items-center justify-between text-xs text-slate-500">
-    <div>© 2026 {{ d.name | title }}. Built with FastAPI, Plotly &amp; Tailwind.</div>
-    <div class="font-mono">Designed for the modern web.</div>
+<footer class="py-4 border-t border-slate-200/70 bg-slate-50/40 relative">
+  <div class="px-5 sm:px-6 md:px-12 text-center text-[11px] md:text-xs text-slate-500">
+    Built with FastAPI · Plotly · Tailwind
   </div>
 </footer>
 

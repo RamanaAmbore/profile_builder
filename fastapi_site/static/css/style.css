@@ -1,6 +1,14 @@
 html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
 
-body { overflow-x: hidden; }
+body {
+  overflow-x: hidden;
+  background-image:
+    radial-gradient(circle, rgba(100, 116, 139, 0.28) 1.2px, transparent 1.2px),
+    radial-gradient(ellipse at top right, rgba(8, 145, 178, 0.08), transparent 55%),
+    radial-gradient(ellipse at bottom left, rgba(5, 150, 105, 0.06), transparent 55%);
+  background-size: 22px 22px, 100% 100%, 100% 100%;
+  background-attachment: fixed, fixed, fixed;
+}
 
 [x-cloak] { display: none !important; }
 
