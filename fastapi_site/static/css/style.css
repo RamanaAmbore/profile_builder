@@ -94,12 +94,11 @@ details summary { list-style: none; }
 .js-plotly-plot .plotly .legendtext,
 .js-plotly-plot .plotly .gtitle { fill: #1e293b !important; }
 
-/* Hide Plotly's built-in SVG hover layer — we render a custom HTML
-   tooltip via plotly_hover events (#chart-tooltip in main.js) which
-   gives us proper rounded corners, the accent-cyan first line, and
-   a soft shadow matching the skill-card popover. Hiding the entire
-   .hoverlayer (not just .hovertext) ensures no variant of Plotly's
-   built-in label renders alongside our custom tooltip. */
-.js-plotly-plot .hoverlayer { display: none !important; }
+/* Plotly's built-in hover label is disabled at the trace level via
+   `hoverinfo='none'` in charts.py — that suppresses the visible label
+   while still firing plotly_hover events, which our custom HTML
+   #chart-tooltip listens to for the rounded popover. No CSS needed;
+   hiding .hoverlayer with display:none here broke Plotly's hit
+   detection entirely (no events fired). */
 
 img[src*="profile_photo"] { filter: saturate(1.05); }

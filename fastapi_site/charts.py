@@ -120,12 +120,11 @@ def skills_radar(skills: dict[str, dict[str, Any]]) -> str:
             line=dict(color=color, width=2.5),
             fillcolor=_hex_to_rgba(color, 0.22),
             marker=dict(size=6, color=color, line=dict(color="#ffffff", width=1.5)),
-            hovertemplate=(
-                "<span style='color:#22d3ee;font-weight:600'>%{theta} &middot; " + category + "</span>"
-                "<br><span style='color:#cbd5e1'>Level %{r}/5</span>"
-                "<br><span style='color:#ffffff'>%{text}</span>"
-                "<extra></extra>"
-            ),
+            # hoverinfo='none' suppresses Plotly's built-in SVG hover label
+            # but still fires plotly_hover events, which our custom HTML
+            # #chart-tooltip listens to. hovertemplate would override
+            # hoverinfo and re-enable the built-in label, so it's omitted.
+            hoverinfo="none",
             text=hovers,
         ))
     fig.update_layout(
@@ -190,11 +189,7 @@ def employment_bar(projects: dict[str, dict[str, Any]]) -> str:
         textposition="outside",
         textfont=dict(color="#1e293b", size=12, family="Inter, sans-serif"),
         hovertext=hovers,
-        hovertemplate=(
-            "<span style='color:#22d3ee;font-weight:600'>%{y}</span>"
-            "<br><span style='color:#ffffff'>%{hovertext}</span>"
-            "<extra></extra>"
-        ),
+        hoverinfo="none",
     ))
     fig.update_layout(
         **BASE_LAYOUT,
@@ -231,11 +226,7 @@ def education_donut(education: dict[str, dict[str, Any]]) -> str:
         ),
         textfont=dict(color="#ffffff", size=13, family="Inter, sans-serif"),
         hovertext=hovers,
-        hovertemplate=(
-            "<span style='color:#22d3ee;font-weight:600'>%{label}</span>"
-            "<br><span style='color:#ffffff'>%{hovertext}</span>"
-            "<extra></extra>"
-        ),
+        hoverinfo="none",
         textinfo="label",
     ))
     fig.update_layout(
@@ -267,11 +258,7 @@ def certifications_treemap(certs: dict[str, dict[str, Any]]) -> str:
         text=[f"{g}<br>{v}h" for g, v in zip(groups, values)],
         textfont=dict(color="#ffffff", size=14, family="Inter, sans-serif"),
         hovertext=hovers,
-        hovertemplate=(
-            "<span style='color:#22d3ee;font-weight:600'>%{label}</span>"
-            "<br><span style='color:#ffffff'>%{hovertext}</span>"
-            "<extra></extra>"
-        ),
+        hoverinfo="none",
         textinfo="label+text",
     ))
     fig.update_layout(**BASE_LAYOUT, height=360)
@@ -312,11 +299,7 @@ def career_timeline(milestones: dict[int, dict[str, Any]]) -> str:
         ),
         customdata=labels,
         hovertext=[_wrap_text(h, 40) for h in hovers],
-        hovertemplate=(
-            "<span style='color:#22d3ee;font-weight:600'>%{x} &middot; %{customdata}</span>"
-            "<br><span style='color:#ffffff'>%{hovertext}</span>"
-            "<extra></extra>"
-        ),
+        hoverinfo="none",
     ))
     annotations = [
         dict(

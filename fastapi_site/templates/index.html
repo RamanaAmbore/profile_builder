@@ -296,16 +296,22 @@
     <div class="mt-4 md:mt-8 space-y-6">
       {% for company, meta in d.projects.items() %}
       <details class="reveal group rounded-2xl bg-white/75 backdrop-blur-[6px] shadow-sm shadow-slate-200/60 border border-slate-200 hover:border-accent-cyan/40 transition-colors overflow-hidden" {% if loop.first %}open{% endif %}>
-        <summary class="cursor-pointer list-none p-6 flex items-center gap-4">
-          <img src="/images/{{ meta.icon }}" alt="{{ company }}" class="w-12 h-12 rounded-lg object-contain bg-white/5 p-1 flex-shrink-0" />
-          <div class="flex-1 min-w-0">
-            <div class="flex items-center gap-3 flex-wrap">
-              <h3 class="font-display font-semibold text-lg text-slate-900 truncate">{{ company }}</h3>
-              <span class="text-xs px-2 py-0.5 rounded-full bg-accent-cyan/10 text-accent-cyan border border-accent-cyan/20">{{ meta.duration }} yrs</span>
+        <summary class="cursor-pointer list-none p-4 sm:p-6">
+          <div class="flex items-center gap-3 sm:gap-4">
+            <img src="/images/{{ meta.icon }}" alt="{{ company }}" class="w-11 h-11 sm:w-12 sm:h-12 rounded-lg object-contain bg-white/5 p-1 flex-shrink-0" />
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2 sm:gap-3 flex-wrap">
+                <h3 class="font-display font-semibold text-base sm:text-lg text-slate-900 truncate">{{ company }}</h3>
+                <span class="text-[10px] sm:text-xs px-2 py-0.5 rounded-full bg-accent-cyan/10 text-accent-cyan border border-accent-cyan/20">{{ meta.duration }} yrs</span>
+              </div>
+              {# On desktop the long label sits under the company name in the right column. #}
+              <p class="text-xs text-slate-500 mt-1 hidden sm:block">{{ meta['long label'] }}</p>
             </div>
-            <p class="text-xs text-slate-500 mt-1">{{ meta['long label'] }}</p>
+            <svg class="w-5 h-5 text-slate-500 group-open:rotate-180 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </div>
-          <svg class="w-5 h-5 text-slate-500 group-open:rotate-180 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          {# On mobile the long label drops to a full-width line below the row
+             so it reclaims the space that would otherwise sit empty under the logo. #}
+          <p class="text-[11px] text-slate-500 mt-2 sm:hidden">{{ meta['long label'] }}</p>
         </summary>
 
         <div class="px-4 sm:px-6 pb-4 sm:pb-6 border-t border-slate-200/60 pt-4 sm:pt-6 space-y-4 sm:space-y-6">
