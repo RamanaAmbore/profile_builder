@@ -43,6 +43,14 @@ def _md(text: str | None) -> str:
 
 templates.env.filters["md"] = _md
 
+# Cache-bust static assets on every service start. The nginx static
+# location is served with Cache-Control "immutable", so plain URLs
+# never get re-fetched. Appending ?v={startup timestamp} forces a
+# fresh fetch whenever systemctl restart streamlit_profile_builder
+# runs (i.e. on every deploy).
+import time as _time
+templates.env.globals["asset_version"] = str(int(_time.time()))
+
 
 def load_profile() -> dict[str, Any]:
     with YAML_PATH.open("r", encoding="utf-8") as f:
