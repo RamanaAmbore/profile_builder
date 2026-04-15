@@ -76,7 +76,15 @@
 </header>
 
 <div class="pt-[68px] pb-8 sm:pb-12 px-0 sm:px-4 md:px-6">
-<main class="max-w-6xl mx-auto relative bg-white/85 backdrop-blur-md sm:border sm:border-slate-200/80 rounded-none sm:rounded-3xl shadow-xl shadow-slate-900/10">
+<main class="max-w-6xl mx-auto relative bg-white sm:border sm:border-slate-200/80 rounded-none sm:rounded-3xl shadow-xl shadow-slate-900/10">
+
+  <!-- Finance / derivatives / quant / Gen AI SVG layer INSIDE the card,
+       heavily dimmed so motifs read as a subtle backdrop behind content. -->
+  <div class="absolute inset-0 pointer-events-none overflow-hidden rounded-none sm:rounded-3xl">
+    <img src="/static/img/stock-bg.svg" alt="" aria-hidden="true"
+         class="absolute inset-0 w-full h-full object-cover opacity-95" />
+    <div class="absolute inset-0 bg-white/60"></div>
+  </div>
 
 <section id="top" class="relative flex items-center py-8 sm:py-10 md:py-16">
   <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(8,145,178,0.08),transparent_60%)] pointer-events-none"></div>
@@ -102,14 +110,11 @@
                 <button type="button"
                         onclick="window.open('{{ c.link }}','_blank','noopener,noreferrer')"
                         class="bg-transparent border-0 p-0 m-0 cursor-pointer font-inherit text-accent-cyan hover:text-accent-indigo transition-colors underline decoration-accent-cyan/30 underline-offset-2">{{ key }}{% if key == 'CFA' %} L2{% endif %}</button>
-                <div class="pointer-events-none opacity-0 -translate-x-1 group-hover/cert:opacity-100 group-hover/cert:translate-x-0 group-hover/cert:pointer-events-auto transition-all duration-200 hidden sm:flex absolute left-full ml-3 top-1/2 -translate-y-1/2 w-56 items-center gap-2.5 rounded-xl bg-white border border-slate-200 shadow-2xl shadow-slate-900/15 px-3 py-2.5 z-[60]">
-                  <div class="absolute top-1/2 -left-1.5 -translate-y-1/2 w-2.5 h-2.5 rotate-45 bg-white border-l border-b border-slate-200"></div>
-                  <img src="/images/{{ c.icon }}" alt="{{ key }}"
-                       class="w-9 h-9 object-contain rounded-md bg-slate-50 border border-slate-200 p-1 flex-shrink-0" />
-                  <div class="flex-1 min-w-0 leading-tight">
-                    <div class="font-display font-semibold text-slate-900 text-[13px]">{{ key }} <span class="font-normal text-slate-500">· {{ c.year }}</span></div>
-                    <div class="text-[11px] text-accent-cyan font-medium mt-0.5">Click to view credential →</div>
-                  </div>
+                <div class="pointer-events-none opacity-0 group-hover/cert:opacity-100 transition-opacity duration-150 hidden sm:block absolute left-full ml-3 top-1/2 -translate-y-1/2 w-60 p-2.5 rounded-lg bg-slate-900 text-white text-[11px] leading-snug shadow-xl shadow-slate-900/30 z-[60]">
+                  <div class="font-semibold text-accent-cyan mb-0.5">{{ key }} &middot; {{ c.year }}</div>
+                  <div class="text-slate-300">{{ c.hover }}</div>
+                  <div class="text-[10px] text-accent-cyan font-medium mt-1.5">Click to view credential →</div>
+                  <div class="absolute top-1/2 -left-1.5 -translate-y-1/2 w-0 h-0 border-t-[6px] border-b-[6px] border-r-[6px] border-t-transparent border-b-transparent border-r-slate-900"></div>
                 </div>
               </div>
               {% if not loop.last %}<span class="text-slate-400">·</span>{% endif %}
@@ -193,7 +198,7 @@
     </div>
 
     <div class="space-y-4 md:space-y-6 mt-5 md:mt-8">
-      <div class="reveal text-slate-700 leading-relaxed">
+      <div class="reveal text-slate-700 leading-relaxed border-l-[3px] border-accent-cyan/50 pl-4 sm:pl-5">
         <p class="text-[15px] md:text-base">{{ d.profile | replace('`', '') }}</p>
       </div>
       <div class="reveal">
@@ -248,11 +253,11 @@
         <div id="chart-skills" class="w-full"></div>
       </div>
 
-      <div class="reveal grid grid-cols-4 sm:grid-cols-5 md:grid-cols-4 gap-2 md:gap-3">
+      <div class="reveal grid grid-cols-5 sm:grid-cols-6 md:grid-cols-4 gap-1.5 md:gap-3">
         {% for name, skill in d['technical skills'].items() %}
-        <div class="group/skill relative aspect-square rounded-lg md:rounded-xl bg-white/75 backdrop-blur-[6px] shadow-sm shadow-slate-200/60 border border-slate-200 flex flex-col items-center justify-center p-1.5 md:p-3 hover:border-accent-cyan/50 hover:-translate-y-0.5 md:hover:-translate-y-1 transition-all cursor-help">
-          <img src="/images/{{ skill.icon }}" alt="{{ name }}" class="w-7 h-7 md:w-10 md:h-10 object-contain mb-0.5 md:mb-1" />
-          <div class="text-[8px] md:text-[10px] uppercase tracking-wide text-slate-600 font-medium truncate w-full text-center">{{ name }}</div>
+        <div class="group/skill relative aspect-square rounded-md md:rounded-xl bg-white/75 backdrop-blur-[6px] shadow-sm shadow-slate-200/60 border border-slate-200 flex flex-col items-center justify-center p-1 md:p-3 hover:border-accent-cyan/50 md:hover:-translate-y-1 transition-all cursor-help">
+          <img src="/images/{{ skill.icon }}" alt="{{ name }}" class="w-6 h-6 md:w-10 md:h-10 object-contain" />
+          <div class="text-[7px] md:text-[10px] uppercase tracking-wide text-slate-600 font-medium truncate w-full text-center mt-0.5 md:mt-1">{{ name }}</div>
           <div class="absolute bottom-0.5 md:bottom-1 left-0.5 md:left-1 right-0.5 md:right-1 h-0.5 md:h-1 rounded-full bg-slate-100 overflow-hidden">
             <div class="h-full bg-gradient-to-r from-accent-cyan to-accent-indigo" style="width: {{ skill.level * 20 }}%"></div>
           </div>
@@ -306,31 +311,20 @@
           <div>
             <div class="text-[11px] md:text-xs uppercase tracking-widest text-accent-cyan mb-2 md:mb-3 font-medium">Client &middot; {{ client }}</div>
 
-            {# Mobile: compact list of project titles only #}
-            <ul class="sm:hidden space-y-1 text-[13px] text-slate-700">
+            <div class="space-y-3 sm:space-y-4">
               {% for proj_name, proj in proj_list.items() %}
-              <li class="flex gap-2 pl-2 border-l-2 border-accent-cyan/40">
-                <span class="flex-1">{{ proj_name }}</span>
-                {% if proj.start %}<span class="text-[10px] text-slate-500 font-mono flex-shrink-0">{{ proj.start }}</span>{% endif %}
-              </li>
-              {% endfor %}
-            </ul>
-
-            {# Desktop: full project cards with role, dates, summary, tech chips #}
-            <div class="hidden sm:block space-y-4">
-              {% for proj_name, proj in proj_list.items() %}
-              <div class="p-5 rounded-xl bg-white/70 border border-slate-200">
-                <div class="flex items-start justify-between gap-4 flex-wrap mb-2">
-                  <h4 class="font-semibold text-slate-900">{{ proj_name }}</h4>
-                  {% if proj.start %}<span class="text-xs text-slate-500 font-mono">{{ proj.start }} &mdash; {{ proj.end }}</span>{% endif %}
+              <div class="p-4 sm:p-5 rounded-xl bg-white/75 backdrop-blur-[6px] border border-slate-200 shadow-sm shadow-slate-200/50">
+                <div class="flex items-start justify-between gap-3 flex-wrap mb-2">
+                  <h4 class="font-semibold text-slate-900 text-[13px] sm:text-base">{{ proj_name }}</h4>
+                  {% if proj.start %}<span class="text-[10px] sm:text-xs text-slate-500 font-mono">{{ proj.start }} &mdash; {{ proj.end }}</span>{% endif %}
                 </div>
-                {% if proj.role %}<div class="text-xs text-accent-cyan mb-3 font-medium">{{ proj.role }}</div>{% endif %}
-                <p class="text-sm text-slate-600 leading-relaxed mb-4">{{ proj.summary }}</p>
+                {% if proj.role %}<div class="text-[10px] sm:text-xs text-accent-cyan mb-2 sm:mb-3 font-medium">{{ proj.role }}</div>{% endif %}
+                <p class="text-[12px] sm:text-sm text-slate-600 leading-relaxed mb-3 sm:mb-4">{{ proj.summary }}</p>
                 {% if proj.technology %}
-                <div class="flex flex-wrap gap-1.5">
+                <div class="flex flex-wrap gap-1 sm:gap-1.5">
                   {% for tech in proj.technology.split(',') %}
                     {% set t = tech.strip() %}
-                    {% if t %}<span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100/70 text-slate-600 border border-slate-200">{{ t }}</span>{% endif %}
+                    {% if t %}<span class="text-[9px] sm:text-[10px] font-mono px-1.5 sm:px-2 py-0.5 rounded bg-slate-100/70 text-slate-600 border border-slate-200">{{ t }}</span>{% endif %}
                   {% endfor %}
                 </div>
                 {% endif %}

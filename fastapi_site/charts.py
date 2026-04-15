@@ -122,8 +122,19 @@ def skills_radar(skills: dict[str, dict[str, Any]]) -> str:
             text=hovers,
         ))
     fig.update_layout(
-        **BASE_LAYOUT,
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
+        font=dict(family="Inter, sans-serif", color="#1e293b", size=12),
+        margin=dict(l=10, r=10, t=8, b=8),
+        hoverlabel=dict(
+            bgcolor="#0f172a",
+            bordercolor=ACCENT_CYAN,
+            font=dict(family="Inter, sans-serif", color="#ffffff", size=12),
+            namelength=-1,
+            align="left",
+        ),
         polar=dict(
+            domain=dict(x=[0.0, 1.0], y=[0.12, 1.0]),
             bgcolor="rgba(248,250,252,0.7)",
             radialaxis=dict(
                 visible=True,
@@ -141,11 +152,11 @@ def skills_radar(skills: dict[str, dict[str, Any]]) -> str:
         showlegend=True,
         legend=dict(
             orientation="h",
-            yanchor="bottom", y=-0.15,
+            yanchor="top", y=0.08,
             xanchor="center", x=0.5,
-            font=dict(color="#1e293b", size=12),
+            font=dict(color="#1e293b", size=11),
         ),
-        height=520,
+        height=440,
     )
     return _to_json(fig)
 
