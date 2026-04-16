@@ -40,10 +40,6 @@ milestones:
     milestone: Pershing
     height: 0
     hover: Successfully automated batch system, significantly reducing support costs. Recognized with Project of the Year Award and commendation from the CEO.
-  2003:
-    milestone: General Motors
-    height: 3.5
-    hover: Led the re-engineering of the GM Dealer Information Delivery System for legacy modernization.
   2005:
     milestone: PGCBM
     height: 0
@@ -492,35 +488,6 @@ projects:
             * **Improved operational efficiency:** Reduced manual intervention, minimized errors, and improved resource utilization.
             * **Enhanced system stability:** Reduced the risk of missed jobs or scheduling conflicts.
             * **Modernized legacy systems:** Brought legacy job scheduling processes in line with modern IT practices.
-  NTT DATA:
-    short label: NTT
-    long label: NTT DATA Global Delivery Services Ltd., Project Leader / Senior Consultant, Apr 2003 - Mar 2008
-    hover: NTT DATA Global Delivery Services, Project Leader, 5 years, Apr 2003 - Mar 2008
-    icon: ntt.png
-    duration: 5
-    link: https://www.nttdata.com/global/en/
-    clients:
-      General Motors:
-        General Motors Dealer Information Database (GMDID) Re-engineering Project:
-          summary: |
-            Led the re-engineering of the GMDID/DNPS systems, including redesigning the weekly batch cycle and supporting Siebel integration. Developed REXX tools to extract information for creating Functional Specifications. I conducted impact analysis and documented data access issues. I assisted in data retrieval, batch processes, and database issues for Siebel integration. I also created Functional Specifications and project proposals, and managed project planning, scheduling, and monitoring.
-
-
-          role: Project Leader
-          start: May 2002
-          end: Apr 2003
-          technology: MVS, REXX, JCL, COBOL, IMS, DB2, CICS
-          additional information: |
-            **Redesign and Enhancement of Weekly Batch Cycle with Offshore Support:**
-
-            * **Leadership and Documentation:** Led the teams in preparing program logic documents and functional specifications using 2440 COBOL/IMS/DB2 programs, 765 copybooks, and 180 JCLs, and creating project proposals for GMDID/DNPS systems.
-            * **REXX Tools Creation:** Developed REXX tools to extract information related to program logic, screen layout, and dataset & database access for creating the Functional Specification.
-            * **Impact Analysis:** Conducted impact analysis on non-GMDID/DNPS applications that access the GMDID/DNPS database. Researched and documented issues related to data access to non-GMDID/DNPS databases.
-            * **Siebel Team Support:** Assisted the Siebel team in understanding data retrieval, updates, and user access rights in mainframe screens, and in creating the corresponding Siebel screens.
-            * **Batch Process Understanding:** Supported the Siebel team in understanding the mainframe batch process and creating the corresponding batch and reporting functionality in the Siebel system.
-            * **Database-related Issues:** Collaborated with the Siebel team to address database-related issues such as database schema, data migration, and database connectivity for other applications.
-            * **Functional Specification and Project Proposal:** Actively involved in creating Functional Specifications (FS) and project proposals for the re-engineering project. Responsible for planning, scheduling, and monitoring project activities according to the project plan.
-
   iNautix Technologies:
     short label: iNautix
     icon: inautix.png

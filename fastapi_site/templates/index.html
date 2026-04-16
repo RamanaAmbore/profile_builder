@@ -196,7 +196,6 @@
         <div class="h-px flex-1 bg-gradient-to-r from-accent-cyan/50 to-transparent max-w-[60px]"></div>
       </div>
       <h2 class="font-display font-bold text-3xl md:text-5xl text-slate-900 mb-1 md:mb-2">About me</h2>
-      <p class="text-slate-600">A brief introduction.</p>
     </div>
 
     <div class="space-y-4 md:space-y-6 mt-5 md:mt-8">
@@ -321,7 +320,7 @@
 
             <div class="space-y-4 sm:space-y-4">
               {% for proj_name, proj in proj_list.items() %}
-              <div class="pl-4 border-l-[3px] border-accent-cyan/50
+              <div class="pl-4 border-l-[3px] border-accent-cyan/50 rounded-r-xl bg-slate-50/70
                           sm:pl-5 sm:border-l-0 sm:p-5 sm:rounded-xl sm:bg-white/75 sm:backdrop-blur-[6px] sm:border sm:border-slate-200 sm:shadow-sm sm:shadow-slate-200/50">
                 <div class="flex items-start justify-between gap-3 flex-wrap mb-1.5 sm:mb-2">
                   <h4 class="font-semibold text-slate-900 text-[13px] sm:text-base">{{ proj_name }}</h4>
@@ -561,7 +560,7 @@
   // ============ Custom HTML hover tooltip for all Plotly charts ============
   const chartTooltip = document.createElement('div');
   chartTooltip.id = 'chart-tooltip';
-  chartTooltip.className = 'fixed pointer-events-none z-[100] hidden max-w-xs p-2.5 rounded-lg bg-slate-900 text-white text-[11px] leading-snug shadow-xl shadow-slate-900/40';
+  chartTooltip.className = 'fixed pointer-events-none z-[100] hidden w-[180px] sm:w-auto sm:max-w-xs p-2 sm:p-2.5 rounded-lg bg-slate-900 text-white text-[10px] sm:text-[11px] leading-snug shadow-xl shadow-slate-900/40';
   chartTooltip.innerHTML = '<div class="tt-head font-semibold text-accent-cyan mb-0.5"></div><div class="tt-body"></div>';
   document.body.appendChild(chartTooltip);
 
