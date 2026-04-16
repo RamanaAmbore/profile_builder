@@ -555,6 +555,7 @@
     // of Plotly's built-in SVG hover label.
     el.on('plotly_hover', (ev) => showChartTooltip(ev));
     el.on('plotly_unhover', hideChartTooltip);
+    el.on('plotly_click', (ev) => showChartTooltip(ev));
   }
 
   // ============ Custom HTML hover tooltip for all Plotly charts ============
@@ -615,6 +616,10 @@
   function hideChartTooltip() {
     chartTooltip.classList.add('hidden');
   }
+
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.js-plotly-plot')) hideChartTooltip();
+  });
 
   // Timeline is rendered with desktop sizes; shrink markers + fonts on mobile.
   function tuneTimelineForViewport() {
