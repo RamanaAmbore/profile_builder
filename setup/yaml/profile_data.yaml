@@ -1,69 +1,80 @@
 name: RAMANA RAO AMBORE
-designation: APPLICATION DEVELOPMENT DIRECTOR
+designation: Principal FinTech Engineer & Quant Developer
 name suffix: 'FRM'
 profile: |
-  Highly accomplished FinTech professional with a strong foundation in quantitative finance, 
-  evidenced by an FRM certification and CFA Level 3 candidacy. Proven expertise in modernizing 
-  legacy systems, optimizing high-volume trading platforms, and developing sophisticated 
-  algorithmic trading solutions. Deep understanding of cloud/distributed technologies, full stack web development, 
-  databases, legacy systems, and data analytics. A results-driven professional and recipient 
-  of the organization's most coveted Innovation Award, with a demonstrated ability to deliver 
-  cutting-edge solutions and drive success within the financial markets.  
-  `No Visa Sponsorship Required, Authorized to work in the U.S. for any employer`
+  Principal FinTech engineer and quant developer with 30+ years of experience
+  modernizing mission-critical financial systems, building algorithmic trading
+  platforms, and delivering cloud-native data solutions at enterprise scale.
+  FRM-certified (GARP, 2022) with deep, working knowledge of options pricing
+  (Black-Scholes), Greeks (Δ, Γ, Θ, ν, ρ), implied volatility surfaces, and
+  derivatives risk — applied in a live algorithmic trading platform.
+  CFA Levels 1 & 2 cleared; pursuing Level 3. Fluent across Python, Java,
+  Spark, AWS, and Snowflake; actively applying Gen AI tooling (LLMs, Claude Code)
+  to accelerate modernization and code-analysis workflows. Recipient of the
+  NTT Innovation Award, ranked among the top 40 innovators globally.
+  U.S. work-authorized — no visa sponsorship required.
 experience summary:
-  - Modernized a high-volume, business-critical legacy application on AWS using Java and Spark. 
-    The resulting core framework reduced development and deployment turnaround times by 50%.
-  - Developed 'Rambo,' an analytics platform that empowered software development teams to reengineer and 
-    optimize software artifacts. By providing critical insights into dependencies, 
-    'Rambo' facilitated the identification and decommissioning of approximately 3,000 batch jobs, significantly improving efficiency.
-  - Received the Delivery Excellence Award for designing and developing a Python-based product suite to reengineer 
-    legacy COBOL-VSAM applications into COBOL-DB2 applications.
-  - As a Principal Software Engineer, leading the development of the parsing engine for DataSnake & Cobra, a COBOL Research and Analysis tool. 
-    This engine tracks data flow, identifies the origin and transformation of critical fields, and enables accurate data lineage analysis.
-  - Working an algorithmic trading platform leveraging the power of option Greeks and underlying stock prices to identify 
-    and exploit fleeting market inefficiencies, enabling automated, data-driven trading decisions.
-  - Senior Analyst & Full Stack Developer with expertise in end-to-end solution design, data analysis, and application development
+  - Architecting a distributed fee-calculation engine at Fidelity Investments on
+    AWS (Lambda, Step Functions) and Snowflake — replacing overnight batch billing
+    with an event-driven, horizontally-scalable platform processing billions of
+    transactions annually across advisory, custody, and retirement products.
+  - Built 'Rambo,' a Python/Streamlit dependency-analytics platform that provided
+    critical insights into 3,000+ mainframe batch jobs, enabling their systematic
+    decommissioning and cutting legacy-maintenance overhead significantly.
+  - Received the NTT Delivery Excellence Award for Innovation — designed a
+    Python-based product suite that automated COBOL-VSAM to COBOL-DB2
+    re-engineering, ranked top 40 globally within NTT DATA.
+  - Built the COBOL parsing engine for Cobra — performs lexical/syntax analysis,
+    constructs an AST, tracks full data lineage, and maps field origin and
+    transformation across millions of lines of legacy COBOL code.
+  - Building a live algorithmic trading platform for equity options integrating
+    Black-Scholes pricing, implied volatility bands, and Greeks-driven signals
+    (Δ, Γ, Θ) with automated execution via the KiteConnect API for covered-call
+    and volatility-entry strategies.
+  - Applying Gen AI tooling (LLMs, Claude Code) to accelerate COBOL code
+    analysis, documentation generation, and legacy modernization workflows —
+    reducing manual analysis effort on large-scale financial codebases.
 milestones:
   1993:
     milestone: Master's
     height: 0
-    hover: Completed Master's in Computer Science with sponsorship from the Defence Research and Development Organisation (DRDO)
+    hover: M.S. Computer Science — DRDO-sponsored research fellowship, J.K. Institute of Applied Physics & Technology.
   1996:
     milestone: Ryder
     height: 0
-    hover: Contributed to the optimization of the ROAD analytics database as a Software Consultant for Ryder.
+    hover: Designed and implemented the ROAD analytics system for Ryder repair shops — productivity reporting and manpower estimation across nationwide operations.
   1997:
     milestone: Dade County
     height: 0
-    hover:  Implemented critical Year 2000 changes to DBS Software at the Office of Information Technology, Dade County Public Schools.
+    hover: Delivered Y2K-compliant upgrades to the DBS E-series financial system for Dade County Public Schools; rewrote the Internal Funds online system.
   2002:
     milestone: Pershing
     height: 0
-    hover: Successfully automated batch system, significantly reducing support costs. Recognized with Project of the Year Award and commendation from the CEO.
+    hover: Led mainframe metadata automation at Pershing (iNautix) — redesigned the weekly batch cycle, earned the Star Award within 3 months for outstanding delivery.
   2005:
     milestone: PGCBM
     height: 0
-    hover: Successfully completed the executive management program (PGCBM) at XLRI, a top-tier Indian business school.
+    hover: PGCBM (Post Graduate Certificate in Business Management) — XLRI School of Business, one of India's premier executive MBA programs.
   2008:
     milestone: Fidelity
     height: 0
-    hover: Played a key role in implementing major automation, reengineering, and modernization initiatives, such as Rambo, Cobra, and VSAM-to-DB2.
+    hover: Joined NTT DATA as Application Development Director for Fidelity Investments — 17-year tenure leading Rambo, Cobra, VSAM-to-DB2, and cloud modernization programs.
   2020:
     milestone: FRM
     height: 0
-    hover: FRM Certified. Successfully passed both Part 1 & 2 exams, demonstrating a strong foundation in financial risk management.
+    hover: Earned GARP Financial Risk Manager (FRM) certification — covering market risk, derivatives pricing, VaR modeling, credit risk, and operational risk.
   2021:
     milestone: CFA
     height: 0
-    hover: Cleared CFA Levels 1 & 2. Progressing towards the CFA charter with a strong foundation in trading, investment, and quantitative analysis.
+    hover: CFA Levels 1 & 2 cleared — equity valuation, fixed income, derivatives, portfolio management, and quantitative methods. Pursuing Level 3.
   2023:
     milestone: Innovation Award
     height: 0
-    hover: Recipient of the prestigious NTT Delivery Excellence Award for Innovation. Recognized among the top 40 innovators globally within the organization.
+    hover: NTT Delivery Excellence Award for Innovation — top 40 globally. Recognized for Python tooling that automated COBOL-to-DB2 re-engineering at Fidelity scale.
   2025:
     milestone: Fidelity USA
     height: 0
-    hover: Joined Fidelity Talent Source in October 2025, engaged with Fidelity Investments USA to modernize the billing platform — building a distributed fee-calculation engine on AWS and Snowflake.
+    hover: Principal System Analyst at Fidelity Investments (via Fidelity Talent Source) — architecting a distributed fee-calculation engine on AWS and Snowflake for firm-wide billing.
 education:
   Master's:
     icon: jk.png
@@ -94,15 +105,15 @@ certifications:
     duration: 1000
     group: domain
     long label: GARP Certified Financial Risk Manager (FRM), 2022, ID# 502640
-    hover: FRM Certified. Successfully passed both Part 1 & 2 exams, demonstrating a strong foundation in financial risk management, 2022
+    hover: "GARP FRM (2022) — market risk, derivatives pricing, VaR & CVaR modeling, credit risk, and operational risk. Rigorous quantitative exam covering Black-Scholes, Greeks, and interest rate models."
   CFA:
     icon: cfa.png
     link: https://credentials.cfainstitute.org/profile/ramanaraoambore67098/wallet
     year: 2020
     duration: 1000
     group: domain
-    long label: Cleared Certified Financial Analyst (CFA) Level 1 & Level 2 exams, 2018, ID# 8243442
-    hover: Cleared CFA Levels 1 & 2. Progressing towards the CFA charter with a strong foundation in trading, investment, and quantitative analysis, 2018
+    long label: CFA Levels 1 & 2 cleared, CFA Institute, 2018 & 2020, ID# 8243442
+    hover: "CFA Levels 1 & 2 cleared (2018, 2020) — equity valuation, fixed income, derivatives, alternative investments, portfolio management, and quantitative methods. Pursuing Level 3."
   DB2 DBA:
     icon: ibm_db2.png
     link: https://www.dropbox.com/scl/fi/l6v6x3d6061qgorkfc5b4/db2.png?rlkey=jm8ofyvtrv49lqs2u2mk6wdc2&st=yb6pe4nj&dl=0
@@ -139,87 +150,87 @@ technical skills:
   python:
     icon: python.png
     level: 5
-    hover: Leveraged Python extensively for data analytics, reengineering, automation, and visualization
+    hover: 8 years — NumPy, Pandas, SciPy for quant finance; Black-Scholes pricing and Greeks modeling; Dash/Plotly for live trading dashboards; automated options trading via KiteConnect API.
     duration: 8
   snowflake:
     icon: snowflake.svg
     level: 4
-    hover: 3 years designing and delivering data solutions on Snowflake — data modeling, SQL transformations, performance tuning, cost optimization, and integration with AWS data pipelines for large-scale analytics and billing workloads.
+    hover: 3 years architecting financial data platforms on Snowflake at Fidelity scale — data modeling, dbt transformations, cost optimization, time-travel for audit, and AWS pipeline integration.
     duration: 3
   claude code:
     icon: claude.svg
     level: 4
-    hover: 6 months using Claude Code (Anthropic's agentic coding CLI) for AI-assisted software development — pair-programming, refactoring, test generation, and full-stack prototype building including this portfolio website.
+    hover: Gen AI-assisted development using Claude Code — COBOL code analysis, documentation generation, full-stack prototyping, and legacy modernization acceleration on large financial codebases.
     duration: 1
   streamlit:
     icon: streamlit.png
     level: 4
-    hover: Developed an analytics platform using Streamlit to visualize complex organizational artifacts and their dependencies.
+    hover: Built Rambo — a Streamlit analytics platform used by Fidelity dev teams to visualize mainframe artifact dependencies and drive decommissioning of 3,000+ batch jobs.
     duration: 3
   dash/plotly:
     icon: dash_plotly.png
     level: 4
-    hover: Developed an algorithmic trading platform for derivatives using Dash and Plotly for interactive data visualization and dashboarding.
+    hover: Built a live options trading dashboard in Dash/Plotly — real-time Greeks visualization (Δ, Γ, Θ, ν, ρ), implied volatility charts, and P&L analytics for automated derivatives strategies.
     duration: 2
   java:
     icon: java_small.png
     level: 4
-    hover: Modernized legacy systems with critical performance objectives using Java.
+    hover: 6 years — Spring Boot and Spark-based modernization of a high-volume legacy transmission platform at Fidelity Investments, cutting deployment turnaround by 50%.
     duration: 6
   spark:
     icon: apache_spark.png
     level: 4
-    hover: Processed high-volume data streams using Spark in a modernized platform.
+    hover: 3 years processing billions of financial transactions on Apache Spark / AWS EMR — high-throughput data pipelines for Fidelity's cloud modernization program.
     duration: 3
   SpringBoot:
     icon: spring.png
     level: 3
-    hover: Developed Spark batch applications using Spring Boot.
+    hover: Developed Spring Boot application frameworks for Spark-based batch processing and cloud-native microservices on AWS.
     duration: 5
   COBOL:
     icon: ibm.png
     level: 5
-    hover: Extensive experience developing batch, DB2, and CICS applications in COBOL.
+    hover: 25 years — expert-level COBOL across batch, CICS, DB2, and IMS. Built the Cobra parsing engine that performs full lexical/syntax analysis and data lineage tracking across millions of lines of COBOL.
     duration: 25
   CICS:
     icon: ibm.png
     level: 5
-    hover: Developed and modified online screens within the CICS environment.
+    hover: 20 years developing and modernizing CICS online systems — including event-driven dynamic job submission replacing static batch schedules at Fidelity Investments.
     duration: 20
   DB2/SQL:
     icon: ibm_db2.png
     level: 5
-    hover: Certified DB2 DBA with extensive experience in developing online and batch applications using DB2 and SQL.
+    hover: IBM Certified DB2 DBA with 25 years of experience — complex financial SQL, performance tuning, data modeling, and migration from VSAM to DB2 at enterprise scale.
     duration: 25
   JCL:
     icon: ibm.png
     level: 5
-    hover: Extensive experience in writing and managing batch jobs using JCL.
+    hover: 25 years writing, tuning, and managing mainframe JCL — batch scheduling, job dependencies, and automation for high-volume financial production environments.
     duration: 25
   VSAM:
     icon: ibm.png
     level: 3
-    hover: Experienced in working with VSAM for batch and online applications.
+    hover: 15 years of VSAM for mainframe batch and online systems; led VSAM-to-DB2 migration programs at Fidelity Investments.
     duration: 15
   AWS:
     icon: aws.png
     level: 3
-    hover: Leveraged AWS services (EMR, S3, Lambda, EC2, etc.) for legacy modernization projects.
+    hover: 5 years — Lambda, Step Functions, ECS, EMR, S3, EventBridge, Kafka/MSK for cloud-native financial platforms; currently modernizing Fidelity's firm-wide billing engine on AWS.
     duration: 5
   terraform:
     icon: terraform.png
     level: 3
-    hover: Utilized Terraform for automating cloud deployment and TLM activities.
+    hover: Infrastructure-as-code with Terraform for cloud deployments on AWS — provisioning, state management, and CI/CD integration for financial data platforms.
     duration: 5
   jenkins:
     icon: jenkins.png
     level: 3
-    hover: Implemented CI/CD pipelines using Jenkins to build and deploy code.
+    hover: CI/CD pipeline design with Jenkins — automated build, test, and deploy workflows for Java, Python, and Spark applications at Fidelity Investments.
     duration: 5
   git:
     icon: git.png
     level: 4
-    hover: Utilized Git extensively for both professional and personal projects.
+    hover: 8 years using Git for source control across Java, Python, and infrastructure projects — branching strategies, code review workflows, and release management.
     duration: 8
 contact:
   resume:
@@ -267,10 +278,14 @@ portfolio:
     github: https://github.com/RamanaAmbore
     image: rambo_quant_dashboard.png
     summary: |
-      This project aims to develop a sophisticated algorithmic trading platform designed to identify and capitalize on short-term market inefficiencies 
-      in option prices. Leveraging the power of Python, Dash, and Plotly, the platform will utilize option Greeks, underlying stock prices, and advanced 
-      statistical models to generate robust trading signals and execute trades automatically.
-    technology: Python,  Streamlit, Pandas, Dash, Plotly, Postgres
+      A live algorithmic trading platform for equity options — combining Black-Scholes
+      pricing, implied volatility band analysis, and Greeks-driven signals (Δ, Γ, Θ, ν, ρ)
+      to identify and act on short-term market inefficiencies. Fully integrated with
+      Zerodha's KiteConnect API for automated trade execution and real-time market data.
+      Strategies include covered calls and volatility-band entries with position sizing
+      managed dynamically through Greeks. Interactive dashboards built with Dash and
+      Plotly provide live P&L tracking, Greeks visualization, and IV surface charting.
+    technology: Python, Pandas, NumPy, Dash, Plotly, Postgres, KiteConnect API, Streamlit
     additional information: |
       **Project: Rambo Quant Strategies - Algo Trading for Derivatives**
       **Description:** This project aims to develop a sophisticated algorithmic trading platform designed to identify and capitalize on short-term market inefficiencies in option prices.
@@ -302,13 +317,15 @@ projects:
           start: Oct 2025
           end: Till Date
           duration: 6 months
-          technology: Python, AWS, Snowflake, Airflow, dbt, Terraform, SQL, Kafka, Lambda, Step Functions, Git, Jenkins
+          technology: Python, AWS Lambda, Step Functions, Kafka, Snowflake, Airflow, dbt, Terraform, SQL, Git, Jenkins
           summary: |
-            Modernizing Fidelity's billing platform — the firm-wide engine that computes and reconciles
-            advisory, custody, brokerage, and retirement fees across millions of client accounts and
-            billions of transactions annually. Re-architecting legacy batch billing into a cloud-native
-            distributed platform on AWS and Snowflake, with a focus on accuracy, auditability, regulatory
-            compliance (SEC/FINRA), and near-real-time fee visibility for internal stakeholders and clients.
+            Modernizing Fidelity's firm-wide billing platform — the mission-critical engine that
+            computes and reconciles advisory, custody, brokerage, and retirement fees across millions
+            of client accounts and billions of transactions annually. Re-architecting legacy overnight
+            batch billing into a cloud-native, event-driven distributed platform on AWS and Snowflake
+            with strict SEC/FINRA regulatory compliance, full audit traceability, and near-real-time
+            fee visibility. Replacing monolithic batch jobs with horizontally-scalable Lambda and
+            Step Function workflows that complete a fraction of legacy runtime.
           additional information: |
             **Project: Billing Platform Modernization — Fee Calculation Engine**
 
@@ -366,9 +383,13 @@ projects:
           start: Apr 2008
           end: Sep 2025
           duration: 17 years
-          technology: Java, Springboot, Spark, Oracle, AWS, Python, Pandas, GIT, Terraform, Jenkins,
+          technology: Java, Spring Boot, Spark, AWS EMR, S3, Python, Pandas, Terraform, Jenkins, Git
           summary: |
-            Led the modernization of a high-volume, business-critical legacy application on AWS, leveraging Java, Spark, and a developed core framework. This significantly improved development and deployment speed, achieving a 50% reduction in turnaround times. Key responsibilities included designing high-volume transmission files, implementing data parsing and validation, and ensuring data consistency with mainframe systems.
+            Led cloud modernization of a high-volume, business-critical legacy transmission platform
+            at Fidelity Investments — migrating from mainframe batch to AWS using Java, Spring Boot,
+            and Spark. Designed and built a reusable core framework that cut development and deployment
+            turnaround by 50%, processed high-volume financial transmission files with complex data
+            transformation and validation, and ensured byte-level parity with legacy mainframe output.
             
 
           additional information: |
@@ -390,9 +411,14 @@ projects:
           role: Application Development Director
           start: Apr 2008
           end: Sep 2025
-          technology: Python, Pandas, Postgres, Networkx, Pyvis, Streamlit, GIT, Jenkins
+          technology: Python, Pandas, Postgres, NetworkX, PyVis, Streamlit, Git, Jenkins
           summary: |
-            Developed 'Rambo,' an analytics platform that empowered software development teams to reengineer and optimize software artifacts by providing critical insights into dependencies. Responsibilities included identifying metadata sources on software artifacts, organizing and storing the data in a database, creating networkx graph structures with nodes and edges, parsing the data for various use cases with complex SQLs, and presenting data flow diagrams in a visual manner using Python, PyVis, SQL, REXX, and Streamlit.
+            Built Rambo — a Python/Streamlit dependency-analytics platform used by Fidelity
+            engineering teams to map, visualize, and rationalize thousands of mainframe batch
+            artifacts. Modeled artifact dependencies as NetworkX graphs, enabling teams to trace
+            data lineage, identify dead code, and systematically decommission ~3,000 redundant
+            batch jobs. Delivered significant cost savings in legacy maintenance and laid the
+            groundwork for the subsequent Cobra COBOL analysis tool.
           additional information: |
             **Key Achievements:**
             
@@ -404,9 +430,15 @@ projects:
           role: Application Development Director
           start: Apr 2008
           end: Sep 2025
-          technology: Python, Pandas, Regex, Networkx, Postgres, Pyvis, Streamlit, GIT, Jenkins
+          technology: Python, Pandas, Regex, NetworkX, Postgres, PyVis, Streamlit, Git, Jenkins
           summary: |
-            Leading the team to develop "Cobra," a comprehensive ecosystem specifically designed to address the challenges of modernizing and enhancing legacy COBOL applications. Recognizing the critical role these systems play in many organizations, Cobra aims to equip businesses with the tools and technologies necessary to effectively understand, analyze, and ultimately modernize their existing COBOL codebases. This multifaceted ecosystem will encompass a suite of integrated tools and functionalities, empowering organizations to gain deeper insights into their COBOL applications and explore various modernization pathways.
+            Led development of Cobra — a COBOL research and analysis ecosystem for deep
+            legacy modernization. Built a high-performance parsing engine that performs
+            lexical and syntax analysis, constructs an Abstract Syntax Tree (AST), and
+            tracks full data lineage across millions of lines of COBOL code — identifying
+            field origin, transformation paths, and inter-program dependencies. Directly
+            enabled the VSAM-to-DB2 migration program that won the NTT Delivery
+            Excellence Award for Innovation.
           additional information: |
             **Project: Cobra - COBOL Research & Analysis**
             
@@ -604,7 +636,11 @@ projects:
 
 interests:
   summary: |
-    The hobby project integrated a Raspberry Pi onto a drone to enhance its capabilities beyond basic flight. Challenges include minimizing weight and power consumption, ensuring reliable communication, and developing real-time processing algorithms while addressing the harsh environment. This project provides a rewarding learning experience in drone technology and embedded systems.
+    Integrated a Raspberry Pi onto a custom drone frame, adding real-time image processing
+    (OpenCV), autonomous waypoint navigation, and a "follow-me" mode — all running on the
+    edge with strict weight and power constraints. The same instinct for building systems
+    that operate reliably under harsh real-world conditions carries directly into
+    high-throughput financial platforms and low-latency trading infrastructure.
   additional information: |
     **Project: Raspberry Pi Drone Enhancement**
     
