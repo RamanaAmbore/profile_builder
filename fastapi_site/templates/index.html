@@ -84,7 +84,7 @@
        service restart, bypassing the 7-day "immutable" nginx cache. -->
   <div class="absolute inset-0 pointer-events-none overflow-hidden rounded-none sm:rounded-3xl"
        style="background-image: url('/static/img/stock-bg.svg?v={{ asset_version }}'); background-size: 100% auto; background-repeat: repeat-y; background-position: top center;">
-    <div class="absolute inset-0 bg-white/35"></div>
+    <div class="absolute inset-0 bg-white/55"></div>
   </div>
 
 <section id="top" class="relative flex items-center py-6 sm:py-8 md:py-10 bg-gradient-to-br from-cyan-100/80 via-white/50 to-emerald-100/70">
@@ -320,8 +320,8 @@
 
             <div class="space-y-4 sm:space-y-4">
               {% for proj_name, proj in proj_list.items() %}
-              <div class="p-3 rounded-xl bg-slate-50 border border-slate-200
-                          sm:p-5 sm:bg-white/80 sm:backdrop-blur-[6px] sm:border sm:border-slate-200 sm:shadow-sm sm:shadow-slate-200/50">
+              <div class="pl-4 border-l-[3px] border-accent-cyan/50 rounded-r-xl bg-slate-50/70
+                          sm:pl-5 sm:border-l-0 sm:p-5 sm:rounded-xl sm:bg-white/75 sm:backdrop-blur-[6px] sm:border sm:border-slate-200 sm:shadow-sm sm:shadow-slate-200/50">
                 <div class="flex items-start justify-between gap-3 flex-wrap mb-1.5 sm:mb-2">
                   <h4 class="font-semibold text-slate-900 text-[13px] sm:text-base">{{ proj_name }}</h4>
                   {% if proj.start %}<span class="text-[10px] sm:text-xs text-slate-500 font-mono">{{ proj.start }} &mdash; {{ proj.end }}</span>{% endif %}
@@ -560,7 +560,7 @@
   // ============ Custom HTML hover tooltip for all Plotly charts ============
   const chartTooltip = document.createElement('div');
   chartTooltip.id = 'chart-tooltip';
-  chartTooltip.className = 'fixed pointer-events-none z-[100] hidden w-[150px] p-2 rounded-lg bg-slate-900 text-white text-[10px] leading-snug shadow-xl shadow-slate-900/40';
+  chartTooltip.className = 'fixed pointer-events-none z-[100] hidden w-[180px] sm:w-auto sm:max-w-xs p-2 sm:p-2.5 rounded-lg bg-slate-900 text-white text-[10px] sm:text-[11px] leading-snug shadow-xl shadow-slate-900/40';
   chartTooltip.innerHTML = '<div class="tt-head font-semibold text-accent-cyan mb-0.5"></div><div class="tt-body"></div>';
   document.body.appendChild(chartTooltip);
 
