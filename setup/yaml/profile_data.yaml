@@ -282,7 +282,7 @@ portfolio:
     icon: rambo.png
     link: https://ramboq.com
     github: https://github.com/RamanaAmbore/ramboq
-    image: portfolio1.png
+    image: portfolio2.png
     summary: |
       A production-grade FinTech SaaS platform built for RamboQuant Analytics LLP —
       an investment analytics startup (ramboq.com). Delivers AI-powered daily market
