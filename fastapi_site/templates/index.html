@@ -320,8 +320,8 @@
 
             <div class="space-y-4 sm:space-y-4">
               {% for proj_name, proj in proj_list.items() %}
-              <div class="pl-4 border-l-[3px] border-accent-cyan/50 rounded-r-xl bg-slate-50/70
-                          sm:pl-5 sm:border-l-0 sm:p-5 sm:rounded-xl sm:bg-white/75 sm:backdrop-blur-[6px] sm:border sm:border-slate-200 sm:shadow-sm sm:shadow-slate-200/50">
+              <div class="pl-4 pr-3 py-2 border-l-[3px] border-accent-cyan/50 rounded-r-xl bg-slate-100
+                          sm:pl-5 sm:pr-0 sm:py-0 sm:border-l-0 sm:p-5 sm:rounded-xl sm:bg-white/75 sm:backdrop-blur-[6px] sm:border sm:border-slate-200 sm:shadow-sm sm:shadow-slate-200/50">
                 <div class="flex items-start justify-between gap-3 flex-wrap mb-1.5 sm:mb-2">
                   <h4 class="font-semibold text-slate-900 text-[13px] sm:text-base">{{ proj_name }}</h4>
                   {% if proj.start %}<span class="text-[10px] sm:text-xs text-slate-500 font-mono">{{ proj.start }} &mdash; {{ proj.end }}</span>{% endif %}
@@ -561,7 +561,8 @@
   const chartTooltip = document.createElement('div');
   chartTooltip.id = 'chart-tooltip';
   chartTooltip.className = 'fixed pointer-events-none z-[100] hidden p-2.5 rounded-lg bg-slate-900 text-white text-[11px] leading-snug shadow-xl shadow-slate-900/40';
-  chartTooltip.style.maxWidth = '50ch';
+  chartTooltip.style.width = 'fit-content';
+  chartTooltip.style.maxWidth = '224px';
   chartTooltip.innerHTML = '<div class="tt-head font-semibold text-accent-cyan mb-0.5"></div><div class="tt-body"></div>';
   document.body.appendChild(chartTooltip);
 
