@@ -12,7 +12,10 @@ profile: |
   Spark, AWS, and Snowflake; actively applying Gen AI tooling (LLMs, Claude Code)
   to accelerate modernization and code-analysis workflows. Recipient of the
   NTT Innovation Award, ranked among the top 40 innovators globally.
-  U.S. work-authorized — no visa sponsorship required.
+  Built an in-house legacy modernization toolkit — Rambo (mainframe dependency
+  analytics), Cobra (COBOL AST parser and data-lineage engine), and automated
+  VSAM-to-DB2 re-engineering — delivering the full decommissioning lifecycle
+  without third-party tooling. U.S. work-authorized — no visa sponsorship required.
 experience summary:
   - Architecting a distributed fee-calculation engine at Fidelity Investments on
     AWS (Lambda, Step Functions) and Snowflake — replacing overnight batch billing
@@ -31,9 +34,12 @@ experience summary:
     Black-Scholes pricing, implied volatility bands, and Greeks-driven signals
     (Δ, Γ, Θ) with automated execution via the KiteConnect API for covered-call
     and volatility-entry strategies.
-  - Applying Gen AI tooling (LLMs, Claude Code) to accelerate COBOL code
-    analysis, documentation generation, and legacy modernization workflows —
-    reducing manual analysis effort on large-scale financial codebases.
+  - Built and operate an in-house legacy modernization toolkit — Rambo
+    (mainframe dependency-graph analytics), Cobra (COBOL AST parser and
+    data-lineage engine), and automated VSAM-to-DB2 re-engineering — covering
+    the full lifecycle from mainframe artifact discovery to systematic
+    decommissioning; Gen AI (LLMs, Claude Code) now accelerates COBOL analysis
+    and documentation at scale.
 milestones:
   1993:
     milestone: Master's
@@ -488,7 +494,12 @@ projects:
           end: Sep 2025
           technology: MVS, COBOL, CICS, JCL, DB2, VSAM, Assembler
           summary: |
-            Modernized legacy transmission job automation processes within our organization. The primary objective was to replace static job schedules with dynamic job submissions triggered by events or data changes within the CICS environment.
+            Replaced static mainframe batch scheduling with event-driven, CICS-driven
+            dynamic job submission — COBOL programs that monitor internal CICS transactions
+            and dynamically generate and submit JCL in near-real time. Eliminated manual
+            schedule maintenance, reduced missed-job incidents, and enabled sub-minute
+            response to upstream data events across Fidelity's high-volume financial
+            processing environment.
           additional information: |
        
             **Project: Legacy Transmission Job Automation**

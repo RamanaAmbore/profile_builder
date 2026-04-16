@@ -157,9 +157,9 @@
               x-text="shown + '▍'"></span>
       </div>
       <p class="text-slate-600 text-sm sm:text-base md:text-lg max-w-2xl leading-relaxed mb-5 md:mb-8">
-        FRM-certified FinTech professional with 30+ years of experience modernizing legacy systems,
-        optimizing high-volume trading platforms, and developing algorithmic trading solutions.
-        Recipient of the NTT Innovation Award — top 40 innovators globally.
+        FRM-certified FinTech engineer with 30+ years spanning mainframe COBOL to cloud-native AWS —
+        building proprietary modernization tooling (Rambo, Cobra), live derivatives trading platforms,
+        and Gen AI–accelerated workflows. NTT Innovation Award — top 40 globally.
       </p>
 
       <div class="flex flex-wrap gap-2.5 md:gap-3 mb-6 md:mb-10">
@@ -202,6 +202,54 @@
       <div class="reveal text-slate-700 leading-relaxed border-l-[3px] border-accent-cyan/50 pl-4 sm:pl-5">
         <p class="text-[15px] md:text-base">{{ d.profile | replace('`', '') }}</p>
       </div>
+
+      {# ---- Legacy Modernization Toolkit — 3 in-house tools ---- #}
+      <div class="reveal">
+        <p class="text-[11px] md:text-xs font-semibold uppercase tracking-widest text-slate-400 mb-3">Legacy Modernization Toolkit</p>
+        <div class="grid sm:grid-cols-3 gap-3">
+
+          <div class="p-4 rounded-xl border border-slate-200 bg-gradient-to-br from-cyan-50/70 to-white shadow-sm">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="w-7 h-7 rounded-lg bg-gradient-to-br from-accent-cyan to-accent-indigo flex items-center justify-center text-white text-xs font-bold flex-shrink-0">R</span>
+              <span class="font-semibold text-slate-900 text-sm">Rambo</span>
+            </div>
+            <p class="text-[11px] text-slate-600 leading-snug mb-2">Mainframe dependency-analytics platform — mapped and decommissioned 3,000+ batch artifacts using NetworkX graph analysis and Streamlit dashboards.</p>
+            <div class="flex flex-wrap gap-1">
+              <span class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-white text-slate-500 border border-slate-200">Python</span>
+              <span class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-white text-slate-500 border border-slate-200">Streamlit</span>
+              <span class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-white text-slate-500 border border-slate-200">NetworkX</span>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl border border-slate-200 bg-gradient-to-br from-emerald-50/70 to-white shadow-sm">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="w-7 h-7 rounded-lg bg-gradient-to-br from-emerald-600 to-teal-700 flex items-center justify-center text-white text-xs font-bold flex-shrink-0">C</span>
+              <span class="font-semibold text-slate-900 text-sm">Cobra</span>
+            </div>
+            <p class="text-[11px] text-slate-600 leading-snug mb-2">COBOL AST parser &amp; data-lineage engine — lexical/syntax analysis, AST construction, and field-origin tracking across millions of lines.</p>
+            <div class="flex flex-wrap gap-1">
+              <span class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-white text-slate-500 border border-slate-200">Python</span>
+              <span class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-white text-slate-500 border border-slate-200">AST · Regex</span>
+              <span class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-white text-slate-500 border border-slate-200">NetworkX</span>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl border border-slate-200 bg-gradient-to-br from-indigo-50/70 to-white shadow-sm">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="w-7 h-7 rounded-lg bg-gradient-to-br from-accent-indigo to-violet-700 flex items-center justify-center text-white text-xs font-bold flex-shrink-0">V</span>
+              <span class="font-semibold text-slate-900 text-sm">VSAM → DB2</span>
+            </div>
+            <p class="text-[11px] text-slate-600 leading-snug mb-2">Automated COBOL-VSAM to COBOL-DB2 re-engineering suite — NTT Innovation Award winner, ranked top 40 globally across NTT DATA.</p>
+            <div class="flex flex-wrap gap-1">
+              <span class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-white text-slate-500 border border-slate-200">Python</span>
+              <span class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-white text-slate-500 border border-slate-200">COBOL</span>
+              <span class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-white text-slate-500 border border-slate-200">DB2</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
       <div class="reveal">
         <div class="p-4 md:p-7 rounded-2xl bg-gradient-to-br from-white via-white to-cyan-50/50 shadow-sm shadow-slate-200/60 border border-slate-200">
           <h3 class="font-display text-transparent bg-clip-text bg-gradient-to-r from-accent-cyan to-accent-violet text-xs md:text-sm uppercase tracking-widest mb-3 md:mb-5 font-semibold">Career Highlights</h3>
@@ -228,7 +276,7 @@
         <div class="h-px flex-1 bg-gradient-to-r from-accent-cyan/50 to-transparent max-w-[60px]"></div>
       </div>
       <h2 class="font-display font-bold text-3xl md:text-5xl text-slate-900 mb-1 md:mb-2">Career journey</h2>
-      <p class="text-slate-600">Three decades of milestones across FinTech and enterprise modernization.</p>
+      <p class="text-slate-600">Three decades bridging mainframe COBOL, distributed systems, and cloud-native FinTech.</p>
     </div>
 
     <div class="mt-5 md:mt-10 reveal chart-wrap rounded-2xl bg-white/75 backdrop-blur-[6px] shadow-sm shadow-slate-200/60 border border-slate-200 p-2 md:p-4">
