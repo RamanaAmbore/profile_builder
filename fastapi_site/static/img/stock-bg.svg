@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
-<g font-family="Space Grotesk, serif" opacity="0.09" font-weight="600">
+<g font-family="Space Grotesk, serif" opacity="0.22" font-weight="600">
 <text x="120" y="120" font-size="60" fill="#0891b2">Δ</text>
 <text x="400" y="90" font-size="52" fill="#059669">Γ</text>
 <text x="700" y="140" font-size="58" fill="#1d4ed8">Θ</text>
@@ -28,7 +28,7 @@
 <text x="1140" y="820" font-size="48" fill="#1d4ed8">Δ</text>
 <text x="1420" y="790" font-size="52" fill="#475569">σ</text>
 </g>
-<g font-family="JetBrains Mono, monospace" opacity="0.30">
+<g font-family="JetBrains Mono, monospace" opacity="0.52">
 <text x="60" y="200" font-size="13" fill="#1d4ed8">C = S·N(d₁) − K·e^(−rT)·N(d₂)</text>
 <text x="560" y="180" font-size="13" fill="#059669">Δ = N(d₁)</text>
 <text x="800" y="200" font-size="13" fill="#0891b2">Γ = N'(d₁) / (S·σ·√T)</text>
