@@ -175,7 +175,9 @@ def employment_bar(projects: dict[str, dict[str, Any]]) -> str:
         companies.append(short)
         durations.append(meta.get("duration", 0))
         hovers.append(_wrap_text(meta.get("hover", meta.get("long label", "")), 40))
-    bar_colors = [PALETTE[i % len(PALETTE)] for i in range(len(companies))]
+    # Cohesive cyan → sky → blue → indigo progression matching page accents.
+    BAR_PALETTE = ["#0e7490", "#0891b2", "#0284c7", "#2563eb", "#4338ca", "#4f46e5"]
+    bar_colors = [BAR_PALETTE[i % len(BAR_PALETTE)] for i in range(len(companies))]
     fig = go.Figure(go.Bar(
         x=durations,
         y=companies,
