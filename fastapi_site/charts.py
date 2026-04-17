@@ -10,25 +10,24 @@ import plotly.io as pio
 ACCENT_CYAN = "#0891b2"      # cyan-600
 ACCENT_INDIGO = "#1d4ed8"    # blue-700
 ACCENT_VIOLET = "#059669"    # emerald-600 (token kept as 'violet' for minimal churn)
-ACCENT_PINK = "#475569"      # slate-600
-ACCENT_EMERALD = "#10b981"   # emerald-500
-ACCENT_AMBER = "#64748b"     # slate-500
 
-# Darker blue/green/teal/slate palette — chosen so white labels read clearly
+# Varied palette: mixes blues, cyans, emeralds, violets and purples so charts
+# look harmonious rather than a monotone blue-green block.  All shades are
+# 600-700 range so white labels remain readable (contrast ≥ 4.5:1).
 PALETTE = [
-    "#0e7490",  # cyan-700
-    "#1d4ed8",  # blue-700
-    "#047857",  # emerald-700
-    "#0d9488",  # teal-600
-    "#0891b2",  # cyan-600
-    "#1e40af",  # blue-800
-    "#059669",  # emerald-600
-    "#0f766e",  # teal-700
-    "#155e75",  # cyan-800
-    "#065f46",  # emerald-800
     "#2563eb",  # blue-600
+    "#7c3aed",  # violet-600
+    "#0891b2",  # cyan-600
+    "#4f46e5",  # indigo-600
+    "#059669",  # emerald-600
+    "#6d28d9",  # purple-700
+    "#0284c7",  # sky-600
+    "#0f766e",  # teal-700
+    "#1d4ed8",  # blue-700
+    "#9333ea",  # purple-600
     "#0369a1",  # sky-700
-    "#064e3b",  # emerald-900
+    "#047857",  # emerald-700
+    "#4338ca",  # indigo-700
     "#334155",  # slate-700
 ]
 
@@ -94,12 +93,12 @@ SKILL_CATEGORIES = {
 
 def skills_radar(skills: dict[str, dict[str, Any]]) -> str:
     fig = go.Figure()
-    # Distinct darker shades per category — legible legend + strong contrast
+    # Four distinct hues — one per category, spread across the colour wheel
     category_colors = {
-        "Languages":      "#0e7490",  # cyan-700
-        "Data & Viz":     "#047857",  # emerald-700
-        "Backend":        "#1d4ed8",  # blue-700
-        "Cloud & DevOps": "#0d9488",  # teal-600
+        "Languages":      "#2563eb",  # blue-600
+        "Data & Viz":     "#059669",  # emerald-600
+        "Backend":        "#7c3aed",  # violet-600
+        "Cloud & DevOps": "#0891b2",  # cyan-600
     }
     for category, skill_names in SKILL_CATEGORIES.items():
         present = [s for s in skill_names if s in skills]
