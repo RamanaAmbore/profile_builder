@@ -608,9 +608,7 @@
   // ============ Custom HTML hover tooltip for all Plotly charts ============
   const chartTooltip = document.createElement('div');
   chartTooltip.id = 'chart-tooltip';
-  chartTooltip.className = 'fixed pointer-events-none z-[100] hidden p-2.5 rounded-lg bg-slate-900 text-white text-[11px] leading-snug shadow-xl shadow-slate-900/40';
-  chartTooltip.style.width = 'fit-content';
-  chartTooltip.style.maxWidth = '224px';
+  chartTooltip.className = 'fixed pointer-events-none z-[100] hidden p-2.5 rounded-lg bg-slate-900 text-white text-[11px] leading-snug shadow-xl shadow-slate-900/40 w-56';
   chartTooltip.innerHTML = '<div class="tt-head font-semibold text-accent-cyan mb-0.5"></div><div class="tt-body"></div>';
   document.body.appendChild(chartTooltip);
 
