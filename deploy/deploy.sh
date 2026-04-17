@@ -15,6 +15,7 @@ REPO_DIR="/opt/streamlit_profile_builder"
 VENV_DIR="$REPO_DIR/fastapi_site/.venv"
 REQS="$REPO_DIR/fastapi_site/requirements.txt"
 SERVICE="streamlit_profile_builder.service"
+WEBHOOK_SERVICE="webhook.service"
 BRANCH="main"
 
 log() { echo "[$(date -u +%FT%TZ)] $*"; }
@@ -36,5 +37,16 @@ log "Installing dependencies"
 
 log "Restarting $SERVICE"
 sudo /bin/systemctl restart "$SERVICE"
+
+# Sync webhook hook definitions. Restart webhook last — it is the parent
+# process of this script, so restarting it kills this process. All work
+# above is already complete by this point.
+HOOKS_SRC="$REPO_DIR/deploy/hooks.json"
+HOOKS_DST="/opt/webhook/hooks.json"
+if [[ -f "$HOOKS_SRC" ]] && ! diff -q "$HOOKS_SRC" "$HOOKS_DST" &>/dev/null; then
+    log "Updating hooks.json and restarting $WEBHOOK_SERVICE"
+    cp "$HOOKS_SRC" "$HOOKS_DST"
+    sudo /bin/systemctl restart "$WEBHOOK_SERVICE"
+fi
 
 log "Deploy complete: $(git rev-parse --short HEAD)"
