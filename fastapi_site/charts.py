@@ -140,18 +140,18 @@ def skills_radar(skills: dict[str, dict[str, Any]]) -> str:
         ),
         polar=dict(
             domain=dict(x=[0.0, 1.0], y=[0.12, 1.0]),
-            bgcolor="rgba(255,255,255,0.96)",
+            bgcolor="rgba(15,23,42,0.88)",
             radialaxis=dict(
                 visible=True,
                 range=[0, 5],
-                gridcolor="rgba(100,116,139,0.25)",
-                linecolor="rgba(100,116,139,0.35)",
-                tickfont=dict(color="#475569", size=10),
+                gridcolor="rgba(148,163,184,0.22)",
+                linecolor="rgba(148,163,184,0.30)",
+                tickfont=dict(color="#94a3b8", size=10),
             ),
             angularaxis=dict(
-                gridcolor="rgba(100,116,139,0.22)",
-                linecolor="rgba(100,116,139,0.35)",
-                tickfont=dict(color="#1e293b", size=11, family="Inter, sans-serif"),
+                gridcolor="rgba(148,163,184,0.18)",
+                linecolor="rgba(148,163,184,0.25)",
+                tickfont=dict(color="#e2e8f0", size=11, family="Inter, sans-serif"),
             ),
         ),
         showlegend=True,
@@ -229,22 +229,12 @@ def education_donut(education: dict[str, dict[str, Any]]) -> str:
         textinfo="label",
     ))
     fig.update_layout(
-        paper_bgcolor="rgba(255,255,255,0.97)",
-        plot_bgcolor="rgba(255,255,255,0.97)",
-        font=dict(family="Inter, sans-serif", color="#1e293b", size=12),
-        margin=dict(l=20, r=20, t=30, b=20),
-        hoverlabel=dict(
-            bgcolor="#0f172a",
-            bordercolor=ACCENT_CYAN,
-            font=dict(family="Inter, sans-serif", color="#ffffff", size=11),
-            namelength=-1,
-            align="left",
-        ),
+        **BASE_LAYOUT,
         showlegend=False,
         height=360,
         annotations=[dict(
-            text="<b>EDU</b><br><span style='font-size:11px;color:#64748b'>3 degrees</span>",
-            x=0.5, y=0.5, font=dict(size=18, color=ACCENT_INDIGO), showarrow=False,
+            text="<b>EDU</b><br><span style='font-size:11px;color:#94a3b8'>3 degrees</span>",
+            x=0.5, y=0.5, font=dict(size=18, color="#22d3ee"), showarrow=False,
         )],
     )
     return _to_json(fig)
