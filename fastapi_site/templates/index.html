@@ -180,6 +180,14 @@
         </div>
         {% endfor %}
       </div>
+
+      <div class="mt-4 flex flex-wrap gap-1.5">
+        <span class="text-[10px] font-semibold px-2.5 py-1 rounded-full bg-gradient-to-r from-amber-50 to-yellow-50 text-amber-700 border border-amber-200/80">FRM Certified</span>
+        <span class="text-[10px] font-semibold px-2.5 py-1 rounded-full bg-indigo-50 text-accent-indigo border border-accent-indigo/25">CFA Level 2</span>
+        <span class="text-[10px] font-semibold px-2.5 py-1 rounded-full bg-accent-cyan/10 text-accent-cyan border border-accent-cyan/25">Fidelity Investments</span>
+        <span class="text-[10px] font-mono px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 border border-slate-200">Python · AWS · Snowflake</span>
+        <span class="text-[10px] font-mono px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 border border-slate-200">NTT Innovation Award</span>
+      </div>
     </div>
   </div>
 
@@ -333,7 +341,7 @@
         <div class="h-px flex-1 bg-gradient-to-r from-accent-cyan/50 to-transparent max-w-[60px]"></div>
       </div>
       <h2 class="font-display font-bold text-3xl md:text-5xl text-slate-900 mb-1 md:mb-2">Employment history</h2>
-      <p class="text-slate-600">Delivering mission-critical systems across five companies.</p>
+      <p class="text-slate-600">17 years at Fidelity Investments · Principal Engineer · NTT Innovation Award — top 40 globally.</p>
     </div>
 
     <div class="reveal mt-4 md:mt-8 chart-wrap rounded-2xl bg-slate-50 shadow-sm shadow-slate-200/60 border border-slate-200 p-4">
@@ -350,6 +358,7 @@
               <div class="flex items-center gap-2 sm:gap-3 flex-wrap">
                 <h3 class="font-display font-semibold text-base sm:text-lg text-slate-900 truncate">{{ company }}</h3>
                 <span class="text-[10px] sm:text-xs px-2 py-0.5 rounded-full bg-accent-cyan/10 text-accent-cyan border border-accent-cyan/20">{{ meta.duration }} yrs</span>
+                {% if loop.first %}<span class="text-[10px] sm:text-xs px-2 py-0.5 rounded-full bg-emerald-500 text-white font-semibold">Current</span>{% endif %}
               </div>
               {# On desktop the long label sits under the company name in the right column. #}
               <p class="text-xs text-slate-500 mt-1 hidden sm:block">{{ meta['long label'] }}</p>
@@ -404,7 +413,7 @@
         <div class="h-px flex-1 bg-gradient-to-r from-accent-cyan/50 to-transparent max-w-[60px]"></div>
       </div>
       <h2 class="font-display font-bold text-3xl md:text-5xl text-slate-900 mb-1 md:mb-2">Personal projects</h2>
-      <p class="text-slate-600">Selected work built outside my day job.</p>
+      <p class="text-slate-600">Live production platforms — built, deployed, and maintained independently.</p>
     </div>
 
     <div class="space-y-6 mt-4 md:mt-8">
@@ -453,7 +462,7 @@
         <div class="h-px flex-1 bg-gradient-to-r from-accent-cyan/50 to-transparent max-w-[60px]"></div>
       </div>
       <h2 class="font-display font-bold text-3xl md:text-5xl text-slate-900 mb-1 md:mb-2">Education</h2>
-      <p class="text-slate-600">Academic foundation.</p>
+      <p class="text-slate-600">CS, Data Science & Executive Business Management — three degrees spanning India and the U.S.</p>
     </div>
 
     <div class="grid lg:grid-cols-[1fr_1.4fr] gap-8 mt-4 md:mt-8 items-center">
@@ -492,7 +501,7 @@
         <div class="h-px flex-1 bg-gradient-to-r from-accent-cyan/50 to-transparent max-w-[60px]"></div>
       </div>
       <h2 class="font-display font-bold text-3xl md:text-5xl text-slate-900 mb-1 md:mb-2">Certifications</h2>
-      <p class="text-slate-600">Professional accreditations across domains.</p>
+      <p class="text-slate-600">FRM, CFA L2, and four domain credentials in databases, project management & quality.</p>
     </div>
 
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-10">
@@ -502,22 +511,25 @@
          data-tip-body="{{ c.hover }}"
          data-tip-url="{{ c.link }}"
          data-tip-cta="View Certificate"
-         class="reveal group/cert-card relative p-4 md:p-5 rounded-2xl bg-slate-50 shadow-sm shadow-slate-200/60 border border-slate-200 hover:border-accent-cyan/50 hover:-translate-y-1 transition-all"
+         class="reveal group/cert-card relative p-4 md:p-5 rounded-2xl hover:-translate-y-1 transition-all {% if name in ['FRM', 'CFA'] %}bg-gradient-to-br from-amber-50/60 to-white shadow-md shadow-amber-100/50 border border-amber-200/70 hover:border-amber-300{% else %}bg-slate-50 shadow-sm shadow-slate-200/60 border border-slate-200 hover:border-accent-cyan/50{% endif %}"
          @mouseenter="$dispatch('card-peek',{title:$el.dataset.tipTitle,body:$el.dataset.tipBody,url:$el.dataset.tipUrl,cta:$el.dataset.tipCta})"
          @mouseleave="$dispatch('card-out')"
          @click.prevent="$dispatch('card-lock',{title:$el.dataset.tipTitle,body:$el.dataset.tipBody,url:$el.dataset.tipUrl,cta:$el.dataset.tipCta})">
+        {% if name in ['FRM', 'CFA'] %}
+        <div class="absolute top-2.5 right-2.5 text-[9px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 border border-amber-200">Top Credential</div>
+        {% endif %}
         <div class="flex items-start gap-4">
           <img src="/images/{{ c.icon }}" alt="{{ name }}"
-               class="w-12 h-12 md:w-14 md:h-14 object-contain rounded-lg bg-slate-50 p-2 flex-shrink-0 border border-slate-200" />
+               class="w-12 h-12 md:w-14 md:h-14 object-contain rounded-lg p-2 flex-shrink-0 {% if name in ['FRM', 'CFA'] %}bg-amber-50 border border-amber-200/60{% else %}bg-slate-50 border border-slate-200{% endif %}" />
           <div class="flex-1 min-w-0">
             <div class="flex items-center gap-2 flex-wrap mb-1.5">
-              <h3 class="font-display font-semibold text-slate-900 group-hover/cert-card:text-accent-cyan transition-colors">{{ name }}</h3>
-              <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 border border-slate-200">{{ c.year }}</span>
+              <h3 class="font-display font-semibold text-slate-900 {% if name in ['FRM', 'CFA'] %}group-hover/cert-card:text-amber-700{% else %}group-hover/cert-card:text-accent-cyan{% endif %} transition-colors">{{ name }}</h3>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded-full {% if name in ['FRM', 'CFA'] %}bg-amber-100 text-amber-700 border border-amber-200{% else %}bg-slate-100 text-slate-600 border border-slate-200{% endif %}">{{ c.year }}</span>
             </div>
             <p class="text-[11px] md:text-xs text-slate-600 leading-relaxed">{{ c['long label'] }}</p>
             {% if c.group %}
             <div class="mt-2">
-              <span class="text-[10px] font-mono uppercase tracking-wider text-accent-cyan">{{ c.group }}</span>
+              <span class="text-[10px] font-mono uppercase tracking-wider {% if name in ['FRM', 'CFA'] %}text-amber-600{% else %}text-accent-cyan{% endif %}">{{ c.group }}</span>
             </div>
             {% endif %}
           </div>
@@ -538,7 +550,7 @@
         <div class="h-px flex-1 bg-gradient-to-r from-accent-cyan/50 to-transparent max-w-[60px]"></div>
       </div>
       <h2 class="font-display font-bold text-3xl md:text-5xl text-slate-900 mb-1 md:mb-2">Beyond work</h2>
-      <p class="text-slate-600">Tinkering with drones &amp; embedded systems.</p>
+      <p class="text-slate-600">Hardware hacking — drones, Raspberry Pi, and IoT experiments.</p>
     </div>
 
     <div class="reveal mt-4 md:mt-8 p-8 rounded-2xl bg-slate-50 shadow-sm shadow-slate-200/60 border border-slate-200 grid md:grid-cols-[1fr_2fr] gap-8 items-center">
@@ -564,7 +576,7 @@
       <h2 class="font-display font-bold text-4xl md:text-6xl text-slate-900 mb-4">Let's connect<span class="text-accent-cyan">.</span></h2>
       <p class="text-slate-600 text-lg max-w-2xl mx-auto mb-6">
         Open to senior FinTech engineering, quant development, and tech leadership roles.<br class="hidden sm:block" />
-        30+ years of experience. FRM · CFA L2 · U.S. work authorized — no sponsorship needed.
+        Currently at Fidelity Investments · FRM · CFA L2 · U.S. work authorized — no sponsorship needed.
       </p>
       <a href="mailto:ramboquant@gmail.com"
          class="inline-flex items-center gap-2 px-6 py-3 mb-10 rounded-full bg-gradient-to-r from-accent-cyan to-accent-indigo text-white font-semibold text-sm shadow-lg shadow-accent-indigo/25 hover:scale-105 transition-transform">
