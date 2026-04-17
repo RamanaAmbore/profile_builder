@@ -108,20 +108,16 @@
           <div class="text-xs md:text-sm font-medium flex items-center gap-1.5">
             {% for key in ['FRM', 'CFA'] %}
               {% set c = d.certifications[key] %}
-              <div class="relative group/cert has-tip">
+              <div class="relative group/cert">
                 <button type="button"
-                        onclick="window.open('{{ c.link }}','_blank','noopener,noreferrer')"
+                        data-tip-title="{{ key }} · {{ c.year }}"
+                        data-tip-body="{{ c.hover }}"
+                        data-tip-url="{{ c.link }}"
+                        data-tip-cta="View Credential"
+                        @mouseenter="$dispatch('card-peek',{title:$el.dataset.tipTitle,body:$el.dataset.tipBody,url:$el.dataset.tipUrl,cta:$el.dataset.tipCta})"
+                        @mouseleave="$dispatch('card-out')"
+                        @click="$dispatch('card-lock',{title:$el.dataset.tipTitle,body:$el.dataset.tipBody,url:$el.dataset.tipUrl,cta:$el.dataset.tipCta})"
                         class="bg-transparent border-0 p-0 m-0 cursor-pointer font-inherit text-accent-cyan hover:text-accent-indigo transition-colors underline decoration-accent-cyan/30 underline-offset-2">{{ key }}{% if key == 'CFA' %} L2{% endif %}</button>
-                <div class="tip-pop opacity-0 transition-opacity duration-150 hidden sm:block absolute left-full ml-3 top-1/2 -translate-y-1/2 w-60 p-2.5 rounded-lg bg-slate-900 text-white text-[11px] leading-snug shadow-xl shadow-slate-900/30 z-[60]">
-                  <div class="font-semibold text-accent-cyan mb-0.5">{{ key }} &middot; {{ c.year }}</div>
-                  <div class="text-slate-300">{{ c.hover }}</div>
-                  <a href="{{ c.link }}" target="_blank" rel="noopener noreferrer"
-                     class="flex items-center gap-1 mt-1.5 text-[10px] text-slate-400 hover:text-accent-cyan transition-colors min-w-0">
-                    <svg class="w-3 h-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                    <span class="truncate">{{ c.link | replace('https://', '') | replace('http://','') }}</span>
-                  </a>
-                  <div class="absolute top-1/2 -left-1.5 -translate-y-1/2 w-0 h-0 border-t-[6px] border-b-[6px] border-r-[6px] border-t-transparent border-b-transparent border-r-slate-900"></div>
-                </div>
               </div>
               {% if not loop.last %}<span class="text-slate-400">·</span>{% endif %}
             {% endfor %}
@@ -347,7 +343,13 @@
     <div class="mt-4 md:mt-8 space-y-6">
       {% for company, meta in d.projects.items() %}
       <details class="reveal group rounded-2xl bg-slate-50 shadow-sm shadow-slate-200/60 border border-slate-200 hover:border-accent-cyan/40 transition-colors" {% if loop.first %}open{% endif %}>
-        <summary class="relative cursor-pointer list-none p-4 sm:p-6 group/emp has-tip">
+        <summary class="relative cursor-pointer list-none p-4 sm:p-6 group/emp"
+                  data-tip-title="{{ meta.get('short label', company) }} · {{ meta.duration }} yrs"
+                  data-tip-body="{{ meta.hover }}"
+                  data-tip-url="{{ meta.get('link', '') }}"
+                  data-tip-cta="Visit Website"
+                  @mouseenter="if($el.dataset.tipUrl) $dispatch('card-peek',{title:$el.dataset.tipTitle,body:$el.dataset.tipBody,url:$el.dataset.tipUrl,cta:$el.dataset.tipCta})"
+                  @mouseleave="$dispatch('card-out')">
           <div class="flex items-center gap-3 sm:gap-4">
             <img src="/images/{{ meta.icon }}" alt="{{ company }}" class="w-11 h-11 sm:w-12 sm:h-12 rounded-lg object-contain bg-white/5 p-1 flex-shrink-0" />
             <div class="flex-1 min-w-0">
@@ -363,19 +365,6 @@
           {# On mobile the long label drops to a full-width line below the row
              so it reclaims the space that would otherwise sit empty under the logo. #}
           <p class="text-[11px] text-slate-500 mt-2 sm:hidden">{{ meta['long label'] }}</p>
-          <!-- Company hover tooltip -->
-          <div class="tip-pop opacity-0 transition-opacity duration-150 absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-56 p-2.5 rounded-lg bg-slate-900 text-white text-[11px] leading-snug shadow-xl shadow-slate-900/30 z-50">
-            <div class="font-semibold text-accent-cyan mb-0.5">{{ meta.get('short label', company) }} &middot; {{ meta.duration }} yrs</div>
-            <div>{{ meta.hover }}</div>
-            {% if meta.get('link') %}
-            <a href="{{ meta.link }}" target="_blank" rel="noopener noreferrer"
-               class="flex items-center gap-1 mt-1.5 text-[10px] text-slate-400 hover:text-accent-cyan transition-colors min-w-0">
-              <svg class="w-3 h-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-              <span class="truncate">{{ meta.link | replace('https://', '') | replace('http://','') }}</span>
-            </a>
-            {% endif %}
-            <div class="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-[6px] border-r-[6px] border-t-[6px] border-l-transparent border-r-transparent border-t-slate-900"></div>
-          </div>
         </summary>
 
         <div class="px-4 sm:px-6 pb-4 sm:pb-6 border-t border-slate-200/60 pt-4 sm:pt-6 space-y-4 sm:space-y-6 overflow-hidden rounded-b-2xl">
@@ -426,7 +415,13 @@
 
     <div class="space-y-6 mt-4 md:mt-8">
       {% for name, p in d.portfolio.items() %}
-      <article class="reveal group/port has-tip relative rounded-2xl bg-slate-50 shadow-sm shadow-slate-200/60 border border-slate-200 hover:border-accent-cyan/50 hover:-translate-y-1 transition-all">
+      <article class="reveal group/port relative rounded-2xl bg-slate-50 shadow-sm shadow-slate-200/60 border border-slate-200 hover:border-accent-cyan/50 hover:-translate-y-1 transition-all"
+               data-tip-title="{{ name | truncate(40, True, '…') }}"
+               data-tip-body="{{ p.summary | truncate(140, True, '…') }}"
+               data-tip-url="{{ p.link or p.github or '' }}"
+               data-tip-cta="Open Project"
+               @mouseenter="$dispatch('card-peek',{title:$el.dataset.tipTitle,body:$el.dataset.tipBody,url:$el.dataset.tipUrl,cta:$el.dataset.tipCta})"
+               @mouseleave="$dispatch('card-out')">
         <div class="grid lg:grid-cols-[1.35fr_1fr] gap-0">
           <div class="relative aspect-[16/9] lg:aspect-auto lg:min-h-[320px] bg-slate-100 overflow-hidden rounded-l-2xl">
             <img src="/images/{{ p.image }}" alt="{{ name }}" class="absolute inset-0 w-full h-full object-cover group-hover/port:scale-[1.03] transition-transform duration-500" />
@@ -447,25 +442,6 @@
               {% if p.github %}<a href="{{ p.github }}" target="_blank" class="text-slate-600 hover:text-slate-900 font-medium inline-flex items-center gap-1">GitHub ↗</a>{% endif %}
             </div>
           </div>
-        </div>
-        <!-- Portfolio project hover tooltip -->
-        <div class="tip-pop opacity-0 transition-opacity duration-150 absolute top-3 right-3 w-56 p-2.5 rounded-lg bg-slate-900 text-white text-[11px] leading-snug shadow-xl shadow-slate-900/30 z-40">
-          <div class="font-semibold text-accent-cyan mb-0.5">{{ name | truncate(30, True, '…') }}</div>
-          <div class="text-slate-300 mb-1">{{ p.summary | truncate(120, True, '…') }}</div>
-          {% if p.link %}
-          <a href="{{ p.link }}" target="_blank" rel="noopener noreferrer"
-             class="flex items-center gap-1 mt-1 text-[10px] text-emerald-400 hover:text-accent-cyan transition-colors min-w-0">
-            <svg class="w-3 h-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-            <span class="truncate">{{ p.link | replace('https://', '') | replace('http://','') }}</span>
-          </a>
-          {% endif %}
-          {% if p.github %}
-          <a href="{{ p.github }}" target="_blank" rel="noopener noreferrer"
-             class="flex items-center gap-1 mt-0.5 text-[10px] text-slate-400 hover:text-accent-cyan transition-colors min-w-0">
-            <svg class="w-3 h-3 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-            <span class="truncate">{{ p.github | replace('https://github.com/', '') }}</span>
-          </a>
-          {% endif %}
         </div>
       </article>
       {% endfor %}
@@ -491,24 +467,21 @@
       </div>
       <div class="space-y-4">
         {% for name, ed in d.education.items() %}
-        <a href="{{ ed.link }}" target="_blank" class="reveal group/edu has-tip relative flex items-center gap-4 p-5 rounded-2xl bg-slate-50 shadow-sm shadow-slate-200/60 border border-slate-200 hover:border-accent-cyan/50 transition-all">
+        <a href="{{ ed.link }}" target="_blank"
+           data-tip-title="{{ name }} · {{ ed.year }}"
+           data-tip-body="{{ ed.hover }}"
+           data-tip-url="{{ ed.link }}"
+           data-tip-cta="Visit Institution"
+           class="reveal group/edu relative flex items-center gap-4 p-5 rounded-2xl bg-slate-50 shadow-sm shadow-slate-200/60 border border-slate-200 hover:border-accent-cyan/50 transition-all"
+           @mouseenter="$dispatch('card-peek',{title:$el.dataset.tipTitle,body:$el.dataset.tipBody,url:$el.dataset.tipUrl,cta:$el.dataset.tipCta})"
+           @mouseleave="$dispatch('card-out')"
+           @click.prevent="$dispatch('card-lock',{title:$el.dataset.tipTitle,body:$el.dataset.tipBody,url:$el.dataset.tipUrl,cta:$el.dataset.tipCta})">
           <img src="/images/{{ ed.icon }}" alt="" class="w-14 h-14 rounded-lg object-contain bg-white/5 p-2 flex-shrink-0" />
           <div class="flex-1 min-w-0">
             <h3 class="font-semibold text-slate-900 group-hover/edu:text-accent-cyan transition-colors">{{ name }}</h3>
             <p class="text-xs text-slate-500 mt-1">{{ ed['long label'] }}</p>
           </div>
           <span class="text-xs font-mono text-accent-cyan flex-shrink-0">{{ ed.year }}</span>
-          <!-- Education hover tooltip -->
-          <div class="tip-pop opacity-0 transition-opacity duration-150 absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-56 p-2.5 rounded-lg bg-slate-900 text-white text-[11px] leading-snug shadow-xl shadow-slate-900/30 z-40">
-            <div class="font-semibold text-accent-cyan mb-0.5">{{ name }} &middot; {{ ed.year }}</div>
-            <div class="mb-1">{{ ed.hover }}</div>
-            <a href="{{ ed.link }}" target="_blank" rel="noopener noreferrer"
-               class="flex items-center gap-1 mt-1.5 text-[10px] text-slate-400 hover:text-accent-cyan transition-colors min-w-0">
-              <svg class="w-3 h-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-              <span class="truncate">{{ ed.link | replace('https://', '') | replace('http://','') }}</span>
-            </a>
-            <div class="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-[6px] border-r-[6px] border-t-[6px] border-l-transparent border-r-transparent border-t-slate-900"></div>
-          </div>
         </a>
         {% endfor %}
       </div>
@@ -530,7 +503,14 @@
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-10">
       {% for name, c in d.certifications.items() %}
       <a href="{{ c.link }}" target="_blank"
-         class="reveal group/cert-card has-tip relative p-4 md:p-5 rounded-2xl bg-slate-50 shadow-sm shadow-slate-200/60 border border-slate-200 hover:border-accent-cyan/50 hover:-translate-y-1 transition-all">
+         data-tip-title="{{ name }} · {{ c.year }}"
+         data-tip-body="{{ c.hover }}"
+         data-tip-url="{{ c.link }}"
+         data-tip-cta="View Certificate"
+         class="reveal group/cert-card relative p-4 md:p-5 rounded-2xl bg-slate-50 shadow-sm shadow-slate-200/60 border border-slate-200 hover:border-accent-cyan/50 hover:-translate-y-1 transition-all"
+         @mouseenter="$dispatch('card-peek',{title:$el.dataset.tipTitle,body:$el.dataset.tipBody,url:$el.dataset.tipUrl,cta:$el.dataset.tipCta})"
+         @mouseleave="$dispatch('card-out')"
+         @click.prevent="$dispatch('card-lock',{title:$el.dataset.tipTitle,body:$el.dataset.tipBody,url:$el.dataset.tipUrl,cta:$el.dataset.tipCta})">
         <div class="flex items-start gap-4">
           <img src="/images/{{ c.icon }}" alt="{{ name }}"
                class="w-12 h-12 md:w-14 md:h-14 object-contain rounded-lg bg-slate-50 p-2 flex-shrink-0 border border-slate-200" />
@@ -548,17 +528,6 @@
           </div>
         </div>
 
-        <!-- Hover tooltip: certification summary from YAML `hover` -->
-        <div class="tip-pop opacity-0 transition-opacity duration-150 absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-56 p-2.5 rounded-lg bg-slate-900 text-white text-[11px] leading-snug shadow-xl shadow-slate-900/30 z-40">
-          <div class="font-semibold text-accent-cyan mb-0.5">{{ name }} &middot; {{ c.year }}</div>
-          <div class="mb-1">{{ c.hover }}</div>
-          <a href="{{ c.link }}" target="_blank" rel="noopener noreferrer"
-             class="flex items-center gap-1 mt-1.5 text-[10px] text-slate-400 hover:text-accent-cyan transition-colors min-w-0">
-            <svg class="w-3 h-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-            <span class="truncate">{{ c.link | replace('https://', '') | replace('http://','') }}</span>
-          </a>
-          <div class="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-[6px] border-r-[6px] border-t-[6px] border-l-transparent border-r-transparent border-t-slate-900"></div>
-        </div>
       </a>
       {% endfor %}
     </div>
@@ -622,24 +591,67 @@
   </div>
 </section>
 
-<footer class="fixed bottom-0 left-0 right-0 z-40 py-2.5 border-t border-slate-200/70 bg-slate-50/95 backdrop-blur-sm">
-  <div class="max-w-6xl mx-auto px-5 sm:px-6 md:px-12 text-center space-y-0.5">
-    <div class="text-[11px] md:text-xs font-medium text-slate-600">
-      Developed by <span class="text-accent-cyan font-semibold">Ramana Ambore</span> using
-      <span class="text-accent-indigo font-semibold">Claude Code</span>
-    </div>
-    <!-- Mobile: 6 core items to fit one line -->
-    <div class="text-[9px] text-slate-400 sm:hidden leading-tight">
-      FastAPI · Python · Plotly · Tailwind CSS · AWS · AlpineJS
-    </div>
-    <!-- Tablet: medium stack -->
-    <div class="hidden sm:block lg:hidden text-[10px] text-slate-400 leading-tight">
-      FastAPI · Python · Plotly · Tailwind CSS · AWS · PostgreSQL · COBOL · Java · Spring Boot · Claude Code
-    </div>
-    <!-- Desktop: full stack -->
-    <div class="hidden lg:block text-[10px] text-slate-400 leading-tight">
-      FastAPI · Python · Plotly · Tailwind CSS · AlpineJS · AWS · Snowflake · COBOL · Java · Spring Boot · PostgreSQL · Litestar · SvelteKit · Google Gemini · Claude Code
-    </div>
+<!-- ======== Card Info Panel ======== -->
+<!-- Shared bottom-of-viewport panel: slides up when any card is hovered
+     or clicked. Hover = peek (hides on mouseleave). Click = lock (stays
+     open until user dismisses or navigates via the CTA button). -->
+<div x-cloak
+     x-data="{
+       vis: false,
+       pin: false,
+       title: '',
+       body: '',
+       url: '',
+       cta: 'Open',
+       _t: null,
+       peek(d) { clearTimeout(this._t); this.title=d.title||''; this.body=d.body||''; this.url=d.url||''; this.cta=d.cta||'Open'; this.vis=true; },
+       lock(d) { clearTimeout(this._t); this.peek(d); this.pin=true; },
+       release() { if(!this.pin){ this._t=setTimeout(()=>{ this.vis=false; },120); } },
+       close() { this.pin=false; this.vis=false; }
+     }"
+     @card-peek.window="peek($event.detail)"
+     @card-lock.window="lock($event.detail)"
+     @card-out.window="release()"
+     @keydown.escape.window="close()"
+     x-show="vis"
+     x-transition:enter="transition ease-out duration-200"
+     x-transition:enter-start="opacity-0 translate-y-3"
+     x-transition:enter-end="opacity-100 translate-y-0"
+     x-transition:leave="transition ease-in duration-150"
+     x-transition:leave-start="opacity-100 translate-y-0"
+     x-transition:leave-end="opacity-0 translate-y-3"
+     class="fixed bottom-[48px] left-0 right-0 z-[45] bg-slate-800/97 backdrop-blur-sm border-t border-slate-600/50 shadow-2xl px-4 sm:px-6 py-2.5 flex items-center gap-3">
+  <div class="flex-1 min-w-0">
+    <div class="font-semibold text-accent-cyan text-[12px] truncate" x-text="title"></div>
+    <div class="text-slate-300 text-[11px] leading-snug line-clamp-2 mt-0.5 hidden sm:block" x-text="body"></div>
+  </div>
+  <template x-if="url">
+    <a :href="url" target="_blank" rel="noopener noreferrer"
+       @click="close()"
+       class="flex-shrink-0 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-accent-cyan to-accent-indigo text-white font-semibold text-[11px] hover:opacity-90 transition-opacity whitespace-nowrap shadow-md"
+       x-text="cta"></a>
+  </template>
+  <button @click="close()"
+          class="flex-shrink-0 w-7 h-7 rounded-full bg-slate-700 hover:bg-slate-600 flex items-center justify-center transition-colors" aria-label="Close">
+    <svg class="w-3.5 h-3.5 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+    </svg>
+  </button>
+</div>
+
+<footer class="fixed bottom-0 left-0 right-0 z-40 py-2 border-t border-slate-200/70 bg-slate-50/97 backdrop-blur-sm">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 md:px-12 flex flex-wrap items-center justify-center gap-x-2 gap-y-0">
+    <span class="text-[11px] font-medium text-slate-600 whitespace-nowrap">
+      Developed by <span class="text-accent-cyan font-semibold">Ramana Ambore</span> using <span class="text-accent-indigo font-semibold">Claude Code</span>
+    </span>
+    <!-- Tablet+: core stack appended on the same conceptual line, but wrapped into a second line if needed -->
+    <span class="hidden sm:inline text-[10px] text-slate-400 whitespace-nowrap">
+      · FastAPI · Python · Plotly · Tailwind · AWS · PostgreSQL · COBOL · Java · Spring Boot
+    </span>
+    <!-- Desktop: extra items -->
+    <span class="hidden lg:inline text-[10px] text-slate-400 whitespace-nowrap">
+      · Litestar · SvelteKit · Snowflake · Google Gemini · AlpineJS
+    </span>
   </div>
 </footer>
 
