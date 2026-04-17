@@ -124,6 +124,11 @@ def resume_txt():
     return build_txt(data)
 
 
+@app.get("/google2d2adbc6c5055985.html", response_class=PlainTextResponse)
+def google_site_verification():
+    return "google-site-verification: google2d2adbc6c5055985.html"
+
+
 @app.get("/robots.txt", response_class=PlainTextResponse)
 def robots():
     return f"User-agent: *\nAllow: /\nSitemap: {PUBLIC_SITE_URL}/sitemap.xml\n"
