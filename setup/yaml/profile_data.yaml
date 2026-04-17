@@ -278,45 +278,32 @@ social:
     icon: medium.png
     link: https://medium.com/@rrambo
 portfolio:
-  RamboQuant Analytics — FinTech SaaS Platform:
+  RamboQuant Analytics — FinTech SaaS & Derivatives Platform:
     icon: rambo.png
     link: https://ramboq.com
     github: https://github.com/RamanaAmbore/ramboq
     image: portfolio2.png
     summary: |
-      A production-grade FinTech SaaS platform built for RamboQuant Analytics LLP —
-      an investment analytics startup (ramboq.com). Delivers AI-powered daily market
-      reports via Google Gemini 2.5 Flash with Search grounding, real-time multi-account
-      portfolio tracking across NSE/NFO equities and MCX commodities, and a full partner
-      ecosystem with self-registration, KYC workflows, contribution tracking, and
-      profit-share calculations. Live in production with WebSocket push updates,
-      Zerodha Kite API broker integration, and Telegram/email alerts for loss thresholds
-      and market open/close summaries. Built as a client engagement to demonstrate
-      full-stack FinTech engineering — not a personal trading system.
-    technology: Python, Litestar 2.x, SvelteKit, PostgreSQL, SQLAlchemy, Polars, Google Gemini 2.5, Zerodha Kite API, WebSockets, AG Grid, Tailwind CSS, Telegram API, JWT Auth
-
-  Rambo Quant Strategies - Algo Trading for Derivatives:
-    icon: trader.png
-    link: https://github.com/RamanaAmbore/rrambo_the_algo_trader/blob/master/README.md
-    github: https://github.com/RamanaAmbore
-    image: rambo_quant_dashboard.png
-    summary: |
-      A live algorithmic trading platform for equity options — combining Black-Scholes
-      pricing, implied volatility band analysis, and Greeks-driven signals (Δ, Γ, Θ, ν, ρ)
-      to identify and act on short-term market inefficiencies. Fully integrated with
-      Zerodha's KiteConnect API for automated trade execution and real-time market data.
-      Strategies include covered calls and volatility-band entries with position sizing
-      managed dynamically through Greeks. Interactive dashboards built with Dash and
-      Plotly provide live P&L tracking, Greeks visualization, and IV surface charting.
-    technology: Python, Pandas, NumPy, Dash, Plotly, Postgres, KiteConnect API, Streamlit
+      A production-grade FinTech SaaS platform built for RamboQuant Analytics LLP
+      (ramboq.com) — demonstrating full-stack FinTech and quant engineering skills,
+      not a personal trading system. The platform combines AI-powered market intelligence
+      (Google Gemini 2.5 Flash with Search grounding), an equity-options algorithmic
+      trading engine with Black-Scholes pricing, Greeks-driven signals (Δ, Γ, Θ, ν, ρ),
+      and implied volatility band strategies, and real-time multi-account portfolio
+      tracking across NSE/NFO and MCX markets. Includes a full partner ecosystem with
+      KYC workflows, contribution tracking, and profit-share calculations. Live in
+      production with WebSocket push updates, Zerodha Kite API broker integration,
+      Dash/Plotly Greeks dashboards, and Telegram/email alerts for loss thresholds
+      and market open/close summaries.
+    technology: Python, Litestar 2.x, SvelteKit, PostgreSQL, SQLAlchemy, Polars, Pandas, NumPy, Google Gemini 2.5, Zerodha Kite API, WebSockets, Dash, Plotly, AG Grid, Tailwind CSS, Telegram API, JWT Auth
     additional information: |
-      **Project: Rambo Quant Strategies - Algo Trading for Derivatives**
+      **Project: RamboQuant Analytics — FinTech SaaS & Derivatives Platform**
       **Description:** This project aims to develop a sophisticated algorithmic trading platform designed to identify and capitalize on short-term market inefficiencies in option prices.
-      
-      **Key Achievements:**  
-      - **Brokerage Integration:** Fully integrated with Zerodha’s **KiteConnect API** to enable automated trade execution and real-time market data handling.  
-      - **Volatility-Based Trading:** Utilized **implied volatility** and **standard deviation bands** to identify entry points, manage risk, and adjust positions automatically.  
-      - **Options Strategies:** Currently implementing automated management of **covered calls** and adjustment logic for existing positions based on market movement.  
+
+      **Key Achievements:**
+      - **Brokerage Integration:** Fully integrated with Zerodha’s **KiteConnect API** to enable automated trade execution and real-time market data handling.
+      - **Volatility-Based Trading:** Utilized **implied volatility** and **standard deviation bands** to identify entry points, manage risk, and adjust positions automatically.
+      - **Options Strategies:** Currently implementing automated management of **covered calls** and adjustment logic for existing positions based on market movement.
 
 
       **Technical Skills Demonstrated:**
