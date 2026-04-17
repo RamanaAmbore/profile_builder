@@ -503,10 +503,10 @@
         </div>
 
         <!-- Hover tooltip: certification summary from YAML `hover` -->
-        <div class="pointer-events-none opacity-0 group-hover/cert-card:opacity-100 transition-opacity duration-150 absolute bottom-full left-4 right-4 mb-2 p-3 rounded-lg bg-slate-900 text-white text-[11px] leading-snug shadow-xl shadow-slate-900/30 z-40">
-          <div class="font-semibold text-accent-cyan mb-1">{{ name }} &middot; {{ c.year }}</div>
+        <div class="pointer-events-none opacity-0 group-hover/cert-card:opacity-100 transition-opacity duration-150 absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-56 p-2.5 rounded-lg bg-slate-900 text-white text-[11px] leading-snug shadow-xl shadow-slate-900/30 z-40">
+          <div class="font-semibold text-accent-cyan mb-0.5">{{ name }} &middot; {{ c.year }}</div>
           <div>{{ c.hover }}</div>
-          <div class="absolute top-full left-6 w-0 h-0 border-l-[6px] border-r-[6px] border-t-[6px] border-l-transparent border-r-transparent border-t-slate-900"></div>
+          <div class="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-[6px] border-r-[6px] border-t-[6px] border-l-transparent border-r-transparent border-t-slate-900"></div>
         </div>
       </a>
       {% endfor %}
