@@ -343,13 +343,7 @@
     <div class="mt-4 md:mt-8 space-y-6">
       {% for company, meta in d.projects.items() %}
       <details class="reveal group rounded-2xl bg-slate-50 shadow-sm shadow-slate-200/60 border border-slate-200 hover:border-accent-cyan/40 transition-colors" {% if loop.first %}open{% endif %}>
-        <summary class="relative cursor-pointer list-none p-4 sm:p-6 group/emp"
-                  data-tip-title="{{ (meta.get('short label') or meta.get('label') or company) }} · {{ meta.duration }} yrs"
-                  data-tip-body="{{ meta.hover | default('') }}"
-                  data-tip-url="{{ meta.get('link') or '' }}"
-                  data-tip-cta="Visit Website"
-                  @mouseenter="if($el.dataset.tipUrl) $dispatch('card-peek',{title:$el.dataset.tipTitle,body:$el.dataset.tipBody,url:$el.dataset.tipUrl,cta:$el.dataset.tipCta})"
-                  @mouseleave="$dispatch('card-out')">
+        <summary class="relative cursor-pointer list-none p-4 sm:p-6 group/emp">
           <div class="flex items-center gap-3 sm:gap-4">
             <img src="/images/{{ meta.icon }}" alt="{{ company }}" class="w-11 h-11 sm:w-12 sm:h-12 rounded-lg object-contain bg-white/5 p-1 flex-shrink-0" />
             <div class="flex-1 min-w-0">
