@@ -279,7 +279,7 @@
       <p class="text-slate-600">Three decades bridging mainframe COBOL, distributed systems, and cloud-native FinTech.</p>
     </div>
 
-    <div class="mt-5 md:mt-10 reveal chart-wrap rounded-2xl bg-white/75 backdrop-blur-[6px] shadow-sm shadow-slate-200/60 border border-slate-200 p-2 md:p-4">
+    <div class="mt-5 md:mt-10 reveal chart-wrap rounded-2xl bg-slate-50 shadow-sm shadow-slate-200/60 border border-slate-200 p-2 md:p-4">
       <div id="chart-timeline" class="w-full"></div>
     </div>
   </div>
@@ -298,13 +298,13 @@
     </div>
 
     <div class="grid lg:grid-cols-[1.1fr_1fr] gap-10 mt-4 md:mt-8 items-center">
-      <div class="reveal chart-wrap rounded-2xl bg-white/75 backdrop-blur-[6px] shadow-sm shadow-slate-200/60 border border-slate-200 p-4">
+      <div class="reveal chart-wrap rounded-2xl bg-slate-50 shadow-sm shadow-slate-200/60 border border-slate-200 p-4">
         <div id="chart-skills" class="w-full"></div>
       </div>
 
       <div class="reveal grid grid-cols-5 sm:grid-cols-6 md:grid-cols-6 lg:grid-cols-6 gap-1.5 md:gap-3">
         {% for name, skill in d['technical skills'].items() %}
-        <div class="group/skill relative aspect-square rounded-md md:rounded-xl bg-white/75 backdrop-blur-[6px] shadow-sm shadow-slate-200/60 border border-slate-200 flex flex-col items-center justify-center p-1 md:p-3 hover:border-accent-cyan/50 md:hover:-translate-y-1 transition-all cursor-help">
+        <div class="group/skill relative aspect-square rounded-md md:rounded-xl bg-slate-50 shadow-sm shadow-slate-200/60 border border-slate-200 flex flex-col items-center justify-center p-1 md:p-3 hover:border-accent-cyan/50 md:hover:-translate-y-1 transition-all cursor-help">
           <img src="/images/{{ skill.icon }}" alt="{{ name }}" class="w-6 h-6 md:w-11 md:h-11 object-contain" />
           <div class="text-[7px] md:text-[11px] uppercase tracking-wide text-slate-600 font-medium truncate w-full text-center mt-0.5 md:mt-1">{{ name }}</div>
           <div class="absolute bottom-0.5 left-0.5 right-0.5 h-0.5 rounded-full bg-slate-100 overflow-hidden">
@@ -336,13 +336,13 @@
       <p class="text-slate-600">Delivering mission-critical systems across five companies.</p>
     </div>
 
-    <div class="reveal mt-4 md:mt-8 chart-wrap rounded-2xl bg-white/75 backdrop-blur-[6px] shadow-sm shadow-slate-200/60 border border-slate-200 p-4">
+    <div class="reveal mt-4 md:mt-8 chart-wrap rounded-2xl bg-slate-50 shadow-sm shadow-slate-200/60 border border-slate-200 p-4">
       <div id="chart-employment" class="w-full"></div>
     </div>
 
     <div class="mt-4 md:mt-8 space-y-6">
       {% for company, meta in d.projects.items() %}
-      <details class="reveal group rounded-2xl bg-white/75 backdrop-blur-[6px] shadow-sm shadow-slate-200/60 border border-slate-200 hover:border-accent-cyan/40 transition-colors overflow-hidden" {% if loop.first %}open{% endif %}>
+      <details class="reveal group rounded-2xl bg-slate-50 shadow-sm shadow-slate-200/60 border border-slate-200 hover:border-accent-cyan/40 transition-colors overflow-hidden" {% if loop.first %}open{% endif %}>
         <summary class="cursor-pointer list-none p-4 sm:p-6">
           <div class="flex items-center gap-3 sm:gap-4">
             <img src="/images/{{ meta.icon }}" alt="{{ company }}" class="w-11 h-11 sm:w-12 sm:h-12 rounded-lg object-contain bg-white/5 p-1 flex-shrink-0" />
@@ -368,8 +368,7 @@
 
             <div class="space-y-4 sm:space-y-4">
               {% for proj_name, proj in proj_list.items() %}
-              <div class="pl-4 pr-3 py-2 border-l-[3px] border-accent-cyan/50 rounded-r-xl bg-slate-100
-                          sm:pl-5 sm:pr-0 sm:py-0 sm:border-l-0 sm:p-5 sm:rounded-xl sm:bg-white/75 sm:backdrop-blur-[6px] sm:border sm:border-slate-200 sm:shadow-sm sm:shadow-slate-200/50">
+              <div class="p-4 sm:p-5 rounded-xl bg-slate-50 border border-slate-200 shadow-sm shadow-slate-200/50">
                 <div class="flex items-start justify-between gap-3 flex-wrap mb-1.5 sm:mb-2">
                   <h4 class="font-semibold text-slate-900 text-[13px] sm:text-base">{{ proj_name }}</h4>
                   {% if proj.start %}<span class="text-[10px] sm:text-xs text-slate-500 font-mono">{{ proj.start }} &mdash; {{ proj.end }}</span>{% endif %}
@@ -410,7 +409,7 @@
 
     <div class="space-y-6 mt-4 md:mt-8">
       {% for name, p in d.portfolio.items() %}
-      <article class="reveal group rounded-2xl bg-white/75 backdrop-blur-[6px] shadow-sm shadow-slate-200/60 border border-slate-200 overflow-hidden hover:border-accent-cyan/50 hover:-translate-y-1 transition-all">
+      <article class="reveal group rounded-2xl bg-slate-50 shadow-sm shadow-slate-200/60 border border-slate-200 overflow-hidden hover:border-accent-cyan/50 hover:-translate-y-1 transition-all">
         <div class="grid lg:grid-cols-[1.35fr_1fr] gap-0">
           <div class="relative aspect-[16/9] lg:aspect-auto lg:min-h-[320px] bg-slate-100 overflow-hidden">
             <img src="/images/{{ p.image }}" alt="{{ name }}" class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500" />
@@ -451,12 +450,12 @@
     </div>
 
     <div class="grid lg:grid-cols-[1fr_1.4fr] gap-8 mt-4 md:mt-8 items-center">
-      <div class="reveal chart-wrap rounded-2xl bg-white/75 backdrop-blur-[6px] shadow-sm shadow-slate-200/60 border border-slate-200 p-4">
+      <div class="reveal chart-wrap rounded-2xl bg-slate-50 shadow-sm shadow-slate-200/60 border border-slate-200 p-4">
         <div id="chart-education" class="w-full"></div>
       </div>
       <div class="space-y-4">
         {% for name, ed in d.education.items() %}
-        <a href="{{ ed.link }}" target="_blank" class="reveal group flex items-center gap-4 p-5 rounded-2xl bg-white/75 backdrop-blur-[6px] shadow-sm shadow-slate-200/60 border border-slate-200 hover:border-accent-cyan/50 transition-all">
+        <a href="{{ ed.link }}" target="_blank" class="reveal group flex items-center gap-4 p-5 rounded-2xl bg-slate-50 shadow-sm shadow-slate-200/60 border border-slate-200 hover:border-accent-cyan/50 transition-all">
           <img src="/images/{{ ed.icon }}" alt="" class="w-14 h-14 rounded-lg object-contain bg-white/5 p-2 flex-shrink-0" />
           <div class="flex-1 min-w-0">
             <h3 class="font-semibold text-slate-900 group-hover:text-accent-cyan transition-colors">{{ name }}</h3>
@@ -484,7 +483,7 @@
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-10">
       {% for name, c in d.certifications.items() %}
       <a href="{{ c.link }}" target="_blank"
-         class="reveal group/cert-card relative p-4 md:p-5 rounded-2xl bg-white/75 backdrop-blur-[6px] shadow-sm shadow-slate-200/60 border border-slate-200 hover:border-accent-cyan/50 hover:-translate-y-1 transition-all">
+         class="reveal group/cert-card relative p-4 md:p-5 rounded-2xl bg-slate-50 shadow-sm shadow-slate-200/60 border border-slate-200 hover:border-accent-cyan/50 hover:-translate-y-1 transition-all">
         <div class="flex items-start gap-4">
           <img src="/images/{{ c.icon }}" alt="{{ name }}"
                class="w-12 h-12 md:w-14 md:h-14 object-contain rounded-lg bg-slate-50 p-2 flex-shrink-0 border border-slate-200" />
@@ -526,7 +525,7 @@
       <p class="text-slate-600">Tinkering with drones &amp; embedded systems.</p>
     </div>
 
-    <div class="reveal mt-4 md:mt-8 p-8 rounded-2xl bg-white/75 backdrop-blur-[6px] shadow-sm shadow-slate-200/60 border border-slate-200 grid md:grid-cols-[1fr_2fr] gap-8 items-center">
+    <div class="reveal mt-4 md:mt-8 p-8 rounded-2xl bg-slate-50 shadow-sm shadow-slate-200/60 border border-slate-200 grid md:grid-cols-[1fr_2fr] gap-8 items-center">
       <div class="grid grid-cols-2 gap-3">
         <img src="/images/drone.png" alt="Drone" class="rounded-xl bg-white/5 p-2" />
         <img src="/images/raspberry.png" alt="Raspberry Pi" class="rounded-xl bg-white/5 p-2" />
@@ -553,7 +552,7 @@
 
       <div class="flex flex-wrap gap-3 justify-center mb-12">
         {% for key, c in d.contact.items() %}
-        <a href="{{ c.link }}" target="_blank" class="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white/75 backdrop-blur-[6px] shadow-sm shadow-slate-200/60 border border-slate-200 hover:border-accent-cyan hover:text-accent-cyan transition-colors text-sm">
+        <a href="{{ c.link }}" target="_blank" class="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-slate-50 shadow-sm shadow-slate-200/60 border border-slate-200 hover:border-accent-cyan hover:text-accent-cyan transition-colors text-sm">
           <img src="/images/{{ c.icon }}" class="w-4 h-4 object-contain" alt="" />
           {{ c.label }}
         </a>
@@ -562,7 +561,7 @@
 
       <div class="flex gap-4 justify-center">
         {% for key, s in d.social.items() %}
-        <a href="{{ s.link }}" target="_blank" title="{{ s.label }}" class="w-12 h-12 rounded-full bg-white/75 backdrop-blur-[6px] shadow-sm shadow-slate-200/60 border border-slate-200 hover:border-accent-cyan hover:-translate-y-1 transition-all flex items-center justify-center">
+        <a href="{{ s.link }}" target="_blank" title="{{ s.label }}" class="w-12 h-12 rounded-full bg-slate-50 shadow-sm shadow-slate-200/60 border border-slate-200 hover:border-accent-cyan hover:-translate-y-1 transition-all flex items-center justify-center">
           <img src="/images/{{ s.icon }}" alt="{{ key }}" class="w-5 h-5 object-contain" />
         </a>
         {% endfor %}
@@ -607,7 +606,7 @@
 
   // ============ Custom HTML hover tooltip for all Plotly charts ============
   const chartTooltip = document.createElement('div');
-  chartTooltip.id = 'chart-tooltip';
+  chartTooltip.id = 'plotly-tip';
   chartTooltip.className = 'fixed pointer-events-none z-[100] hidden p-2.5 rounded-lg bg-slate-900 text-white text-[11px] leading-snug shadow-xl shadow-slate-900/40 w-56';
   chartTooltip.innerHTML = '<div class="tt-head font-semibold text-accent-cyan mb-0.5"></div><div class="tt-body"></div>';
   document.body.appendChild(chartTooltip);
