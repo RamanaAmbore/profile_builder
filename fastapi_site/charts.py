@@ -237,10 +237,6 @@ def education_donut(education: dict[str, dict[str, Any]]) -> str:
             x=0.5, y=0.5, font=dict(size=18, color="#334155"), showarrow=False,
         )],
     )
-    fig.update_layout(
-        paper_bgcolor="rgba(241,245,249,0.9)",
-        plot_bgcolor="rgba(241,245,249,0.9)",
-    )
     return _to_json(fig)
 
 
