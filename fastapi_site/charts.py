@@ -140,7 +140,7 @@ def skills_radar(skills: dict[str, dict[str, Any]]) -> str:
         ),
         polar=dict(
             domain=dict(x=[0.0, 1.0], y=[0.12, 1.0]),
-            bgcolor="rgba(248,250,252,0.7)",
+            bgcolor="rgba(255,255,255,0.96)",
             radialaxis=dict(
                 visible=True,
                 range=[0, 5],
@@ -229,7 +229,17 @@ def education_donut(education: dict[str, dict[str, Any]]) -> str:
         textinfo="label",
     ))
     fig.update_layout(
-        **BASE_LAYOUT,
+        paper_bgcolor="rgba(255,255,255,0.97)",
+        plot_bgcolor="rgba(255,255,255,0.97)",
+        font=dict(family="Inter, sans-serif", color="#1e293b", size=12),
+        margin=dict(l=20, r=20, t=30, b=20),
+        hoverlabel=dict(
+            bgcolor="#0f172a",
+            bordercolor=ACCENT_CYAN,
+            font=dict(family="Inter, sans-serif", color="#ffffff", size=11),
+            namelength=-1,
+            align="left",
+        ),
         showlegend=False,
         height=360,
         annotations=[dict(

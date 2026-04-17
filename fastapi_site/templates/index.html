@@ -304,10 +304,10 @@
 
       <div class="reveal grid grid-cols-5 sm:grid-cols-6 md:grid-cols-6 lg:grid-cols-6 gap-1.5 md:gap-3">
         {% for name, skill in d['technical skills'].items() %}
-        <div class="group/skill relative aspect-square rounded-md md:rounded-xl bg-slate-50 shadow-sm shadow-slate-200/60 border border-slate-200 flex flex-col items-center justify-center p-1 md:p-3 hover:border-accent-cyan/50 md:hover:-translate-y-1 transition-all cursor-help">
+        <div class="group/skill relative aspect-square rounded-md md:rounded-xl bg-white shadow-sm shadow-slate-900/8 border border-slate-300 flex flex-col items-center justify-center p-1 md:p-3 hover:border-accent-cyan hover:shadow-md hover:shadow-accent-cyan/10 md:hover:-translate-y-1 transition-all cursor-help">
           <img src="/images/{{ skill.icon }}" alt="{{ name }}" class="w-6 h-6 md:w-11 md:h-11 object-contain" />
           <div class="text-[7px] md:text-[11px] uppercase tracking-wide text-slate-600 font-medium truncate w-full text-center mt-0.5 md:mt-1">{{ name }}</div>
-          <div class="absolute bottom-0.5 left-0.5 right-0.5 h-0.5 rounded-full bg-slate-100 overflow-hidden">
+          <div class="absolute bottom-0.5 left-0.5 right-0.5 h-0.5 rounded-full bg-slate-200 overflow-hidden">
             <div class="h-full bg-gradient-to-r from-accent-cyan to-accent-indigo" style="width: {{ skill.level * 20 }}%"></div>
           </div>
 
@@ -471,7 +471,7 @@
            @mouseenter="$dispatch('card-peek',{title:$el.dataset.tipTitle,body:$el.dataset.tipBody,url:$el.dataset.tipUrl,cta:$el.dataset.tipCta})"
            @mouseleave="$dispatch('card-out')"
            @click.prevent="$dispatch('card-lock',{title:$el.dataset.tipTitle,body:$el.dataset.tipBody,url:$el.dataset.tipUrl,cta:$el.dataset.tipCta})">
-          <img src="/images/{{ ed.icon }}" alt="" class="w-14 h-14 rounded-lg object-contain bg-white/5 p-2 flex-shrink-0" />
+          <img src="/images/{{ ed.icon }}" alt="" class="w-14 h-14 rounded-lg object-contain bg-white border border-slate-200 p-2 flex-shrink-0 shadow-sm" />
           <div class="flex-1 min-w-0">
             <h3 class="font-semibold text-slate-900 group-hover/edu:text-accent-cyan transition-colors">{{ name }}</h3>
             <p class="text-xs text-slate-500 mt-1">{{ ed['long label'] }}</p>
