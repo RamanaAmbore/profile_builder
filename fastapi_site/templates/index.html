@@ -374,7 +374,7 @@
 
             <div class="space-y-4 sm:space-y-4">
               {% for proj_name, proj in proj_list.items() %}
-              <div class="p-4 sm:p-5 rounded-xl bg-white border border-slate-200 shadow-md shadow-slate-200/70">
+              <div class="py-3 px-4 sm:px-5 border-l-[3px] border-accent-cyan/30 rounded-r-xl">
                 <div class="flex items-start justify-between gap-3 flex-wrap mb-1.5 sm:mb-2">
                   <h4 class="font-semibold text-slate-900 text-[13px] sm:text-base">{{ proj_name }}</h4>
                   {% if proj.start %}<span class="text-[10px] sm:text-xs text-slate-500 font-mono">{{ proj.start }} &mdash; {{ proj.end }}</span>{% endif %}
@@ -415,15 +415,15 @@
 
     <div class="space-y-6 mt-4 md:mt-8">
       {% for name, p in d.portfolio.items() %}
-      <article class="reveal group rounded-2xl bg-slate-50 shadow-sm shadow-slate-200/60 border border-slate-200 overflow-hidden hover:border-accent-cyan/50 hover:-translate-y-1 transition-all">
+      <article class="reveal group/port relative rounded-2xl bg-slate-50 shadow-sm shadow-slate-200/60 border border-slate-200 hover:border-accent-cyan/50 hover:-translate-y-1 transition-all">
         <div class="grid lg:grid-cols-[1.35fr_1fr] gap-0">
-          <div class="relative aspect-[16/9] lg:aspect-auto lg:min-h-[320px] bg-slate-100 overflow-hidden">
-            <img src="/images/{{ p.image }}" alt="{{ name }}" class="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500" />
+          <div class="relative aspect-[16/9] lg:aspect-auto lg:min-h-[320px] bg-slate-100 overflow-hidden rounded-l-2xl">
+            <img src="/images/{{ p.image }}" alt="{{ name }}" class="absolute inset-0 w-full h-full object-cover group-hover/port:scale-[1.03] transition-transform duration-500" />
             <div class="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-white/80 lg:from-transparent via-white/10 lg:via-transparent lg:to-white/80 pointer-events-none"></div>
           </div>
           <div class="p-6 md:p-8 flex flex-col justify-center">
             <div class="text-[10px] font-mono uppercase tracking-widest text-accent-cyan mb-2">Featured Project</div>
-            <h3 class="font-display font-bold text-2xl md:text-3xl text-slate-900 mb-3 group-hover:text-accent-cyan transition-colors leading-tight">{{ name | title }}</h3>
+            <h3 class="font-display font-bold text-2xl md:text-3xl text-slate-900 mb-3 group-hover/port:text-accent-cyan transition-colors leading-tight">{{ name | title }}</h3>
             <p class="text-sm text-slate-600 leading-relaxed mb-5">{{ p.summary }}</p>
             <div class="flex flex-wrap gap-1.5 mb-5">
               {% for t in p.technology.split(',') %}
@@ -436,6 +436,12 @@
               {% if p.github %}<a href="{{ p.github }}" target="_blank" class="text-slate-600 hover:text-slate-900 font-medium inline-flex items-center gap-1">GitHub ↗</a>{% endif %}
             </div>
           </div>
+        </div>
+        <!-- Portfolio project hover tooltip -->
+        <div class="pointer-events-none opacity-0 group-hover/port:opacity-100 transition-opacity duration-150 absolute top-3 right-3 w-56 p-2.5 rounded-lg bg-slate-900 text-white text-[11px] leading-snug shadow-xl shadow-slate-900/30 z-40">
+          <div class="font-semibold text-accent-cyan mb-0.5">{{ name | truncate(30, True, '…') }}</div>
+          {% if p.link %}<div class="text-emerald-400 text-[10px] mb-1">⬤ Live · {{ p.link | replace('https://', '') | replace('http://', '') }}</div>{% endif %}
+          <div class="text-slate-300">{{ p.summary | truncate(120, True, '…') }}</div>
         </div>
       </article>
       {% endfor %}
