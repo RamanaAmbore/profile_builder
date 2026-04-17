@@ -344,9 +344,9 @@
       {% for company, meta in d.projects.items() %}
       <details class="reveal group rounded-2xl bg-slate-50 shadow-sm shadow-slate-200/60 border border-slate-200 hover:border-accent-cyan/40 transition-colors" {% if loop.first %}open{% endif %}>
         <summary class="relative cursor-pointer list-none p-4 sm:p-6 group/emp"
-                  data-tip-title="{{ meta.get('short label', company) }} · {{ meta.duration }} yrs"
-                  data-tip-body="{{ meta.hover }}"
-                  data-tip-url="{{ meta.get('link', '') }}"
+                  data-tip-title="{{ (meta.get('short label') or meta.get('label') or company) }} · {{ meta.duration }} yrs"
+                  data-tip-body="{{ meta.hover | default('') }}"
+                  data-tip-url="{{ meta.get('link') or '' }}"
                   data-tip-cta="Visit Website"
                   @mouseenter="if($el.dataset.tipUrl) $dispatch('card-peek',{title:$el.dataset.tipTitle,body:$el.dataset.tipBody,url:$el.dataset.tipUrl,cta:$el.dataset.tipCta})"
                   @mouseleave="$dispatch('card-out')">
@@ -609,7 +609,7 @@
        url: '',
        cta: 'Open',
        _t: null,
-       peek(d) { clearTimeout(this._t); this.title=d.title||''; this.body=d.body||''; this.url=d.url||''; this.cta=d.cta||'Open'; this.vis=true; },
+       peek(d) { clearTimeout(this._t); const _s=v=>(!v||v==='None'||v==='undefined'||v==='null')?'':v; this.title=_s(d.title); this.body=_s(d.body); this.url=_s(d.url); this.cta=_s(d.cta)||'Open'; this.vis=true; },
        lock(d) { clearTimeout(this._t); this.peek(d); this.pin=true; },
        release() { if(!this.pin){ this._t=setTimeout(()=>{ this.vis=false; },120); } },
        close() { this.pin=false; this.vis=false; }
@@ -703,27 +703,32 @@
     let head = '', body = '';
 
     if (t.type === 'scatterpolar') {
-      head = (p.theta || '') + ' · ' + (t.name || '');
-      body = (p.text || '').toString() + '<br><span class="text-slate-400">Level ' + p.r + '/5</span>';
+      const theta = (p.theta != null ? p.theta : '').toString();
+      const level = (p.r != null ? p.r : '');
+      head = theta + (t.name ? ' · ' + t.name : '');
+      const hoverTxt = (p.text != null ? p.text : '').toString();
+      body = hoverTxt + (level !== '' ? '<br><span class="text-slate-400">Level ' + level + '/5</span>' : '');
     } else if (t.type === 'bar') {
-      head = (p.y || p.x || '').toString();
+      head = (p.y != null ? p.y : (p.x != null ? p.x : '')).toString();
       body = _stripBr(p.hovertext);
     } else if (t.type === 'pie') {
-      head = (p.label || '').toString();
+      head = (p.label != null ? p.label : '').toString();
       body = _stripBr(p.hovertext);
     } else if (t.type === 'treemap') {
-      head = (p.label || '').toString();
+      head = (p.label != null ? p.label : '').toString();
       body = _stripBr(p.hovertext);
     } else if (t.type === 'scatter' || t.type === 'scattergl') {
-      const year = p.x;
-      const label = (p.customdata || '').toString();
+      const year = (p.x != null ? p.x : '').toString();
+      const label = (p.customdata != null ? p.customdata : '').toString();
       head = year + (label ? ' · ' + label : '');
       body = _stripBr(p.hovertext);
     } else {
-      head = (p.label || p.x || p.y || '').toString();
-      body = _stripBr(p.hovertext || p.text);
+      head = (p.label != null ? p.label : (p.x != null ? p.x : (p.y != null ? p.y : ''))).toString();
+      body = _stripBr(p.hovertext != null ? p.hovertext : p.text);
     }
 
+    // Don't show an empty tooltip
+    if (!head && !body) return;
     chartTooltip.querySelector('.tt-head').textContent = head;
     chartTooltip.querySelector('.tt-body').innerHTML = body;
     chartTooltip.classList.remove('hidden');

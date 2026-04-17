@@ -564,7 +564,7 @@ projects:
             * **Recognition:** Received the Star award within three months of joining the company for contributions to the project.
 
   Modis Consulting:
-    short label: Moids
+    short label: Modis
     long label: Modis Consulting, Software Consultant, Nov 1997 Apr 2002
     hover: Modis Consulting, Software Consultant, 5 years, Nov 1997 Apr 2002
     icon: modis.png
@@ -595,6 +595,7 @@ projects:
 
   Mastech Inc:
     label: Mastech
+    short label: Mastech
     icon: igate.png
     duration: 1
     link: https://www.capgemini.com/
