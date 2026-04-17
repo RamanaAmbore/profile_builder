@@ -60,16 +60,20 @@ def load_profile() -> dict[str, Any]:
 def build_seo(data: dict[str, Any]) -> dict[str, str]:
     name = str(data.get("name", "")).title()
     designation = str(data.get("designation", "")).title()
-    loc = data.get("contact", {}).get("loc", {}).get("label", "")
     title = f"{name} — {designation}"
     description = (
-        f"{name} — {designation}. FRM-certified FinTech professional based in "
-        f"{loc}. 30+ years modernizing legacy systems, optimizing trading platforms, "
-        f"and developing algorithmic trading solutions."
+        f"{name} — FRM-certified Principal FinTech Engineer & Quant Developer with 30+ years "
+        f"modernizing mission-critical financial systems, building live derivatives trading platforms, "
+        f"and delivering cloud-native AWS/Snowflake solutions at Fidelity Investments and NTT DATA. "
+        f"CFA L2. Open to senior engineering & FinTech leadership roles."
     )
     keywords = (
-        "Ramana Ambore, FRM, CFA, FinTech, Application Development Director, "
-        "Java, Python, AWS, COBOL modernization, algorithmic trading, Merrimack NH"
+        "Ramana Ambore, FRM certified, CFA Level 2, Principal FinTech Engineer, Quant Developer, "
+        "algorithmic trading, derivatives, options pricing, Black-Scholes, legacy modernization, "
+        "COBOL modernization, mainframe to cloud, Java Spring Boot, Python, AWS Lambda, Snowflake, "
+        "Spark, Gen AI engineer, LLM, Claude Code, Fidelity Investments, NTT DATA, "
+        "fee calculation engine, event-driven architecture, fintech jobs, senior software engineer, "
+        "Merrimack NH, U.S. work authorized, no visa sponsorship, open to work"
     )
     return {
         "title": title,

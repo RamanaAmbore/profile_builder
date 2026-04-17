@@ -30,10 +30,13 @@
   <meta property="profile:last_name" content="Ambore" />
 
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:creator" content="@ramanaambore" />
+  <meta name="twitter:site" content="@ramanaambore" />
   <meta name="twitter:title" content="{{ seo.title }}" />
   <meta name="twitter:description" content="{{ seo.description }}" />
   <meta name="twitter:image" content="{{ seo.image }}" />
   <meta name="twitter:image:alt" content="{{ d.name | title }} — {{ d.designation | title }}" />
+  <meta property="og:updated_time" content="2025-04-16T00:00:00Z" />
 
   <script type="application/ld+json">
   {
@@ -57,20 +60,52 @@
     },
     "worksFor": {
       "@type": "Organization",
-      "name": "NTT DATA"
+      "name": "Fidelity Investments",
+      "url": "https://www.fidelity.com"
     },
+    "hasOccupation": {
+      "@type": "Occupation",
+      "name": "Principal FinTech Engineer",
+      "occupationLocation": { "@type": "Country", "name": "United States" },
+      "skills": "Python, Java, AWS, Snowflake, Spark, COBOL, Spring Boot, Algorithmic Trading, Gen AI"
+    },
+    "hasCredential": [
+      { "@type": "EducationalOccupationalCredential", "credentialCategory": "Professional Certification", "name": "Financial Risk Manager (FRM)", "recognizedBy": { "@type": "Organization", "name": "GARP" } },
+      { "@type": "EducationalOccupationalCredential", "credentialCategory": "Professional Certification", "name": "CFA Level 2", "recognizedBy": { "@type": "Organization", "name": "CFA Institute" } }
+    ],
     "alumniOf": [
       { "@type": "CollegeOrUniversity", "name": "J.K. Institute of Applied Physics & Technology" },
       { "@type": "CollegeOrUniversity", "name": "XLRI - School of Business" },
       { "@type": "CollegeOrUniversity", "name": "Nagarjuna University" }
     ],
-    "knowsAbout": ["FinTech", "Algorithmic Trading", "Risk Management", "Legacy Modernization", "Java", "Python", "AWS", "COBOL", "DB2"],
+    "knowsAbout": [
+      "FinTech", "Algorithmic Trading", "Quantitative Finance", "Derivatives", "Options Pricing",
+      "Risk Management", "Legacy Modernization", "COBOL Modernization", "Mainframe Systems",
+      "Java", "Python", "Spring Boot", "AWS", "Snowflake", "Apache Spark", "DB2",
+      "Gen AI", "LLM", "Claude Code", "Event-Driven Architecture"
+    ],
     "sameAs": [
       "https://www.linkedin.com/in/ambore",
       "https://github.com/RamanaAmbore",
       "https://medium.com/@rrambo",
-      "https://ramanaambore.me"
+      "https://ramanaambore.me",
+      "https://ramboq.com"
     ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "{{ d.name | title }} — Portfolio",
+    "url": "{{ seo.url }}",
+    "description": "{{ seo.description }}",
+    "author": {
+      "@type": "Person",
+      "name": "{{ d.name | title }}",
+      "url": "{{ seo.url }}"
+    }
   }
   </script>
 

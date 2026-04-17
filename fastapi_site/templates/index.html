@@ -129,13 +129,13 @@
     {# ---- TEXT SECOND ---- #}
     <div class="reveal order-2">
       <div class="flex flex-wrap items-center gap-2 mb-4 md:mb-6">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-slate-300/60 text-[11px] md:text-xs font-medium text-accent-cyan">
+        <a href="#contact" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r from-cyan-50 to-emerald-50 border border-accent-cyan/40 text-[11px] md:text-xs font-semibold text-accent-cyan shadow-sm hover:shadow-md hover:border-accent-cyan transition-all">
           <span class="w-2 h-2 rounded-full bg-accent-cyan animate-pulse"></span>
-          Available for new opportunities
-        </div>
-        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-[11px] md:text-xs font-semibold text-emerald-700">
+          Open to new opportunities
+        </a>
+        <div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-[11px] md:text-xs font-semibold text-emerald-700">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
-          U.S. work authorized &middot; no visa sponsorship needed
+          U.S. work authorized &middot; no sponsorship needed
         </div>
       </div>
       <h1 class="font-display font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05] tracking-tight text-slate-900 mb-3 md:mb-4">
@@ -294,7 +294,7 @@
         <div class="h-px flex-1 bg-gradient-to-r from-accent-cyan/50 to-transparent max-w-[60px]"></div>
       </div>
       <h2 class="font-display font-bold text-3xl md:text-5xl text-slate-900 mb-1 md:mb-2">Technical stack</h2>
-      <p class="text-slate-600">Proficiency across languages, data, cloud and backend systems.</p>
+      <p class="text-slate-600">Proficiency across languages, data, cloud and backend systems — hover any skill for details.</p>
     </div>
 
     <div class="grid lg:grid-cols-[1.1fr_1fr] gap-10 mt-4 md:mt-8 items-center">
@@ -429,7 +429,7 @@
             <div class="flex flex-wrap gap-1.5 mb-5">
               {% for t in p.technology.split(',') %}
                 {% set tt = t.strip() %}
-                {% if tt %}<span class="text-[10px] font-mono px-2 py-1 rounded bg-slate-100/70 text-slate-600 border border-slate-200">{{ tt }}</span>{% endif %}
+                {% if tt %}<span class="text-[10px] font-mono px-2 py-1 rounded-full bg-cyan-50 text-accent-cyan border border-accent-cyan/25 font-medium">{{ tt }}</span>{% endif %}
               {% endfor %}
             </div>
             <div class="flex gap-4 text-sm">
@@ -562,11 +562,17 @@
         <div class="h-px w-16 bg-gradient-to-r from-transparent via-accent-cyan/50 to-transparent"></div>
       </div>
       <h2 class="font-display font-bold text-4xl md:text-6xl text-slate-900 mb-4">Let's connect<span class="text-accent-cyan">.</span></h2>
-      <p class="text-slate-600 text-lg max-w-2xl mx-auto mb-10">
-        Open to senior engineering and FinTech leadership roles. Always happy to talk shop.
+      <p class="text-slate-600 text-lg max-w-2xl mx-auto mb-6">
+        Open to senior FinTech engineering, quant development, and tech leadership roles.<br class="hidden sm:block" />
+        30+ years of experience. FRM · CFA L2 · U.S. work authorized — no sponsorship needed.
       </p>
+      <a href="mailto:ramboquant@gmail.com"
+         class="inline-flex items-center gap-2 px-6 py-3 mb-10 rounded-full bg-gradient-to-r from-accent-cyan to-accent-indigo text-white font-semibold text-sm shadow-lg shadow-accent-indigo/25 hover:scale-105 transition-transform">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        Email me directly
+      </a>
 
-      <div class="flex flex-wrap gap-3 justify-center mb-12">
+      <div class="flex flex-wrap gap-3 justify-center mb-8">
         {% for key, c in d.contact.items() %}
         <a href="{{ c.link }}" target="_blank" class="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-slate-50 shadow-sm shadow-slate-200/60 border border-slate-200 hover:border-accent-cyan hover:text-accent-cyan transition-colors text-sm">
           <img src="/images/{{ c.icon }}" class="w-4 h-4 object-contain" alt="" />
