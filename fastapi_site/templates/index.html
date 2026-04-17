@@ -421,7 +421,8 @@
                data-tip-url="{{ p.link or p.github or '' }}"
                data-tip-cta="Open Project"
                @mouseenter="$dispatch('card-peek',{title:$el.dataset.tipTitle,body:$el.dataset.tipBody,url:$el.dataset.tipUrl,cta:$el.dataset.tipCta})"
-               @mouseleave="$dispatch('card-out')">
+               @mouseleave="$dispatch('card-out')"
+               @click="if(!$event.target.closest('a')) $dispatch('card-lock',{title:$el.dataset.tipTitle,body:$el.dataset.tipBody,url:$el.dataset.tipUrl,cta:$el.dataset.tipCta})">
         <div class="grid lg:grid-cols-[1.35fr_1fr] gap-0">
           <div class="relative aspect-[16/9] lg:aspect-auto lg:min-h-[320px] bg-slate-100 overflow-hidden rounded-l-2xl">
             <img src="/images/{{ p.image }}" alt="{{ name }}" class="absolute inset-0 w-full h-full object-cover group-hover/port:scale-[1.03] transition-transform duration-500" />
@@ -624,23 +625,25 @@
      x-transition:leave="transition ease-in duration-150"
      x-transition:leave-start="opacity-100 translate-y-0"
      x-transition:leave-end="opacity-0 translate-y-2"
-     class="fixed bottom-[50px] z-[45] w-[calc(100%-2rem)] left-4 sm:w-80 sm:left-1/2 sm:-translate-x-1/2 p-3 rounded-xl bg-slate-900 text-white text-[11px] leading-snug shadow-xl shadow-slate-900/40 border border-slate-700/60 flex items-center gap-3">
-  <div class="flex-1 min-w-0">
-    <div class="font-semibold text-accent-cyan mb-0.5 truncate" x-text="title"></div>
-    <div class="text-slate-300 line-clamp-2" x-text="body"></div>
-  </div>
+     class="fixed bottom-[50px] z-[45] w-[calc(100%-2rem)] left-4 sm:w-80 sm:left-1/2 sm:-translate-x-1/2 p-3 rounded-xl bg-slate-900 text-white text-[11px] leading-snug shadow-xl shadow-slate-900/40 border border-slate-700/60">
+  <!-- close button — absolute top-right so it never pushes content -->
+  <button @click="close()"
+          class="absolute top-2 right-2 w-5 h-5 rounded-full bg-slate-700 hover:bg-slate-600 flex items-center justify-center transition-colors" aria-label="Close">
+    <svg class="w-2.5 h-2.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/>
+    </svg>
+  </button>
+  <!-- title always visible -->
+  <div class="font-semibold text-accent-cyan mb-1 pr-6 truncate" x-text="title"></div>
+  <!-- summary — up to 3 lines, always shown -->
+  <div class="text-slate-300 leading-relaxed mb-2.5 line-clamp-3" x-text="body"></div>
+  <!-- action row -->
   <template x-if="url">
     <a :href="url" target="_blank" rel="noopener noreferrer"
        @click="close()"
-       class="flex-shrink-0 px-3 py-1.5 rounded-lg bg-gradient-to-r from-accent-cyan to-accent-indigo text-white font-semibold text-[11px] hover:opacity-90 transition-opacity whitespace-nowrap"
+       class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gradient-to-r from-accent-cyan to-accent-indigo text-white font-semibold text-[11px] hover:opacity-90 transition-opacity whitespace-nowrap"
        x-text="cta"></a>
   </template>
-  <button @click="close()"
-          class="flex-shrink-0 w-6 h-6 rounded-full bg-slate-700 hover:bg-slate-600 flex items-center justify-center transition-colors flex-shrink-0" aria-label="Close">
-    <svg class="w-3 h-3 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-    </svg>
-  </button>
   <!-- Arrow pointing down toward the footer -->
   <div class="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-[6px] border-r-[6px] border-t-[6px] border-l-transparent border-r-transparent border-t-slate-900"></div>
 </div>
