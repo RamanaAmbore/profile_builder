@@ -102,3 +102,20 @@ details summary { list-style: none; }
    detection entirely (no events fired). */
 
 img[src*="profile_photo"] { filter: saturate(1.05); }
+
+/* Interactive tooltip popovers — stays visible and clickable when the
+   mouse moves from the trigger card onto the popup itself. The 80ms
+   delay prevents the popup from blinking when crossing the small gap. */
+/* Cards with .has-tip show their .tip-pop tooltip on hover.
+   80ms delay prevents flicker when the mouse crosses the small gap
+   between trigger and popup. pointer-events: none hides the invisible
+   tooltip from mouse hit-testing; auto when visible lets URLs be clicked. */
+.tip-pop {
+  pointer-events: none;
+  transition-delay: 80ms;
+}
+.has-tip:hover .tip-pop,
+.tip-pop:hover {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
