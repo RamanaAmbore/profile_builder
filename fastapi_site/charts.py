@@ -140,7 +140,7 @@ def skills_radar(skills: dict[str, dict[str, Any]]) -> str:
         ),
         polar=dict(
             domain=dict(x=[0.0, 1.0], y=[0.12, 1.0]),
-            bgcolor="rgba(248,250,252,0.7)",
+            bgcolor="rgba(255,255,255,0.92)",
             radialaxis=dict(
                 visible=True,
                 range=[0, 5],
