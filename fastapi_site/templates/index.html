@@ -75,7 +75,7 @@
   </div>
 </header>
 
-<div class="pt-[68px] pb-[72px] px-0 sm:px-4 md:px-6 overflow-x-hidden max-w-full">
+<div x-data="{}" class="pt-[68px] pb-[72px] px-0 sm:px-4 md:px-6 overflow-x-hidden max-w-full">
 <main class="max-w-6xl mx-auto relative bg-white sm:border sm:border-slate-200/80 rounded-none sm:rounded-3xl shadow-xl shadow-slate-900/10 overflow-x-hidden sm:overflow-x-visible max-w-full">
 
   <!-- Derivative equations + Greek letters SVG backdrop INSIDE the card.
@@ -591,10 +591,14 @@
   </div>
 </section>
 
+</main>
+</div>
+
 <!-- ======== Card Info Panel ======== -->
-<!-- Shared bottom-of-viewport panel: slides up when any card is hovered
-     or clicked. Hover = peek (hides on mouseleave). Click = lock (stays
-     open until user dismisses or navigates via the CTA button). -->
+<!-- Lives outside <main> to avoid overflow-x-hidden / stacking-context
+     interference with position:fixed. x-data on the outer wrapper div
+     (above) puts all card @mouseenter/@click directives in Alpine scope;
+     this panel listens for card-peek / card-lock / card-out on window. -->
 <div x-cloak
      x-data="{
        vis: false,
@@ -620,7 +624,7 @@
      x-transition:leave="transition ease-in duration-150"
      x-transition:leave-start="opacity-100 translate-y-0"
      x-transition:leave-end="opacity-0 translate-y-3"
-     class="fixed bottom-[48px] left-0 right-0 z-[45] bg-slate-800/97 backdrop-blur-sm border-t border-slate-600/50 shadow-2xl px-4 sm:px-6 py-2.5 flex items-center gap-3">
+     class="fixed bottom-[46px] left-0 right-0 z-[45] bg-slate-800 backdrop-blur-sm border-t border-slate-600/50 shadow-2xl px-4 sm:px-6 py-2.5 flex items-center gap-3">
   <div class="flex-1 min-w-0">
     <div class="font-semibold text-accent-cyan text-[12px] truncate" x-text="title"></div>
     <div class="text-slate-300 text-[11px] leading-snug line-clamp-2 mt-0.5 hidden sm:block" x-text="body"></div>
@@ -639,24 +643,19 @@
   </button>
 </div>
 
-<footer class="fixed bottom-0 left-0 right-0 z-40 py-2 border-t border-slate-200/70 bg-slate-50/97 backdrop-blur-sm">
+<footer class="fixed bottom-0 left-0 right-0 z-40 py-2 border-t border-slate-200/70 bg-slate-50 backdrop-blur-sm">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 md:px-12 flex flex-wrap items-center justify-center gap-x-2 gap-y-0">
     <span class="text-[11px] font-medium text-slate-600 whitespace-nowrap">
       Developed by <span class="text-accent-cyan font-semibold">Ramana Ambore</span> using <span class="text-accent-indigo font-semibold">Claude Code</span>
     </span>
-    <!-- Tablet+: core stack appended on the same conceptual line, but wrapped into a second line if needed -->
     <span class="hidden sm:inline text-[10px] text-slate-400 whitespace-nowrap">
       · FastAPI · Python · Plotly · Tailwind · AWS · PostgreSQL · COBOL · Java · Spring Boot
     </span>
-    <!-- Desktop: extra items -->
     <span class="hidden lg:inline text-[10px] text-slate-400 whitespace-nowrap">
       · Litestar · SvelteKit · Snowflake · Google Gemini · AlpineJS
     </span>
   </div>
 </footer>
-
-</main>
-</div>
 
 {% endblock %}
 
