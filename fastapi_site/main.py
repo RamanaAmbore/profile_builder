@@ -91,25 +91,44 @@ def cached_charts() -> dict[str, Any]:
     return build_all(load_profile())
 
 
-@app.get("/", response_class=HTMLResponse)
-def index(request: Request):
+@functools.lru_cache(maxsize=1)
+def cached_seo() -> dict[str, str]:
+    return build_seo(load_profile())
+
+
+@functools.lru_cache(maxsize=1)
+def cached_stats() -> dict[str, int]:
     data = load_profile()
-    charts = cached_charts()
-    total_years = sum(p.get("duration", 0) for p in data.get("projects", {}).values())
-    stats = {
-        "years": total_years,
+    return {
+        "years": sum(p.get("duration", 0) for p in data.get("projects", {}).values()),
         "skills": len(data.get("technical skills", {})),
         "certs": len(data.get("certifications", {})),
         "projects": sum(len(p.get("clients", {})) for p in data.get("projects", {}).values()),
     }
+
+
+@functools.lru_cache(maxsize=1)
+def cached_resume_pdf() -> bytes:
+    return build_pdf(load_profile())
+
+
+@functools.lru_cache(maxsize=1)
+def cached_resume_txt() -> str:
+    return build_txt(load_profile())
+
+
+@app.get("/", response_class=HTMLResponse)
+def index(request: Request):
+    data = load_profile()
+    charts = cached_charts()
     return templates.TemplateResponse(
         request,
         "index.html",
         {
             "d": data,
             "charts": charts,
-            "stats": stats,
-            "seo": build_seo(data),
+            "stats": cached_stats(),
+            "seo": cached_seo(),
         },
         headers={"Cache-Control": "public, max-age=300, s-maxage=300"},
     )
@@ -117,11 +136,9 @@ def index(request: Request):
 
 @app.get("/resume.pdf")
 def resume_pdf():
-    data = load_profile()
-    pdf_bytes = build_pdf(data)
     filename = "ramana-ambore-resume.pdf"
     return Response(
-        content=pdf_bytes,
+        content=cached_resume_pdf(),
         media_type="application/pdf",
         headers={
             "Content-Disposition": f'inline; filename="{filename}"',
@@ -132,9 +149,8 @@ def resume_pdf():
 
 @app.get("/resume.txt", response_class=PlainTextResponse)
 def resume_txt():
-    data = load_profile()
     return PlainTextResponse(
-        build_txt(data),
+        cached_resume_txt(),
         headers={"Cache-Control": "public, max-age=300"},
     )
 
