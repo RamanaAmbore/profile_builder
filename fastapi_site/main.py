@@ -164,7 +164,11 @@ def sitemap():
         '</urlset>\n'
     )
     from fastapi.responses import Response
-    return Response(content=xml, media_type="application/xml")
+    return Response(
+        content=xml,
+        media_type="application/xml",
+        headers={"Cache-Control": "public, max-age=86400"},
+    )
 
 
 if __name__ == "__main__":
