@@ -689,15 +689,43 @@
 
   const PLOTLY_CONFIG = { displayModeBar: false, responsive: true };
 
+  function loadPlotly() {
+    if (window.Plotly) {
+      return Promise.resolve();
+    }
+    if (window._plotlyLoadingPromise) {
+      return window._plotlyLoadingPromise;
+    }
+
+    window._plotlyLoadingPromise = new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = 'https://cdn.plot.ly/plotly-2.35.2.min.js';
+      script.charset = 'utf-8';
+      script.defer = true;
+      script.onload = () => resolve();
+      script.onerror = (event) => reject(new Error('Plotly failed to load'));
+      document.head.appendChild(script);
+    });
+
+    return window._plotlyLoadingPromise;
+  }
+
   function renderChart(id, key) {
     const el = document.getElementById(id);
     if (!el || !CHART_DATA[key]) return;
-    Plotly.newPlot(el, CHART_DATA[key].data, CHART_DATA[key].layout, PLOTLY_CONFIG);
-    // Wire a custom HTML tooltip (rounded corners + cyan header) in place
-    // of Plotly's built-in SVG hover label.
-    el.on('plotly_hover', (ev) => showChartTooltip(ev));
-    el.on('plotly_unhover', hideChartTooltip);
-    el.on('plotly_click', (ev) => showChartTooltip(ev));
+    loadPlotly()
+      .then(() => {
+        if (!window.Plotly) return;
+        Plotly.newPlot(el, CHART_DATA[key].data, CHART_DATA[key].layout, PLOTLY_CONFIG);
+        // Wire a custom HTML tooltip (rounded corners + cyan header) in place
+        // of Plotly's built-in SVG hover label.
+        el.on('plotly_hover', (ev) => showChartTooltip(ev));
+        el.on('plotly_unhover', hideChartTooltip);
+        el.on('plotly_click', (ev) => showChartTooltip(ev));
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }
 
   // ============ Custom HTML hover tooltip for all Plotly charts ============
