@@ -69,6 +69,11 @@ def build_seo(data: dict[str, Any]) -> dict[str, str]:
         f"and delivering cloud-native AWS/Snowflake solutions at Fidelity Investments and NTT DATA. "
         f"CFA L2. Open to senior engineering & FinTech leadership roles."
     )
+
+
+@functools.lru_cache(maxsize=1)
+def cached_charts() -> dict[str, Any]:
+    return build_all(load_profile())
     keywords = (
         "Ramana Ambore, FRM certified, CFA Level 2, Principal FinTech Engineer, Quant Developer, "
         "algorithmic trading, derivatives, options pricing, Black-Scholes, legacy modernization, "
@@ -89,7 +94,7 @@ def build_seo(data: dict[str, Any]) -> dict[str, str]:
 @app.get("/", response_class=HTMLResponse)
 def index(request: Request):
     data = load_profile()
-    charts = build_all(data)
+    charts = cached_charts()
     total_years = sum(p.get("duration", 0) for p in data.get("projects", {}).values())
     stats = {
         "years": total_years,
