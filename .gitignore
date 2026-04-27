@@ -19,6 +19,12 @@ env/
 .log/
 *.log
 
+# Local workspace notes and build artifacts
+memory/
+
+# Node.js
+fastapi_site/node_modules/
+
 # Build artifacts
 dist/
 build/
