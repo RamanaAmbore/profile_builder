@@ -133,17 +133,26 @@ def resume_pdf():
 @app.get("/resume.txt", response_class=PlainTextResponse)
 def resume_txt():
     data = load_profile()
-    return build_txt(data)
+    return PlainTextResponse(
+        build_txt(data),
+        headers={"Cache-Control": "public, max-age=300"},
+    )
 
 
 @app.get("/google2d2adbc6c5055985.html", response_class=PlainTextResponse)
 def google_site_verification():
-    return "google-site-verification: google2d2adbc6c5055985.html"
+    return PlainTextResponse(
+        "google-site-verification: google2d2adbc6c5055985.html",
+        headers={"Cache-Control": "public, max-age=86400"},
+    )
 
 
 @app.get("/robots.txt", response_class=PlainTextResponse)
 def robots():
-    return f"User-agent: *\nAllow: /\nSitemap: {PUBLIC_SITE_URL}/sitemap.xml\n"
+    return PlainTextResponse(
+        f"User-agent: *\nAllow: /\nSitemap: {PUBLIC_SITE_URL}/sitemap.xml\n",
+        headers={"Cache-Control": "public, max-age=86400"},
+    )
 
 
 @app.get("/sitemap.xml")
