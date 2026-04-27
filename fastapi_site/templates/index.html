@@ -796,13 +796,45 @@
     });
   }
 
-  document.addEventListener('DOMContentLoaded', () => {
-    renderChart('chart-skills', 'skills');
-    renderChart('chart-employment', 'employment');
-    renderChart('chart-education', 'education');
-    renderChart('chart-timeline', 'timeline');
-    tuneTimelineForViewport();
-  });
+  function observeCharts() {
+    const charts = [
+      { id: 'chart-skills', key: 'skills' },
+      { id: 'chart-employment', key: 'employment' },
+      { id: 'chart-education', key: 'education' },
+      { id: 'chart-timeline', key: 'timeline' },
+    ];
+
+    if (!('IntersectionObserver' in window)) {
+      charts.forEach((chart) => renderChart(chart.id, chart.key));
+      tuneTimelineForViewport();
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const target = charts.find((chart) => chart.id === entry.target.id);
+        if (!target || entry.target.dataset.rendered === 'true') return;
+
+        renderChart(target.id, target.key);
+        if (target.id === 'chart-timeline') {
+          tuneTimelineForViewport();
+        }
+        entry.target.dataset.rendered = 'true';
+        obs.unobserve(entry.target);
+      });
+    }, {
+      rootMargin: '0px 0px 200px 0px',
+      threshold: 0.1,
+    });
+
+    charts.forEach((chart) => {
+      const el = document.getElementById(chart.id);
+      if (el) observer.observe(el);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', observeCharts);
   let _timelineResizeTimer = null;
   window.addEventListener('resize', () => {
     clearTimeout(_timelineResizeTimer);
