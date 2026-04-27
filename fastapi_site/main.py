@@ -1,6 +1,7 @@
 """FastAPI server for the profile site."""
 from __future__ import annotations
 
+import functools
 import os
 from pathlib import Path
 from typing import Any
@@ -52,6 +53,7 @@ import time as _time
 templates.env.globals["asset_version"] = str(int(_time.time()))
 
 
+@functools.lru_cache(maxsize=1)
 def load_profile() -> dict[str, Any]:
     with YAML_PATH.open("r", encoding="utf-8") as f:
         return yaml.safe_load(f)
